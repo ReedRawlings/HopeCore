@@ -59,12 +59,41 @@ struct HopeCoreApp: App {
 
     var body: some Scene {
         WindowGroup {
-            // AGENT NOTE: Replace ContentView with proper app entry point
-            // Should show OnboardingView if !hasCompletedOnboarding
-            // Otherwise show HomeView
-            ContentView()
+            AppRootView()
         }
         .modelContainer(sharedModelContainer)
+    }
+}
+
+// MARK: - App Root View
+
+/// Root view that determines which screen to show based on onboarding status
+/// AGENT NOTE: Checks UserPreferences to route to onboarding or main app
+struct AppRootView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query private var preferences: [UserPreferences]
+
+    var body: some View {
+        Group {
+            if let userPrefs = preferences.first {
+                if userPrefs.hasCompletedOnboarding {
+                    HomeView()
+                } else {
+                    OnboardingView()
+                }
+            } else {
+                // No preferences exist yet, show onboarding
+                OnboardingView()
+            }
+        }
+        .onAppear {
+            // Create default preferences if none exist
+            if preferences.isEmpty {
+                let defaultPrefs = UserPreferences()
+                modelContext.insert(defaultPrefs)
+                try? modelContext.save()
+            }
+        }
     }
 
     // MARK: - Appearance Configuration

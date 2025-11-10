@@ -2,514 +2,523 @@
 
 ## Overview
 
-This document outlines the work completed in this session and the critical next steps for future development agents. HopeCore is an iOS app built with SwiftUI and SwiftData, designed to deliver hopecore messages and audio content to users rebuilding their lives.
+This document outlines the work completed and the critical next steps for future development agents. HopeCore is an iOS app built with SwiftUI and SwiftData, designed to deliver hopecore messages and audio content to users rebuilding their lives.
 
 **Created:** November 10, 2025
-**Session:** App Foundation Initialization
-**Status:** Foundation Complete - Ready for View Implementation
+**Last Updated:** November 10, 2025 (Phase 1 Complete)
+**Session:** Phase 1 Core Views Implementation
+**Status:** ✅ Core Views Complete - Ready for Integration & Testing
 
 ---
 
-## ✅ Work Completed
+## ✅ Phase 1 Work Completed (Current Session)
 
-### 1. Folder Structure
+### Core Views Implemented
 
-The following directory structure has been established:
+#### 1. MessageCard Component ✅
+**Location:** `Components/MessageCard.swift`
 
-```
-HopeCore/
-├── Models/              # SwiftData models for persistent storage
-├── Views/               # SwiftUI view files (placeholder structure created)
-│   ├── Home/
-│   ├── Settings/
-│   ├── Audio/
-│   ├── Onboarding/
-│   └── Saved/
-├── Components/          # Reusable UI components
-├── ViewModels/          # MVVM view models
-├── Services/            # Business logic and service managers
-├── DesignSystem/        # Design tokens and styling
-├── Utilities/           # Helper functions and extensions
-│   └── Extensions/
-└── Widgets/             # iOS widgets
-```
+**Features Implemented:**
+- ✅ All 4 presentation modes from designdoc.md:
+  - `imageText`: Image at top, text below (most common)
+  - `textOnBackground`: Text overlaid on image with opacity
+  - `split`: Side-by-side 50/50 layout
+  - `minimal`: Subtle background with prominent typography
+- ✅ Glass materials (ultraThinMaterial) for depth
+- ✅ 20pt padding, 16pt corner radius per spec
+- ✅ Save/Share action buttons with haptic feedback
+- ✅ Animated save state (heart pulse effect)
+- ✅ AsyncImage loading from URLs
+- ✅ Image placeholder for failed loads
+- ✅ Author attribution display
+- ✅ Saved state styling (rose border)
 
-### 2. Design System (✅ Complete)
-
-All design system files follow specifications from `designdoc.md`:
-
-**Files Created:**
-- `DesignSystem/Colors.swift` - Complete color palette (rose/magenta primary, emerald secondary, dark backgrounds)
-- `DesignSystem/Fonts.swift` - Typography system (SF Pro Display/Text/Rounded/Mono)
-- `DesignSystem/Spacing.swift` - 4pt grid-based spacing system
-- `DesignSystem/Elevation.swift` - Material/glass depth strategy (NO shadows)
-- `DesignSystem/AnimationTiming.swift` - Animation curves and timings
-
-**Key Design Principles Implemented:**
-- Rose/magenta (#EC4899) as primary accent for hopecore messaging
-- Emerald (#10B981) for progress and growth indicators
-- Dark backgrounds (#0A0E14) with glass materials for cards
-- NO custom shadows - only native iOS blur materials
-- 1.5x line height for message text readability
-- Haptic feedback for all interactions
-
-### 3. Data Models (✅ Complete)
-
-All SwiftData models created and integrated:
-
-**Files Created:**
-- `Models/Message.swift` - Hopecore message model with image URLs, categories, presentation modes
-- `Models/AudioTrack.swift` - Audio content (sleep sounds, focus sessions)
-- `Models/UserPreferences.swift` - User settings, subscription, notification preferences
-- `Models/Category.swift` - Message categories (Resilience, Agency, Rebuilding, Possibility, Demotivation)
-- `Models/SubscriptionTier.swift` - Free vs Premium tier features and pricing
-
-**Key Data Structures:**
-- Messages support 4 presentation modes: imageText, textOnBackground, split, minimal
-- Free users: max 5 messages/day, 1 demotivation per 5 messages (mandatory)
-- Premium users: up to 20 messages/day, demotivation optional
-- All models include sample data for development
-
-### 4. Service Managers (✅ Complete)
-
-Core business logic services created:
-
-**Files Created:**
-- `Services/NotificationManager.swift` - Local notification scheduling, respects quiet hours, handles demotivation pattern
-- `Services/AudioManager.swift` - Audio playback (streaming + offline), background playback, playback controls
-- `Services/ImageCacheManager.swift` - R2 Cloudflare image downloading, memory + disk caching, daily pre-loading
-- `Services/MessageService.swift` - Message selection algorithm, rotation logic, saved messages
-- `Services/SubscriptionManager.swift` - StoreKit integration, free vs premium logic, purchase flow
-
-**Key Features:**
-- All services are Observable singletons
-- Notification scheduling with smart time distribution
-- Image pre-loading (3 random images daily per spec)
-- Message rotation to avoid repetition
-- Audio supports 1.0x, 1.25x, 1.5x, 2.0x playback rates
-
-### 5. Utilities (✅ Complete)
-
-Helper functions and extensions:
-
-**Files Created:**
-- `Utilities/Constants.swift` - App-wide configuration (R2 URLs, limits, defaults)
-- `Utilities/HapticFeedback.swift` - Tactile feedback system (light, medium, success patterns)
-- `Utilities/Extensions/View+Extensions.swift` - SwiftUI view modifiers and styling helpers
-- `Utilities/Extensions/Date+Extensions.swift` - Date formatting, relative time, notification helpers
-
-**Key Utilities:**
-- Pre-defined haptic patterns for all interactions (messageSaved, audioPlayPause, etc.)
-- Card styling modifiers (messageCardStyle, primaryButtonStyle, etc.)
-- Date formatters (relativeTimeString, timeString, etc.)
-- Conditional modifiers and loading states
-
-### 6. App Configuration (✅ Complete)
-
-**Files Updated:**
-- `HopeCoreApp.swift` - SwiftData container configured with all models, services initialized, global appearance configured
+**Key Design Adherence:**
+- Image max 60% of card height ✅
+- 1.5x line height for message text ✅
+- Spring animation on press (0.97 scale) ✅
+- Rose accent for saved state ✅
 
 ---
 
-## 🚨 Critical Next Steps
+#### 2. HomeView ✅
+**Location:** `Views/Home/HomeView.swift`
 
-### Phase 1: Core Views (PRIORITY 1)
+**Features Implemented:**
+- ✅ TikTok/Instagram-style vertical scrolling feed
+- ✅ TabView with .page style for smooth pagination
+- ✅ One message at a time display
+- ✅ Top controls overlay:
+  - App title "HopeCore"
+  - Music button (opens audio player)
+  - Settings button
+- ✅ Message card integration with save/share
+- ✅ Share sheet for message sharing
+- ✅ Haptic feedback on scroll
+- ✅ Loading state
+- ✅ Empty state view
+- ✅ Audio player overlay (modal presentation)
 
-These views are essential for MVP functionality:
+**Integration Points:**
+- Uses MessageCard component ✅
+- Connects to SettingsView via sheet ✅
+- Shows AudioPlayerOverlay on music button ✅
+- Generates share text with app attribution ✅
 
-#### 1. HomeView (Views/Home/HomeView.swift)
-**Purpose:** Main app screen with vertical scrolling message feed
-
-**Requirements from technical_spec.md:**
-- Vertical scroll like Instagram/TikTok (one message at a time)
-- Overlay for favorite/share buttons
-- Music icon to open audio overlay
-- Settings icon (top right)
-
-**Implementation Notes:**
-```swift
-// Use TabView with .page style for TikTok-like scroll
-// Load 3 messages at a time (current, previous, next)
-// Pre-fetch images using ImageCacheManager
-// Haptic feedback on scroll (HapticFeedback.cardSwipe())
-// Track message views with MessageService.markAsShown()
-```
-
-**Key Components Needed:**
-- Message card with overlay controls
-- Audio player overlay (modal sheet)
-- Share sheet integration
-
-#### 2. OnboardingView (Views/Onboarding/OnboardingView.swift)
-**Purpose:** First-time user setup flow
-
-**Requirements from technical_spec.md:**
-- Brief questions about user's situation
-- Areas of life being rebuilt
-- Notification timing preferences
-- Demotivation message explanation for free users
-- Request notification permissions
-
-**Implementation Notes:**
-```swift
-// 3-4 screens with smooth transitions
-// Save to UserPreferences on completion
-// Request NotificationManager.requestAuthorization()
-// Set hasCompletedOnboarding = true
-```
-
-#### 3. SettingsView (Views/Settings/SettingsView.swift)
-**Purpose:** User preferences and subscription management
-
-**Requirements from technical_spec.md:**
-- Notification settings (frequency, timing, quiet hours)
-- Premium subscription upsell
-- Toggle demotivation messages (premium only)
-- Sound/haptic preferences
-
-**Implementation Notes:**
-```swift
-// Use Form with sections
-// Link to SubscriptionManager for premium flow
-// Update UserPreferences on changes
-// Reschedule notifications when settings change
-```
-
-### Phase 2: Essential Components (PRIORITY 1)
-
-#### 1. MessageCard (Components/MessageCard.swift)
-**Purpose:** Display message with image-text pairing
-
-**Design Requirements from designdoc.md:**
-- Glass background (ultraThinMaterial)
-- 20pt padding, 16pt corner radius
-- Support 4 presentation modes
-- Image max 60% of card height
-- 1.5x line height for text
-- Save/Share buttons at bottom
-
-**Implementation Notes:**
-```swift
-// Switch on presentationMode
-// Use AsyncImageView from ImageCacheManager
-// Animate save state (heart pulse)
-// Handle tap for full-screen view
-```
-
-#### 2. AudioPlayerOverlay (Components/AudioPlayerComponent.swift)
-**Purpose:** Modal audio player with controls
-
-**Design Requirements from designdoc.md:**
-- Full-screen modal presentation
-- 240x240pt album art
-- Progress slider with time labels
-- Play/Pause (56pt button, rose accent)
-- Speed selector (1x, 1.25x, 1.5x)
-- Volume slider
-
-**Implementation Notes:**
-```swift
-// Observe AudioManager for state
-// Update progress in real-time
-// Haptic on play/pause
-// Gesture to dismiss
-```
-
-### Phase 3: Audio & Saved Messages (PRIORITY 2)
-
-#### 1. AudioLibraryView (Views/Audio/AudioLibraryView.swift)
-- 2-column grid of audio cards
-- Separate sections for Sleep and Focus
-- Show duration and download status (premium)
-
-#### 2. SavedMessagesView (Views/Saved/SavedMessagesView.swift)
-- Grid view of saved messages
-- Sort by newest/oldest/category
-- Long-press to unsave
-
-### Phase 4: Advanced Features (PRIORITY 3)
-
-#### 1. Widgets
-- Lock screen widget (daily message)
-- Home screen widget (message + audio shortcuts)
-- Configure in `Widgets/` directory
-
-#### 2. Background Tasks
-- Daily image pre-loading (3 images at morning notification time)
-- Message rotation at midnight
-- Cache cleanup when app launches
-
-#### 3. Premium Flow
-- Subscription paywall UI
-- StoreKit product display
-- Restore purchases flow
+**TODO for Next Agent:**
+- Connect to MessageService for real data loading
+- Implement image pre-fetching with ImageCacheManager
+- Add message view tracking
 
 ---
 
-## 📋 Implementation Checklist
+#### 3. OnboardingView ✅
+**Location:** `Views/Onboarding/OnboardingView.swift`
 
-Use this checklist for tracking progress:
+**Features Implemented:**
+- ✅ 5-step onboarding flow with smooth transitions
+- ✅ Progress bar showing current step
+- ✅ Step 1: Welcome screen with app introduction
+- ✅ Step 2: User situation selection (recovery, transition, etc.)
+- ✅ Step 3: Notification timing configuration:
+  - Messages per day slider (1-5 for free)
+  - Start time picker
+  - End time picker
+- ✅ Step 4: Demotivation message explanation for free users
+- ✅ Step 5: Notification permission request
+- ✅ Saves all preferences to UserPreferences model
+- ✅ Sets hasCompletedOnboarding = true on completion
+- ✅ Back/Continue navigation buttons
+- ✅ Haptic feedback throughout
 
-### Views
-- [ ] HomeView with vertical scroll
-- [ ] OnboardingView with multi-step flow
-- [ ] SettingsView with notification preferences
-- [ ] AudioLibraryView with grid layout
-- [ ] SavedMessagesView with filtering
-- [ ] Full-screen MessageDetailView
+**Data Persistence:**
+- Saves to UserPreferences via SwiftData ✅
+- Creates default preferences if none exist ✅
 
-### Components
-- [ ] MessageCard with 4 presentation modes
-- [ ] AudioPlayerOverlay with full controls
-- [ ] CategoryFilterView for browse
-- [ ] ActionButtons (Save, Share)
-- [ ] AudioCard for library
-
-### ViewModels
-- [ ] HomeViewModel (message feed logic)
-- [ ] SettingsViewModel (preferences binding)
-- [ ] AudioViewModel (playback state)
-- [ ] SavedMessagesViewModel (filtering/sorting)
-
-### Integration
-- [ ] Wire OnboardingView to app entry point
-- [ ] Connect NotificationManager to SettingsView
-- [ ] Implement share sheet for messages
-- [ ] Add background audio session handling
-- [ ] Configure widgets with WidgetKit
-
-### Testing & Polish
-- [ ] Test notification scheduling
-- [ ] Verify image caching works
-- [ ] Test audio playback (foreground + background)
-- [ ] Ensure haptic feedback works throughout
-- [ ] Test free vs premium flows
-- [ ] Verify demotivation pattern (1 per 5 for free)
+**TODO for Next Agent:**
+- Connect Step 5 to NotificationManager.requestAuthorization()
+- Add error handling for permission denial
 
 ---
 
-## 🎯 Key Design Decisions
+#### 4. SettingsView ✅
+**Location:** `Views/Settings/SettingsView.swift`
 
-### Message Presentation Modes
+**Features Implemented:**
+- ✅ Form-based settings interface with sections:
+  - **Premium Section:** Upgrade upsell for free users
+  - **Notifications:** Messages per day, start/end times
+  - **Quiet Hours:** Toggle + time range configuration
+  - **Message Preferences:** Demotivation toggle (premium only)
+  - **Sound & Haptic:** Notification sounds and haptic toggles
+  - **About:** Version, subscription tier, stats
+- ✅ Premium upsell sheet with feature list
+- ✅ Real-time preference updates via bindings
+- ✅ Saves changes to SwiftData on dismiss
+- ✅ Dynamic UI based on subscription tier
+- ✅ Haptic feedback on all interactions
 
-Per `designdoc.md`, there are 4 modes:
+**Premium Features:**
+- Shows max messages (5 for free, 20 for premium) ✅
+- Demotivation toggle only for premium ✅
+- Premium badge in About section ✅
 
-1. **imageText** (most common): Image at top, text below with 16pt gap
-2. **textOnBackground**: Text overlaid on image (opacity 0.4)
-3. **split**: Side-by-side layout (50/50)
-4. **minimal**: Subtle background with prominent typography
-
-Implement all 4 in MessageCard component with switch statement.
-
-### Notification Strategy
-
-Per `technical_spec.md`:
-
-**Free Users:**
-- Max 5 messages/day
-- Evenly distributed between start/end time
-- Every 5th message is demotivation (mandatory)
-- Widget updates once daily
-
-**Premium Users:**
-- Up to 20 messages/day
-- Category filtering available
-- Demotivation disabled by default (can enable)
-- Widget updates match notification schedule
-
-**Implementation:**
-- Use `NotificationManager.scheduleNotifications()` daily at midnight
-- Respect quiet hours
-- Include image attachments in notifications
-
-### Image Caching Strategy
-
-Per `technical_spec.md`:
-
-- Images hosted on R2 Cloudflare
-- Pre-load 3 random images each morning
-- Memory cache (50MB limit) + disk cache (100MB limit)
-- Automatic cleanup at 80% threshold
-
-**Implementation:**
-- Call `ImageCacheManager.preloadDailyImages()` at morning notification time
-- Use `AsyncImageView` in all message cards
-- Background task for cache cleanup
-
-### Audio Playback
-
-Per `technical_spec.md`:
-
-**Sleep Sounds:** 10-15 min tracks
-**Focus Sessions:** 5-30 min tracks
-
-**Features:**
-- Offline playback (premium users can download)
-- Background audio (continues when app backgrounded)
-- Playback rates: 1.0x, 1.25x, 1.5x, 2.0x
-- Volume control
-- Progress slider
-
-**Implementation:**
-- AudioManager handles all playback
-- Configure audio session for background in HopeCoreApp
-- Show now-playing controls in lock screen
+**TODO for Next Agent:**
+- Integrate SubscriptionManager.subscribe() for purchases
+- Connect "Restore Purchases" button
+- Add notification rescheduling on settings change
 
 ---
 
-## 🔧 Technical Considerations
+#### 5. AudioPlayerOverlay Component ✅
+**Location:** `Components/AudioPlayerComponent.swift`
 
-### SwiftData Best Practices
+**Features Implemented:**
+- ✅ Full-screen modal audio player
+- ✅ Album art display (240x240pt) with AsyncImage
+- ✅ Track title and type display
+- ✅ Real-time progress slider with seek capability
+- ✅ Playback controls:
+  - Skip backward 15s
+  - Play/Pause (56pt, rose accent)
+  - Skip forward 15s
+- ✅ Speed selector (1x, 1.25x, 1.5x, 2.0x)
+- ✅ Volume slider
+- ✅ Close button to dismiss
+- ✅ Observes AudioManager for state
+- ✅ Progress timer for real-time updates
+- ✅ Haptic feedback on all interactions
 
-1. **Fetching Messages:**
+**Bonus: CompactAudioPlayer ✅**
+- Compact version for home screen overlay
+- Shows play/pause, track info, time
+- Tap to expand to full player
+- Included in same file
+
+**TODO for Next Agent:**
+- Add sleep timer functionality (15/30/60 min)
+- Implement playback completion handling
+
+---
+
+#### 6. App Routing ✅
+**Location:** `HopeCoreApp.swift`
+
+**Features Implemented:**
+- ✅ Created AppRootView to handle routing logic
+- ✅ Checks UserPreferences.hasCompletedOnboarding
+- ✅ Shows OnboardingView if not completed
+- ✅ Shows HomeView if onboarding completed
+- ✅ Creates default UserPreferences if none exist
+- ✅ Proper SwiftData integration
+
+**Routing Logic:**
 ```swift
-let descriptor = FetchDescriptor<Message>(
-    predicate: #Predicate { !$0.isDemotivation },
-    sortBy: [SortDescriptor(\.lastShownAt)]
-)
-let messages = try modelContext.fetch(descriptor)
-```
-
-2. **Updating User Preferences:**
-```swift
-// UserPreferences should be a singleton instance
-let descriptor = FetchDescriptor<UserPreferences>()
-let prefs = try modelContext.fetch(descriptor).first ?? UserPreferences()
-prefs.messagesPerDay = 5
-try modelContext.save()
-```
-
-### R2 Cloudflare Integration
-
-Currently using placeholder URLs in `Constants.swift`:
-
-```swift
-static let imageBaseURL = "https://r2.example.com/images"
-static let audioBaseURL = "https://r2.example.com/audio"
-```
-
-**AGENT NOTE:** Update these with actual R2 bucket URLs when available.
-
-**URL Format:**
-- Images: `{imageBaseURL}/{messageId}.jpg`
-- Audio: `{audioBaseURL}/{trackId}.mp3`
-
-### App Store Connect Configuration
-
-**Required Setup:**
-1. Configure In-App Purchase products:
-   - `com.hopecore.premium.monthly`
-   - `com.hopecore.premium.yearly`
-   - `com.hopecore.premium.lifetime`
-
-2. Set up App Groups (for widgets):
-   - `group.com.hopecore.shared`
-
-3. Configure Background Modes:
-   - Audio, AirPlay, and Picture in Picture
-   - Background fetch (for daily tasks)
-
----
-
-## 🐛 Known Issues / TODOs
-
-### High Priority
-1. ContentView is still the default placeholder - needs replacement with proper routing
-2. No onboarding check - app shows ContentView for all users
-3. Sample data is hardcoded - needs backend integration
-4. R2 URLs are placeholders - need actual Cloudflare configuration
-5. StoreKit products not configured - premium flow won't work
-
-### Medium Priority
-1. Background task scheduling not implemented
-2. Widget code not created
-3. Push notification images not attached
-4. Audio download progress tracking missing
-5. Category filtering logic incomplete
-
-### Low Priority
-1. Analytics/telemetry not implemented
-2. Error handling could be more robust
-3. Offline mode handling incomplete
-4. Share sheet customization needed
-5. Accessibility labels missing
-
----
-
-## 📖 Reference Documentation
-
-**Critical Files to Review:**
-- `HopeCore/technical_spec.md` - Product requirements and features
-- `HopeCore/designdoc.md` - Visual design system and UI specifications
-- `HopeCore/agents.md` - Development guidelines for agents
-
-**Design System Files:**
-- `DesignSystem/Colors.swift` - All color tokens
-- `DesignSystem/Fonts.swift` - Typography scale
-- `DesignSystem/Spacing.swift` - Layout measurements
-- `DesignSystem/AnimationTiming.swift` - Animation specs
-
-**Key Services:**
-- `Services/NotificationManager.swift` - Notification logic
-- `Services/AudioManager.swift` - Audio playback
-- `Services/MessageService.swift` - Message selection
-- `Services/ImageCacheManager.swift` - Image handling
-
----
-
-## 💡 Development Tips for Future Agents
-
-1. **Always comment for agents:** Leave detailed comments explaining design decisions, especially for complex business logic.
-
-2. **Follow the design system:** Use pre-defined modifiers from `View+Extensions.swift` rather than inline styling.
-
-3. **Test with sample data:** All models include `.sampleMessages`, `.sampleTracks`, etc. for previews.
-
-4. **Respect the specs:** Don't add features not in `technical_spec.md` without human approval.
-
-5. **Use haptic feedback:** Call appropriate `HapticFeedback` methods for all interactions.
-
-6. **Observable pattern:** All services use `@Observable` for SwiftUI integration.
-
-7. **Async/await:** Services use modern concurrency - always mark functions as `async` when needed.
-
-8. **Error handling:** Use proper do-catch blocks and display user-friendly errors.
-
----
-
-## 🚀 Getting Started for Next Agent
-
-**Immediate next steps:**
-
-1. **Read all three spec documents:**
-   - `technical_spec.md`
-   - `designdoc.md`
-   - `agents.md`
-
-2. **Start with HomeView:**
-   - Create vertical scrolling message feed
-   - Implement TikTok-like pagination
-   - Add overlay controls
-   - Test with sample messages
-
-3. **Then OnboardingView:**
-   - Multi-step flow
-   - Save preferences
-   - Request permissions
-   - Set completion flag
-
-4. **Finally, wire up routing in HopeCoreApp:**
-```swift
-var body: some Scene {
-    WindowGroup {
-        if userPreferences.hasCompletedOnboarding {
-            HomeView()
-        } else {
-            OnboardingView()
-        }
-    }
-    .modelContainer(sharedModelContainer)
+if userPrefs.hasCompletedOnboarding {
+    HomeView()
+} else {
+    OnboardingView()
 }
 ```
 
-**Good luck! The foundation is solid. Build amazing views! 🎨**
+---
+
+## 📁 File Structure (Updated)
+
+```
+HopeCore/
+├── Models/                   # ✅ Complete (from previous session)
+│   ├── Message.swift
+│   ├── AudioTrack.swift
+│   ├── UserPreferences.swift
+│   ├── Category.swift
+│   └── SubscriptionTier.swift
+├── Views/                    # ✅ Phase 1 Complete
+│   ├── Home/
+│   │   └── HomeView.swift           # ✅ NEW
+│   ├── Settings/
+│   │   └── SettingsView.swift       # ✅ NEW
+│   ├── Onboarding/
+│   │   └── OnboardingView.swift     # ✅ NEW
+│   ├── Audio/                        # TODO
+│   └── Saved/                        # TODO
+├── Components/               # ✅ Phase 1 Complete
+│   ├── MessageCard.swift             # ✅ NEW
+│   └── AudioPlayerComponent.swift    # ✅ NEW
+├── Services/                 # ✅ Complete (from previous session)
+│   ├── NotificationManager.swift
+│   ├── AudioManager.swift
+│   ├── MessageService.swift
+│   ├── ImageCacheManager.swift
+│   └── SubscriptionManager.swift
+├── DesignSystem/             # ✅ Complete (from previous session)
+│   ├── Colors.swift
+│   ├── Fonts.swift
+│   ├── Spacing.swift
+│   ├── Elevation.swift
+│   └── AnimationTiming.swift
+├── Utilities/                # ✅ Complete (from previous session)
+│   ├── Constants.swift
+│   ├── HapticFeedback.swift
+│   └── Extensions/
+│       ├── View+Extensions.swift
+│       └── Date+Extensions.swift
+├── ViewModels/               # TODO (Optional - may not need)
+├── Widgets/                  # TODO (Phase 4)
+└── HopeCoreApp.swift         # ✅ Updated with routing
+
+```
+
+---
+
+## 🚨 Critical Next Steps (Priority Order)
+
+### Phase 2: Service Integration & Data (HIGH PRIORITY)
+
+#### 1. Connect MessageService to HomeView
+**File to Modify:** `Views/Home/HomeView.swift`
+
+**What to Do:**
+- Replace sample messages with MessageService.getTodaysMessages()
+- Implement messageService.markAsShown() on scroll
+- Add image pre-fetching via ImageCacheManager
+- Handle empty states when no messages available
+
+**Code Snippet:**
+```swift
+// In HomeView.loadMessages()
+Task {
+    messages = await messageService.getTodaysMessages()
+    isLoading = false
+}
+
+// In handleIndexChange()
+messageService.markAsShown(messages[newValue])
+```
+
+---
+
+#### 2. Connect NotificationManager to Settings & Onboarding
+**Files to Modify:**
+- `Views/Settings/SettingsView.swift`
+- `Views/Onboarding/OnboardingView.swift`
+
+**What to Do:**
+- Request notification authorization in OnboardingView step 5
+- Reschedule notifications when settings change in SettingsView
+- Handle permission denied states
+
+**Code Snippet:**
+```swift
+// In OnboardingView.requestNotificationPermission()
+NotificationManager.shared.requestAuthorization { granted in
+    isComplete = true
+}
+
+// In SettingsView.saveSettings()
+NotificationManager.shared.scheduleNotifications()
+```
+
+---
+
+#### 3. Implement Audio Library View
+**File to Create:** `Views/Audio/AudioLibraryView.swift`
+
+**What to Build:**
+- 2-column grid of audio tracks
+- Separate sections for Sleep and Focus
+- Show duration and download status
+- Tap to play (loads AudioPlayerOverlay)
+- Integration with AudioManager
+
+**Design Specs:**
+- Grid layout with 2 columns
+- AudioCard component for each track
+- Show duration with SF Mono font
+- Icon for type (moon for sleep, brain for focus)
+
+---
+
+#### 4. Implement Saved Messages View
+**File to Create:** `Views/Saved/SavedMessagesView.swift`
+
+**What to Build:**
+- Grid view of saved messages (isSaved = true)
+- Sort options: newest, oldest, category
+- Long-press to unsave
+- Empty state if no saved messages
+- Uses MessageCard component
+
+**Query Example:**
+```swift
+@Query(filter: #Predicate<Message> { $0.isSaved == true })
+private var savedMessages: [Message]
+```
+
+---
+
+### Phase 3: Background Tasks & Notifications (MEDIUM PRIORITY)
+
+#### 1. Daily Image Pre-loading
+**File to Modify:** `Services/ImageCacheManager.swift` + Create background task
+
+**What to Do:**
+- Schedule background task to run each morning
+- Pre-load 3 random message images per spec
+- Respect cache limits (50MB memory, 100MB disk)
+- Clean up old cache automatically
+
+---
+
+#### 2. Notification Scheduling
+**File to Use:** `Services/NotificationManager.swift`
+
+**What to Do:**
+- Schedule daily notifications based on UserPreferences
+- Distribute evenly between start/end times
+- Include message text and image attachments
+- Respect quiet hours
+- Handle demotivation pattern (1 per 5 for free users)
+
+**Logic:**
+```swift
+// Free user with 5 messages/day
+// If demotivationCounter >= 5, send demotivation message
+// Otherwise send regular message
+```
+
+---
+
+### Phase 4: Widgets & Advanced Features (LOW PRIORITY)
+
+#### 1. Lock Screen Widget
+**Directory:** `Widgets/`
+
+**What to Build:**
+- Small widget showing daily message
+- Update once daily for free users
+- Update on schedule for premium users
+- Rose border (2pt) per design
+- Tapping opens app to that message
+
+---
+
+#### 2. Premium Purchase Flow
+**File to Use:** `Services/SubscriptionManager.swift`
+
+**What to Do:**
+- Configure StoreKit products
+- Implement purchase flow
+- Restore purchases functionality
+- Update UserPreferences on successful purchase
+- Show confirmation with haptic feedback
+
+---
+
+## 🐛 Known Issues & TODOs
+
+### High Priority
+- [ ] MessageService integration in HomeView (using sample data currently)
+- [ ] NotificationManager authorization request (placeholder in onboarding)
+- [ ] Settings changes don't reschedule notifications yet
+- [ ] Image pre-fetching not implemented in HomeView
+- [ ] Message view tracking not connected
+- [ ] Audio player doesn't load real tracks yet (AudioManager not connected)
+
+### Medium Priority
+- [ ] Audio library view not created
+- [ ] Saved messages view not created
+- [ ] Background task for image pre-loading not set up
+- [ ] Widget code not created
+- [ ] Share sheet doesn't include message image
+- [ ] No error handling for failed image loads
+
+### Low Priority
+- [ ] AudioPlayerOverlay missing sleep timer
+- [ ] No playback completion handling
+- [ ] Category filtering not implemented
+- [ ] Premium purchase flow not connected
+- [ ] Restore purchases not implemented
+
+---
+
+## 🎯 Testing Checklist
+
+### Before Moving Forward, Test:
+- [ ] App launches and shows onboarding for first-time user
+- [ ] Onboarding flow completes and saves preferences
+- [ ] After onboarding, app shows HomeView
+- [ ] Vertical scrolling works smoothly in HomeView
+- [ ] Message cards render all 4 presentation modes correctly
+- [ ] Save/share buttons work with haptic feedback
+- [ ] Settings sheet opens from HomeView
+- [ ] Settings changes persist to UserPreferences
+- [ ] Audio player overlay opens/closes smoothly
+- [ ] All haptic feedback triggers correctly
+- [ ] Dark mode appearance is correct throughout
+
+---
+
+## 📖 Key Files Reference
+
+### Core Views
+- `Views/Home/HomeView.swift` - Main feed (TikTok-style)
+- `Views/Onboarding/OnboardingView.swift` - First-time setup
+- `Views/Settings/SettingsView.swift` - Preferences & subscription
+
+### Components
+- `Components/MessageCard.swift` - Message display (4 modes)
+- `Components/AudioPlayerComponent.swift` - Full + compact player
+
+### App Entry
+- `HopeCoreApp.swift` - App routing logic
+
+### Design System
+- `DesignSystem/Colors.swift` - Color tokens
+- `DesignSystem/Fonts.swift` - Typography
+- `DesignSystem/Spacing.swift` - Layout measurements
+- `Utilities/Extensions/View+Extensions.swift` - Reusable modifiers
+- `Utilities/HapticFeedback.swift` - Tactile feedback
+
+### Services (Ready for Integration)
+- `Services/MessageService.swift` - Message selection & rotation
+- `Services/NotificationManager.swift` - Notification scheduling
+- `Services/AudioManager.swift` - Audio playback
+- `Services/ImageCacheManager.swift` - Image caching
+- `Services/SubscriptionManager.swift` - StoreKit integration
+
+---
+
+## 💡 Implementation Notes for Next Agent
+
+### 1. Design System Usage
+All views follow the design system strictly. Always use:
+- Pre-defined colors from `Colors.swift`
+- Typography helpers from `Fonts.swift` (e.g., `.messageTextStyle()`)
+- Spacing constants from `Spacing.swift`
+- View modifiers from `View+Extensions.swift` (e.g., `.messageCardStyle()`)
+
+### 2. Haptic Feedback
+Every interaction has haptic feedback via `HapticFeedback`:
+- `messageSaved()` - Heart pulse on save
+- `buttonPress()` - Light tap for buttons
+- `cardSwipe()` - Selection feedback on scroll
+- `audioPlayPause()` - Light tap for play/pause
+
+### 3. SwiftData Patterns
+All data models use `@Model` macro:
+```swift
+@Query private var messages: [Message]
+```
+
+Saving changes:
+```swift
+try modelContext.save()
+```
+
+### 4. Observable Services
+All services use `@Observable` for SwiftUI integration:
+```swift
+@State private var audioManager = AudioManager.shared
+```
+
+### 5. Sample Data
+All models include `.sample*` data for development:
+- `Message.sampleMessages`
+- `AudioTrack.sampleTracks`
+- Use these in previews and testing
+
+---
+
+## 🚀 Quick Start for Next Agent
+
+**To continue development:**
+
+1. **Read the spec files:**
+   - `HopeCore/technical_spec.md` - Product requirements
+   - `HopeCore/designdoc.md` - Visual design system
+   - `HopeCore/agents.md` - Development guidelines
+
+2. **Start with Service Integration (highest priority):**
+   - Connect MessageService to HomeView
+   - Integrate NotificationManager with onboarding
+   - Wire up AudioManager to audio player
+
+3. **Then build missing views:**
+   - AudioLibraryView (grid of tracks)
+   - SavedMessagesView (filtered message list)
+
+4. **Test thoroughly:**
+   - Run app in simulator
+   - Complete onboarding flow
+   - Test all interactions
+   - Verify haptic feedback
+
+5. **Follow the design system:**
+   - Use pre-defined colors, fonts, spacing
+   - Apply view modifiers for consistency
+   - Add comments for future agents
+
+---
+
+**Good luck! Phase 1 is solid. Build on this foundation! 🎨**
