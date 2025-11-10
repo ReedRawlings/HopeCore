@@ -46,6 +46,10 @@ struct MessageCard: View {
     /// Animation state for save button
     @State private var saveAnimating = false
 
+    /// Image cache manager for loading images
+    /// AGENT NOTE: Using shared instance for centralized caching
+    private let imageCacheManager = ImageCacheManager.shared
+
     // MARK: - Body
 
     var body: some View {
@@ -83,24 +87,13 @@ struct MessageCard: View {
     private var imageTextLayout: View {
         VStack(spacing: ComponentSpacing.imageTextGap) {
             // Image Section (top 60% max)
+            // AGENT NOTE: Using AsyncImageView from ImageCacheManager for efficient caching
             if let imageURL = message.imageURL {
-                AsyncImage(url: URL(string: imageURL)) { phase in
-                    switch phase {
-                    case .empty:
-                        imagePlaceholder
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(maxHeight: GridLayout.maxMessageImageHeight)
-                            .clipped()
-                            .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius))
-                    case .failure:
-                        imagePlaceholder
-                    @unknown default:
-                        imagePlaceholder
-                    }
-                }
+                AsyncImageView(urlString: imageURL)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(maxHeight: GridLayout.maxMessageImageHeight)
+                    .clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius))
             }
 
             // Text Section
@@ -130,19 +123,12 @@ struct MessageCard: View {
     private var textOnBackgroundLayout: View {
         ZStack {
             // Background Image (opacity 0.4, blurred)
+            // AGENT NOTE: Using AsyncImageView from ImageCacheManager for efficient caching
             if let imageURL = message.imageURL {
-                AsyncImage(url: URL(string: imageURL)) { phase in
-                    switch phase {
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .blur(radius: 10)
-                            .opacity(0.3)
-                    default:
-                        BackgroundColors.secondary
-                    }
-                }
+                AsyncImageView(urlString: imageURL)
+                    .aspectRatio(contentMode: .fill)
+                    .blur(radius: 10)
+                    .opacity(0.3)
             } else {
                 BackgroundColors.secondary
             }
@@ -185,27 +171,13 @@ struct MessageCard: View {
     private var splitLayout: View {
         HStack(spacing: Spacing.md) {
             // Left: Image (50%)
+            // AGENT NOTE: Using AsyncImageView from ImageCacheManager for efficient caching
             if let imageURL = message.imageURL {
-                AsyncImage(url: URL(string: imageURL)) { phase in
-                    switch phase {
-                    case .empty:
-                        imagePlaceholder
-                            .frame(maxWidth: .infinity)
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(maxWidth: .infinity)
-                            .clipped()
-                            .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius))
-                    case .failure:
-                        imagePlaceholder
-                            .frame(maxWidth: .infinity)
-                    @unknown default:
-                        imagePlaceholder
-                            .frame(maxWidth: .infinity)
-                    }
-                }
+                AsyncImageView(urlString: imageURL)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(maxWidth: .infinity)
+                    .clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius))
             }
 
             // Right: Text (50%)

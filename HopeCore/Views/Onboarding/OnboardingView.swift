@@ -509,6 +509,10 @@ struct OnboardingView: View {
                 await scheduleInitialNotifications(preferences: prefs)
             }
 
+            // Schedule background task for daily image prefetch
+            // AGENT NOTE: Phase 3 - Background task scheduling after onboarding
+            BackgroundTaskManager.shared.scheduleDailyImagePrefetch()
+
             // Haptic feedback
             HapticFeedback.success()
 

@@ -50,6 +50,11 @@ struct HopeCoreApp: App {
         _ = ImageCacheManager.shared
         _ = MessageService.shared
         _ = SubscriptionManager.shared
+        _ = BackgroundTaskManager.shared
+
+        // Register background tasks
+        // AGENT NOTE: Phase 3 - Background task for daily image pre-loading
+        BackgroundTaskManager.shared.registerBackgroundTasks()
 
         // Configure app appearance
         configureAppearance()
@@ -71,6 +76,7 @@ struct HopeCoreApp: App {
 /// AGENT NOTE: Checks UserPreferences to route to onboarding or main app
 struct AppRootView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.scenePhase) private var scenePhase
     @Query private var preferences: [UserPreferences]
 
     var body: some View {
@@ -92,6 +98,13 @@ struct AppRootView: View {
                 let defaultPrefs = UserPreferences()
                 modelContext.insert(defaultPrefs)
                 try? modelContext.save()
+            }
+        }
+        .onChange(of: scenePhase) { oldPhase, newPhase in
+            // Schedule background tasks when app goes to background
+            // AGENT NOTE: Phase 3 - Schedule daily image prefetch
+            if newPhase == .background {
+                BackgroundTaskManager.shared.scheduleDailyImagePrefetch()
             }
         }
     }
