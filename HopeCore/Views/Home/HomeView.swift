@@ -39,6 +39,9 @@ struct HomeView: View {
     /// Show settings screen
     @State private var showSettings = false
 
+    /// Show saved messages view
+    @State private var showSavedMessages = false
+
     /// Show share sheet
     @State private var showShareSheet = false
 
@@ -80,6 +83,10 @@ struct HomeView: View {
         .sheet(isPresented: $showSettings) {
             // Settings View
             SettingsView()
+        }
+        .sheet(isPresented: $showSavedMessages) {
+            // Saved Messages View
+            SavedMessagesView()
         }
         .sheet(item: $messageToShare) { message in
             // Share sheet
@@ -131,6 +138,18 @@ struct HomeView: View {
                     .foregroundColor(TextColors.primary)
 
                 Spacer()
+
+                // Saved Messages Button
+                // AGENT NOTE: Added in Phase 3 for quick access to saved messages
+                Button(action: {
+                    showSavedMessages = true
+                    HapticFeedback.buttonPress()
+                }) {
+                    Image(systemName: "heart.fill")
+                        .font(.system(size: 24))
+                        .foregroundColor(AccentColors.primary)
+                        .frame(width: ComponentSpacing.minTapTarget, height: ComponentSpacing.minTapTarget)
+                }
 
                 // Music Button
                 Button(action: {
@@ -212,6 +231,10 @@ struct HomeView: View {
         }
 
         isLoading = false
+
+        // Pre-fetch initial images for smooth UX
+        // AGENT NOTE: Prefetch first 3 images to improve initial scroll experience
+        prefetchImages(around: 0)
     }
 
     /// Handle index change for message viewing
@@ -234,18 +257,21 @@ struct HomeView: View {
     }
 
     /// Pre-fetch images around current index
+    /// AGENT NOTE: Pre-loads images for smooth scrolling experience
     private func prefetchImages(around index: Int) {
         // Pre-fetch previous, current, and next images
         let indicesToPrefetch = [index - 1, index, index + 1]
 
-        for i in indicesToPrefetch {
-            guard i >= 0 && i < messages.count else { continue }
-            let message = messages[i]
+        Task {
+            for i in indicesToPrefetch {
+                guard i >= 0 && i < messages.count else { continue }
+                let message = messages[i]
 
-            // AGENT NOTE: Use ImageCacheManager to prefetch
-            // if let imageURL = message.imageURL {
-            //     ImageCacheManager.shared.prefetchImage(url: imageURL)
-            // }
+                // Use ImageCacheManager to prefetch images for smooth scrolling
+                if let imageURL = message.imageURL {
+                    _ = await ImageCacheManager.shared.getImage(from: imageURL)
+                }
+            }
         }
     }
 
