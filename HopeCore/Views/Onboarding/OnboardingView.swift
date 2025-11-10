@@ -456,21 +456,30 @@ struct OnboardingView: View {
     // MARK: - Actions
 
     /// Request notification permission
+    /// AGENT NOTE: Requests notification authorization via NotificationManager
     private func requestNotificationPermission() {
-        // AGENT NOTE: Request notification authorization
-        // For now, just mark as complete
-        // NotificationManager.shared.requestAuthorization { granted in
-        //     isComplete = true
-        // }
-
         Task {
-            // Simulate delay
-            try? await Task.sleep(nanoseconds: 500_000_000)
-            isComplete = true
+            do {
+                // Request notification authorization
+                try await NotificationManager.shared.requestAuthorization()
+
+                // Complete onboarding after permission request
+                await MainActor.run {
+                    isComplete = true
+                }
+            } catch {
+                print("Failed to request notification authorization: \(error)")
+
+                // Still complete onboarding even if permission denied
+                await MainActor.run {
+                    isComplete = true
+                }
+            }
         }
     }
 
     /// Complete onboarding and save preferences
+    /// AGENT NOTE: Saves preferences and schedules initial notifications
     private func completeOnboarding() {
         // Create or fetch UserPreferences
         let descriptor = FetchDescriptor<UserPreferences>()
@@ -495,11 +504,43 @@ struct OnboardingView: View {
             // Save
             try modelContext.save()
 
+            // Schedule initial notifications if permission granted
+            Task {
+                await scheduleInitialNotifications(preferences: prefs)
+            }
+
             // Haptic feedback
             HapticFeedback.success()
 
         } catch {
             print("Failed to save onboarding preferences: \(error)")
+        }
+    }
+
+    /// Schedule initial notifications after onboarding
+    private func scheduleInitialNotifications(preferences: UserPreferences) async {
+        guard NotificationManager.shared.notificationsEnabled else {
+            print("Notifications not enabled, skipping schedule")
+            return
+        }
+
+        // Load messages from SwiftData
+        let messageService = MessageService.shared
+        messageService.loadMessages(from: modelContext)
+
+        // Get filtered messages
+        let messages = messageService.filteredMessages
+
+        do {
+            // Schedule notifications based on preferences
+            try await NotificationManager.shared.scheduleNotifications(
+                preferences: preferences,
+                messages: messages,
+                modelContext: modelContext
+            )
+            print("Initial notifications scheduled successfully")
+        } catch {
+            print("Failed to schedule initial notifications: \(error)")
         }
     }
 }

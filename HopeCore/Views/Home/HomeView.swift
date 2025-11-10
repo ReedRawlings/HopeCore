@@ -51,9 +51,8 @@ struct HomeView: View {
     // MARK: - Services
 
     /// Access message service for loading messages
-    /// AGENT NOTE: MessageService should be injected or accessed as singleton
-    /// For now, create instance here
-    private let messageService = MessageService()
+    /// AGENT NOTE: Using MessageService singleton for centralized message management
+    private let messageService = MessageService.shared
 
     // MARK: - Body
 
@@ -73,30 +72,14 @@ struct HomeView: View {
 
             // Top overlay with controls
             topControls
-
-            // Audio player overlay
-            if showAudioPlayer {
-                Color.black.opacity(0.3)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        withAnimation {
-                            showAudioPlayer = false
-                        }
-                    }
-
-                // AGENT NOTE: AudioPlayerOverlay component to be created
-                // Placeholder for now
-                VStack {
-                    Spacer()
-                    audioPlayerPlaceholder
-                }
-                .transition(.move(edge: .bottom).combined(with: .opacity))
-            }
+        }
+        .sheet(isPresented: $showAudioPlayer) {
+            // Audio Library
+            AudioLibraryView()
         }
         .sheet(isPresented: $showSettings) {
-            // AGENT NOTE: SettingsView to be created
-            Text("Settings View")
-                .presentationDetents([.medium, .large])
+            // Settings View
+            SettingsView()
         }
         .sheet(item: $messageToShare) { message in
             // Share sheet
@@ -210,67 +193,25 @@ struct HomeView: View {
         }
     }
 
-    // MARK: - Audio Player Placeholder
-
-    /// Placeholder for audio player overlay
-    /// AGENT NOTE: Replace with AudioPlayerOverlay component
-    private var audioPlayerPlaceholder: View {
-        VStack(spacing: Spacing.md) {
-            // Header
-            HStack {
-                Text("Audio Player")
-                    .font(AppFonts.subtitle)
-                    .foregroundColor(TextColors.primary)
-
-                Spacer()
-
-                Button(action: {
-                    withAnimation {
-                        showAudioPlayer = false
-                    }
-                }) {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 20))
-                        .foregroundColor(TextColors.secondary)
-                }
-            }
-            .padding()
-
-            // Placeholder content
-            VStack(spacing: Spacing.lg) {
-                Image(systemName: "music.note.list")
-                    .font(.system(size: 60))
-                    .foregroundColor(TextColors.tertiary)
-
-                Text("Audio library coming soon")
-                    .supportingTextStyle()
-            }
-            .frame(height: 200)
-        }
-        .frame(maxWidth: .infinity)
-        .background(BackgroundColors.elevated)
-        .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.cardCornerRadius))
-        .padding()
-    }
-
     // MARK: - Actions
 
     /// Load messages from MessageService
+    /// AGENT NOTE: Loads messages from SwiftData, uses filtered messages based on user preferences
     private func loadMessages() {
         isLoading = true
 
-        // AGENT NOTE: This should fetch messages based on user tier and preferences
-        // For now, load sample messages
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        // Load messages from SwiftData via MessageService
+        messageService.loadMessages(from: modelContext)
+
+        // Get filtered messages (excludes demotivation messages from regular feed)
+        messages = messageService.filteredMessages
+
+        // If no messages available, use sample data for development
+        if messages.isEmpty {
             messages = Message.sampleMessages
-            isLoading = false
         }
 
-        // TODO: Integrate with MessageService
-        // Task {
-        //     messages = await messageService.getTodaysMessages()
-        //     isLoading = false
-        // }
+        isLoading = false
     }
 
     /// Handle index change for message viewing
@@ -282,8 +223,11 @@ struct HomeView: View {
         guard newValue < messages.count else { return }
         let message = messages[newValue]
 
-        // AGENT NOTE: Track message views
-        // messageService.markAsShown(message)
+        // Track message views with MessageService
+        messageService.markAsShown(message)
+
+        // Save to SwiftData
+        try? modelContext.save()
 
         // Pre-fetch next images
         prefetchImages(around: newValue)
@@ -307,13 +251,14 @@ struct HomeView: View {
 
     /// Toggle save state for message
     private func toggleSaveMessage(_ message: Message) {
-        // Find message in array and toggle saved state
-        if let index = messages.firstIndex(where: { $0.id == message.id }) {
-            messages[index].isSaved.toggle()
+        // Toggle saved state via MessageService
+        messageService.toggleSaved(message)
 
-            // AGENT NOTE: Persist to SwiftData
-            // try? modelContext.save()
-        }
+        // Persist to SwiftData
+        try? modelContext.save()
+
+        // Haptic feedback
+        HapticFeedback.messageSaved()
     }
 
     /// Share message
