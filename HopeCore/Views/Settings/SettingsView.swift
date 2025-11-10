@@ -471,18 +471,53 @@ struct SettingsView: View {
     // MARK: - Actions
 
     /// Save settings and reschedule notifications
+    /// AGENT NOTE: Saves preferences and reschedules notifications with updated settings
     private func saveSettings() {
         do {
             try modelContext.save()
 
-            // AGENT NOTE: Reschedule notifications with new settings
-            // NotificationManager.shared.scheduleNotifications()
+            // Reschedule notifications with new settings
+            Task {
+                await rescheduleNotifications()
+            }
 
             HapticFeedback.success()
             settingsChanged = false
         } catch {
             print("Failed to save settings: \(error)")
             HapticFeedback.error()
+        }
+    }
+
+    /// Reschedule notifications based on updated preferences
+    private func rescheduleNotifications() async {
+        guard let prefs = userPrefs else {
+            print("No user preferences found")
+            return
+        }
+
+        guard NotificationManager.shared.notificationsEnabled else {
+            print("Notifications not enabled, skipping reschedule")
+            return
+        }
+
+        // Load messages from SwiftData
+        let messageService = MessageService.shared
+        messageService.loadMessages(from: modelContext)
+
+        // Get filtered messages
+        let messages = messageService.filteredMessages
+
+        do {
+            // Reschedule notifications with updated preferences
+            try await NotificationManager.shared.scheduleNotifications(
+                preferences: prefs,
+                messages: messages,
+                modelContext: modelContext
+            )
+            print("Notifications rescheduled successfully")
+        } catch {
+            print("Failed to reschedule notifications: \(error)")
         }
     }
 }
