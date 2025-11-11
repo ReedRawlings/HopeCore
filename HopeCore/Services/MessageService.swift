@@ -131,7 +131,7 @@ class MessageService {
             if let demotivationMessage = demotivationMessages.randomElement() {
                 // Select regular messages
                 let regularCount = count - 1
-                let regularMessages = selectRotatedMessages(count: regularCount)
+                var regularMessages = selectRotatedMessages(count: regularCount)
 
                 // Insert demotivation at random position
                 let randomPosition = Int.random(in: 0..<count)
