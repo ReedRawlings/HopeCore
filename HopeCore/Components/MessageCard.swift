@@ -69,7 +69,7 @@ var body: some View {
         onTap?()
     }
 }
-
+}
 // MARK: - Preview
 
 #Preview("Image Mode") {
