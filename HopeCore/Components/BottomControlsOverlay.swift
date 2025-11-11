@@ -38,7 +38,7 @@ struct BottomControlsOverlay: View {
             Spacer()
 
             // Glass morphism control bar
-            HStack(spacing: Spacing.xl) {
+            HStack(spacing: Spacing.xxl) {
                 // Favorites/Heart Button
                 Button(action: {
                     showSavedMessages = true
@@ -94,7 +94,7 @@ struct BottomControlsOverlay: View {
                 }
             }
             .padding(.horizontal, Spacing.xl)
-            .padding(.vertical, Spacing.lg)
+            .padding(.vertical, Spacing.sm)
             .background(.ultraThinMaterial)
             .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.cardCornerRadius))
             .padding(.horizontal, ScreenLayout.horizontalMargin)
