@@ -81,7 +81,6 @@ struct AudioLibraryView: View {
                     VStack {
                         Spacer()
                         AudioPlayerOverlay(
-                            audioManager: audioManager,
                             onClose: {
                                 withAnimation {
                                     showAudioPlayer = false
