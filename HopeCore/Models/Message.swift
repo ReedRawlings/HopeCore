@@ -78,17 +78,17 @@ extension Message {
     static let sampleMessages: [Message] = [
         Message(
             text: "A ship in the harbor is safe, but that is not what ships are built for.",
-            imageURL: "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/A%20ship%20in%20the%20harbor%20is%20safe%2C%20but%20that%20is%20not%20what%20ships%20are%20built%20for..png",
+            imageURL: nil
             categoryName: "Possibility"
         ),
         Message(
             text: "You'll never feel ready. Do it anyway.",
-            imageURL: "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/doitanyway.png",
+            imageURL: nil,
             categoryName: "Agency"
         ),
         Message(
             text: "Is this the life you really want?",
-            imageURL: "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/thelifeyouwant.png",
+            imageURL: nil,
             categoryName: "Rebuilding"
         ),
         Message(
