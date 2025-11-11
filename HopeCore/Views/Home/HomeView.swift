@@ -167,19 +167,20 @@ struct HomeView: View {
 
     /// Load messages from MessageService
     /// AGENT NOTE: Loads messages from SwiftData, uses filtered messages based on user preferences
+    /// MessageService handles first-launch bundled quote loading and fallback internally
     private func loadMessages() {
         isLoading = true
 
         // Load messages from SwiftData via MessageService
+        // On first launch, MessageService loads bundled quotes from JSON
+        // On subsequent launches, MessageService loads existing messages with user data
         messageService.loadMessages(from: modelContext)
 
         // Get filtered messages (excludes demotivation messages from regular feed)
         messages = messageService.filteredMessages
 
-        // If no messages available, use sample data for development
-        if messages.isEmpty {
-            messages = Message.sampleMessages
-        }
+        // Note: Fallback logic is now handled internally by MessageService
+        // No need for duplicate fallback here
 
         isLoading = false
 
