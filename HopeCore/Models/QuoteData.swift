@@ -14,7 +14,7 @@
 import Foundation
 
 /// Decodable struct to parse JSON quotes
-/// Used for loading bundled text-only quotes on first launch
+/// Used for loading bundled quotes on first launch with optional images
 struct QuoteData: Codable, Identifiable {
     /// Unique identifier as UUID string
     let id: String
@@ -31,10 +31,16 @@ struct QuoteData: Codable, Identifiable {
     /// Sort order for organizing quotes
     let sortOrder: Int
 
+    /// Optional bundled image name from Assets.xcassets
+    let bundledImageName: String?
+
+    /// Optional image URL from R2 Cloudflare storage
+    let imageURL: String?
+
     // MARK: - Conversion to Message
 
     /// Convert QuoteData to Message model for SwiftData storage
-    /// - Returns: Message instance with quote data
+    /// - Returns: Message instance with quote data, including optional image references
     func toMessage() -> Message {
         // Parse UUID from string ID
         let uuid = UUID(uuidString: id) ?? UUID()
@@ -42,12 +48,12 @@ struct QuoteData: Codable, Identifiable {
         // Determine if this is a demotivation message
         let isDemotivation = trackType.lowercased() == "demotivation"
 
-        // Create Message instance
+        // Create Message instance with optional bundled and R2 images
         let message = Message(
             id: uuid,
             text: text,
-            imageURL: nil,  // Text-only quotes have no imageURL
-            bundledImageName: nil,
+            imageURL: imageURL,  // Optional R2 image URL
+            bundledImageName: bundledImageName,  // Optional bundled image from Assets
             categoryName: category,
             isSaved: false,
             createdAt: Date(),
