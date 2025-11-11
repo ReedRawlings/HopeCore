@@ -99,7 +99,7 @@ struct HomeView: View {
 
     // MARK: - Main Content
 
-    private var mainContent: View {
+    private var mainContent: some View {
         TabView(selection: $currentIndex) {
             ForEach(Array(messages.enumerated()), id: \.element.id) { index, message in
                 MessageCard(
@@ -129,7 +129,7 @@ struct HomeView: View {
 
     // MARK: - Top Controls
 
-    private var topControls: View {
+    private var topControls: some View {
         VStack {
             HStack {
                 // App Title
@@ -184,7 +184,7 @@ struct HomeView: View {
 
     // MARK: - Loading View
 
-    private var loadingView: View {
+    private var loadingView: some View {
         VStack(spacing: Spacing.md) {
             ProgressView()
                 .tint(AccentColors.primary)
@@ -195,7 +195,7 @@ struct HomeView: View {
 
     // MARK: - Empty State
 
-    private var emptyStateView: View {
+    private var emptyStateView: some View {
         VStack(spacing: Spacing.xl) {
             Image(systemName: "heart.text.square")
                 .font(.system(size: 60))
