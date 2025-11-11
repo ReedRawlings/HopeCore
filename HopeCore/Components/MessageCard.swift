@@ -340,9 +340,10 @@ struct MessageCardButtonStyle: ButtonStyle {
 #Preview("Saved State") {
     MessageCard(
         message: {
-            var msg = Message.sampleMessages[0]
-            msg.isSaved = true
-            return msg
+            let msg = Message.sampleMessages[0]
+            var mutableMsg = msg
+            mutableMsg.isSaved = true
+            return mutableMsg
         }(),
         onSave: {},
         onShare: {}
