@@ -30,7 +30,7 @@ enum Constants {
     enum Backend {
         /// R2 Cloudflare base URL for images
         /// AGENT NOTE: Update with actual R2 bucket URL
-        static let imageBaseURL = "https://r2.example.com/images"
+        static let imageBaseURL = "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev"
 
         /// R2 Cloudflare base URL for audio
         /// AGENT NOTE: Update with actual R2 bucket URL
