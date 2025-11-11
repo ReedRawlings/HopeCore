@@ -57,7 +57,36 @@ struct HopeCoreApp: App {
         BackgroundTaskManager.shared.registerBackgroundTasks()
 
         // Configure app appearance
-        configureAppearance()
+        HopeCoreApp.configureAppearance()
+    }
+
+    // MARK: - Appearance Configuration
+
+    /// Configure global app appearance
+    /// Sets up navigation bar styling, tab bar, etc.
+    private static func configureAppearance() {
+        // Navigation bar appearance
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.backgroundColor = UIColor(BackgroundColors.primary)
+        navBarAppearance.titleTextAttributes = [
+            .foregroundColor: UIColor(TextColors.primary)
+        ]
+        navBarAppearance.largeTitleTextAttributes = [
+            .foregroundColor: UIColor(TextColors.primary)
+        ]
+
+        UINavigationBar.appearance().standardAppearance = navBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+        UINavigationBar.appearance().compactAppearance = navBarAppearance
+
+        // Tab bar appearance (if using tabs)
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithOpaqueBackground()
+        tabBarAppearance.backgroundColor = UIColor(BackgroundColors.primary)
+
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
     }
 
     // MARK: - App Body
@@ -107,34 +136,5 @@ struct AppRootView: View {
                 BackgroundTaskManager.shared.scheduleDailyImagePrefetch()
             }
         }
-    }
-
-    // MARK: - Appearance Configuration
-
-    /// Configure global app appearance
-    /// Sets up navigation bar styling, tab bar, etc.
-    private func configureAppearance() {
-        // Navigation bar appearance
-        let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.backgroundColor = UIColor(BackgroundColors.primary)
-        navBarAppearance.titleTextAttributes = [
-            .foregroundColor: UIColor(TextColors.primary)
-        ]
-        navBarAppearance.largeTitleTextAttributes = [
-            .foregroundColor: UIColor(TextColors.primary)
-        ]
-
-        UINavigationBar.appearance().standardAppearance = navBarAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-        UINavigationBar.appearance().compactAppearance = navBarAppearance
-
-        // Tab bar appearance (if using tabs)
-        let tabBarAppearance = UITabBarAppearance()
-        tabBarAppearance.configureWithOpaqueBackground()
-        tabBarAppearance.backgroundColor = UIColor(BackgroundColors.primary)
-
-        UITabBar.appearance().standardAppearance = tabBarAppearance
-        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
     }
 }
