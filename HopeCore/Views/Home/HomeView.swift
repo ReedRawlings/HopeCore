@@ -119,17 +119,15 @@ struct HomeView: View {
                         shareMessage(message)
                     },
                     onTap: {
-                        // AGENT NOTE: Could navigate to full-screen message detail view
                         HapticFeedback.messageTapped()
-                    },
-                    showActions: false
+                    }
                 )
+                .ignoresSafeArea()
                 .tag(index)
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
         .indexViewStyle(.page(backgroundDisplayMode: .never))
-        .ignoresSafeArea(edges: .bottom)
         .onChange(of: currentIndex) { oldValue, newValue in
             handleIndexChange(oldValue: oldValue, newValue: newValue)
         }
@@ -248,13 +246,7 @@ struct HomeView: View {
     /// Generate share text for message
     private func generateShareText(for message: Message) -> String {
         var text = message.text
-
-        if let author = message.author {
-            text += "\n\n— \(author)"
-        }
-
         text += "\n\nShared from HopeCore"
-
         return text
     }
 }

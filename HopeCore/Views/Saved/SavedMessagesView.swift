@@ -220,13 +220,7 @@ struct SavedMessagesView: View {
     /// Generate share text for message
     private func generateShareText(for message: Message) -> String {
         var text = message.text
-
-        if let author = message.author {
-            text += "\n\n— \(author)"
-        }
-
         text += "\n\nShared from HopeCore"
-
         return text
     }
 }
