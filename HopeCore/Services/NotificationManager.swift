@@ -144,11 +144,9 @@ class NotificationManager {
             content.sound = .default
         }
 
-        // AGENT NOTE: Image attachment would be added here
-        // if let imageURL = message.cachedImageFilename {
-        //     let attachment = try UNNotificationAttachment(identifier: "image", url: imageURL)
-        //     content.attachments = [attachment]
-        // }
+        // AGENT NOTE: Image attachments for rich notifications
+        // could be implemented by downloading the image from message.imageURL
+        // and creating a local attachment
 
         // Calculate trigger from date
         let components = Calendar.current.dateComponents(
