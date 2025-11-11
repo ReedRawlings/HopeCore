@@ -9,9 +9,8 @@
 //  - Main screen of the app with vertical scrolling message feed
 //  - TikTok/Instagram-style vertical paging (one message at a time)
 //  - Uses TabView with .page style for smooth vertical scrolling
-//  - Overlay controls for save/share actions
-//  - Settings icon in top right
-//  - Music icon to open audio player overlay
+//  - Bottom glass morphism overlay with controls (saved, share, music, settings)
+//  - Full-screen message cards for maximum content visibility
 //  - Pre-fetches images for smooth scrolling
 //  - Tracks message views with MessageService
 //  - Haptic feedback on scroll
@@ -73,8 +72,17 @@ struct HomeView: View {
                 mainContent
             }
 
-            // Top overlay with controls
-            topControls
+            // Bottom overlay with controls
+            BottomControlsOverlay(
+                showSavedMessages: $showSavedMessages,
+                showAudioPlayer: $showAudioPlayer,
+                showSettings: $showSettings,
+                onShare: {
+                    // Share current message
+                    guard currentIndex < messages.count else { return }
+                    shareMessage(messages[currentIndex])
+                }
+            )
         }
         .sheet(isPresented: $showAudioPlayer) {
             // Audio Library
@@ -113,9 +121,9 @@ struct HomeView: View {
                     onTap: {
                         // AGENT NOTE: Could navigate to full-screen message detail view
                         HapticFeedback.messageTapped()
-                    }
+                    },
+                    showActions: false
                 )
-                .padding(.horizontal, ScreenLayout.horizontalMargin)
                 .tag(index)
             }
         }
@@ -124,61 +132,6 @@ struct HomeView: View {
         .ignoresSafeArea(edges: .bottom)
         .onChange(of: currentIndex) { oldValue, newValue in
             handleIndexChange(oldValue: oldValue, newValue: newValue)
-        }
-    }
-
-    // MARK: - Top Controls
-
-    private var topControls: some View {
-        VStack {
-            HStack {
-                // App Title
-                Text("HopeCore")
-                    .font(AppFonts.title)
-                    .foregroundColor(TextColors.primary)
-
-                Spacer()
-
-                // Saved Messages Button
-                // AGENT NOTE: Added in Phase 3 for quick access to saved messages
-                Button(action: {
-                    showSavedMessages = true
-                    HapticFeedback.buttonPress()
-                }) {
-                    Image(systemName: "heart.fill")
-                        .font(.system(size: 24))
-                        .foregroundColor(AccentColors.primary)
-                        .frame(width: ComponentSpacing.minTapTarget, height: ComponentSpacing.minTapTarget)
-                }
-
-                // Music Button
-                Button(action: {
-                    withAnimation(.spring(response: 0.3)) {
-                        showAudioPlayer.toggle()
-                    }
-                    HapticFeedback.buttonPress()
-                }) {
-                    Image(systemName: "music.note")
-                        .font(.system(size: 24))
-                        .foregroundColor(TextColors.primary)
-                        .frame(width: ComponentSpacing.minTapTarget, height: ComponentSpacing.minTapTarget)
-                }
-
-                // Settings Button
-                Button(action: {
-                    showSettings = true
-                    HapticFeedback.buttonPress()
-                }) {
-                    Image(systemName: "gearshape.fill")
-                        .font(.system(size: 24))
-                        .foregroundColor(TextColors.primary)
-                        .frame(width: ComponentSpacing.minTapTarget, height: ComponentSpacing.minTapTarget)
-                }
-            }
-            .padding(.horizontal, ScreenLayout.horizontalMargin)
-            .padding(.top, ScreenLayout.topMargin)
-
-            Spacer()
         }
     }
 
