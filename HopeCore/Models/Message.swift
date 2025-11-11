@@ -84,17 +84,17 @@ extension Message {
     static let sampleMessages: [Message] = [
         Message(
             text: "A ship in the harbor is safe, but that is not what ships are built for.",
-            imageURL: "test-image-1"
+            bundledImageName: "test-image-1"
             categoryName: "Possibility"
         ),
         Message(
             text: "You'll never feel ready. Do it anyway.",
-            imageURL: "test-image-2",
+            bundledImageName: "test-image-2",
             categoryName: "Agency"
         ),
         Message(
             text: "Is this the life you really want?",
-            imageURL: test-image-3",
+            bundledImageName: test-image-3",
             categoryName: "Rebuilding"
         ),
         Message(
