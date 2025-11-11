@@ -48,10 +48,15 @@ final class Message {
     /// Whether this is a demotivation message
     var isDemotivation: Bool
 
+    /// Bundled image name (from Assets.xcassets) - for development
+    /// Example: "test-image-1"
+    var bundledImageName: String?
+
     init(
         id: UUID = UUID(),
         text: String,
         imageURL: String? = nil,
+        bundledImageName: String? = nil,
         categoryName: String,
         isSaved: Bool = false,
         createdAt: Date = Date(),
@@ -62,6 +67,7 @@ final class Message {
         self.id = id
         self.text = text
         self.imageURL = imageURL
+        self.bundledImageName = bundledImageName
         self.categoryName = categoryName
         self.isSaved = isSaved
         self.createdAt = createdAt
@@ -78,17 +84,17 @@ extension Message {
     static let sampleMessages: [Message] = [
         Message(
             text: "A ship in the harbor is safe, but that is not what ships are built for.",
-            imageURL: nil
+            imageURL: "test-image-1"
             categoryName: "Possibility"
         ),
         Message(
             text: "You'll never feel ready. Do it anyway.",
-            imageURL: nil,
+            imageURL: "test-image-2",
             categoryName: "Agency"
         ),
         Message(
             text: "Is this the life you really want?",
-            imageURL: nil,
+            imageURL: test-image-3",
             categoryName: "Rebuilding"
         ),
         Message(
