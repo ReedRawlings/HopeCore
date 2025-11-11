@@ -40,6 +40,8 @@ class MessageService {
     // MARK: - Message Loading
 
     /// Load all messages from SwiftData
+    /// On first launch, loads bundled quotes from JSON and saves to SwiftData
+    /// On subsequent launches, loads existing messages with user data preserved
     /// AGENT NOTE: Call this on app launch
     /// - Parameter modelContext: SwiftData model context
     func loadMessages(from modelContext: ModelContext) {
@@ -48,11 +50,51 @@ class MessageService {
         )
 
         do {
-            allMessages = try modelContext.fetch(descriptor)
+            // Check if SwiftData has any messages
+            let existingMessages = try modelContext.fetch(descriptor)
+
+            if existingMessages.isEmpty {
+                // First launch scenario - load bundled quotes
+                print("📦 First launch detected - loading bundled quotes")
+
+                let bundledQuotes = QuoteLoader.loadBundledQuotes()
+
+                if !bundledQuotes.isEmpty {
+                    // Insert bundled quotes into SwiftData
+                    for quote in bundledQuotes {
+                        modelContext.insert(quote)
+                    }
+
+                    // Save to SwiftData
+                    try modelContext.save()
+                    print("💾 Saved \(bundledQuotes.count) quotes to SwiftData")
+
+                    // Set allMessages to bundled quotes
+                    allMessages = bundledQuotes
+                } else {
+                    // Fallback to sample messages if bundle loading fails
+                    print("⚠️ Bundled quotes failed to load - using sample messages")
+                    allMessages = Message.sampleMessages
+
+                    // Insert sample messages into SwiftData for future launches
+                    for message in allMessages {
+                        modelContext.insert(message)
+                    }
+                    try modelContext.save()
+                }
+            } else {
+                // Subsequent launches - use existing messages with user data
+                print("✅ Loaded \(existingMessages.count) messages from SwiftData")
+                allMessages = existingMessages
+            }
+
             updateFilteredMessages()
             loadSavedMessages()
         } catch {
-            print("Failed to load messages: \(error)")
+            print("❌ Failed to load messages: \(error)")
+
+            // Fallback to sample messages on error
+            allMessages = Message.sampleMessages
         }
     }
 
