@@ -93,7 +93,6 @@ struct MessageCard: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(maxHeight: GridLayout.maxMessageImageHeight)
                     .clipped()
-                    .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius))
             }
 
             // Text Section
@@ -101,20 +100,17 @@ struct MessageCard: View {
                 .messageTextStyle()
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, Spacing.md)
 
             // Author Attribution (if present)
             if let author = message.author {
                 Text("— \(author)")
                     .supportingTextStyle()
                     .frame(maxWidth: .infinity, alignment: .trailing)
-            }
-
-            // Action Buttons
-            if showActions {
-                actionButtons
+                    .padding(.horizontal, Spacing.md)
             }
         }
-        .messageCardStyle()
+        .ignoresSafeArea()
     }
 
     // MARK: - Presentation Mode 2: Text on Background
@@ -149,27 +145,16 @@ struct MessageCard: View {
                 }
 
                 Spacer()
-
-                // Action Buttons
-                if showActions {
-                    actionButtons
-                }
             }
-            .padding(ComponentSpacing.messageCardPadding)
         }
-        .frame(minHeight: 200)
-        .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.cardCornerRadius))
-        .overlay(
-            RoundedRectangle(cornerRadius: ComponentSpacing.cardCornerRadius)
-                .fill(MaterialStyles.ultraThin)
-        )
+        .ignoresSafeArea()
     }
 
     // MARK: - Presentation Mode 3: Split Layout
 
     /// Side-by-side: 50% image, 50% text
     private var splitLayout: some View {
-        HStack(spacing: Spacing.md) {
+        HStack(spacing: 0) {
             // Left: Image (50%)
             // AGENT NOTE: Using AsyncImageView from ImageCacheManager for efficient caching
             if let imageURL = message.imageURL {
@@ -177,30 +162,29 @@ struct MessageCard: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(maxWidth: .infinity)
                     .clipped()
-                    .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius))
             }
 
             // Right: Text (50%)
             VStack(alignment: .leading, spacing: Spacing.sm) {
+                Spacer()
+
                 Text(message.text)
                     .font(AppFonts.regularBody)
                     .foregroundColor(TextColors.primary)
                     .lineSpacing(6)
+                    .padding(.horizontal, Spacing.md)
 
                 if let author = message.author {
                     Text("— \(author)")
                         .supportingTextStyle()
+                        .padding(.horizontal, Spacing.md)
                 }
 
                 Spacer()
-
-                if showActions {
-                    actionButtons
-                }
             }
             .frame(maxWidth: .infinity)
         }
-        .messageCardStyle()
+        .ignoresSafeArea()
     }
 
     // MARK: - Presentation Mode 4: Minimal
@@ -220,13 +204,8 @@ struct MessageCard: View {
             }
 
             Spacer()
-
-            if showActions {
-                actionButtons
-            }
         }
-        .frame(minHeight: 200)
-        .solidMessageCardStyle()
+        .ignoresSafeArea()
     }
 
     // MARK: - Action Buttons
