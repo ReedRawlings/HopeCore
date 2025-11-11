@@ -84,7 +84,7 @@ extension Message {
     static let sampleMessages: [Message] = [
         Message(
             text: "A ship in the harbor is safe, but that is not what ships are built for.",
-            bundledImageName: "test-image-1"
+            bundledImageName: "test-image-1",
             categoryName: "Possibility"
         ),
         Message(
@@ -94,7 +94,7 @@ extension Message {
         ),
         Message(
             text: "Is this the life you really want?",
-            bundledImageName: test-image-3",
+            bundledImageName: "test-image-3",
             categoryName: "Rebuilding"
         ),
         Message(
