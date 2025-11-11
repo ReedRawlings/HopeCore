@@ -134,7 +134,7 @@ struct OnboardingView: View {
 
     // MARK: - Step 1: Welcome
 
-    private var welcomeStep: View {
+    private var welcomeStep: some View {
         VStack(spacing: Spacing.xl) {
             Spacer()
 
@@ -174,7 +174,7 @@ struct OnboardingView: View {
 
     // MARK: - Step 2: Situation
 
-    private var situationStep: View {
+    private var situationStep: some View {
         VStack(spacing: Spacing.xl) {
             VStack(spacing: Spacing.sm) {
                 Text("What brought you here?")
@@ -233,7 +233,7 @@ struct OnboardingView: View {
 
     // MARK: - Step 3: Notification Timing
 
-    private var notificationTimingStep: View {
+    private var notificationTimingStep: some View {
         VStack(spacing: Spacing.xl) {
             VStack(spacing: Spacing.sm) {
                 Text("When should we send messages?")
@@ -324,7 +324,7 @@ struct OnboardingView: View {
 
     // MARK: - Step 4: Demotivation Explanation
 
-    private var demotivationStep: View {
+    private var demotivationStep: some View {
         VStack(spacing: Spacing.xl) {
             Spacer()
 
@@ -375,7 +375,7 @@ struct OnboardingView: View {
 
     // MARK: - Step 5: Permissions
 
-    private var permissionsStep: View {
+    private var permissionsStep: some View {
         VStack(spacing: Spacing.xl) {
             Spacer()
 

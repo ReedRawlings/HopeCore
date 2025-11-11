@@ -65,7 +65,7 @@ struct MessageCard: View {
     // MARK: - Card Content
 
     @ViewBuilder
-    private var cardContent: View {
+    private var cardContent: some View {
         switch MessagePresentationMode(rawValue: message.presentationMode) {
         case .imageText:
             imageTextLayout
@@ -84,7 +84,7 @@ struct MessageCard: View {
     // MARK: - Presentation Mode 1: Image + Text
 
     /// Image at top, text below with clear separation
-    private var imageTextLayout: View {
+    private var imageTextLayout: some View {
         VStack(spacing: ComponentSpacing.imageTextGap) {
             // Image Section (top 60% max)
             // AGENT NOTE: Using AsyncImageView from ImageCacheManager for efficient caching
@@ -120,7 +120,7 @@ struct MessageCard: View {
     // MARK: - Presentation Mode 2: Text on Background
 
     /// Text overlaid on background image with opacity
-    private var textOnBackgroundLayout: View {
+    private var textOnBackgroundLayout: some View {
         ZStack {
             // Background Image (opacity 0.4, blurred)
             // AGENT NOTE: Using AsyncImageView from ImageCacheManager for efficient caching
@@ -168,7 +168,7 @@ struct MessageCard: View {
     // MARK: - Presentation Mode 3: Split Layout
 
     /// Side-by-side: 50% image, 50% text
-    private var splitLayout: View {
+    private var splitLayout: some View {
         HStack(spacing: Spacing.md) {
             // Left: Image (50%)
             // AGENT NOTE: Using AsyncImageView from ImageCacheManager for efficient caching
@@ -206,7 +206,7 @@ struct MessageCard: View {
     // MARK: - Presentation Mode 4: Minimal
 
     /// Subtle background texture with prominent typography
-    private var minimalLayout: View {
+    private var minimalLayout: some View {
         VStack(spacing: Spacing.md) {
             Spacer()
 
@@ -231,7 +231,7 @@ struct MessageCard: View {
 
     // MARK: - Action Buttons
 
-    private var actionButtons: View {
+    private var actionButtons: some View {
         HStack(spacing: ComponentSpacing.buttonGap) {
             // Share Button
             Button(action: {
