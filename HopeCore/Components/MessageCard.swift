@@ -36,32 +36,37 @@ struct MessageCard: View {
 
     // MARK: - Body
 
-    var body: some View {
-        ZStack {
-            if let imageURL = message.imageURL {
-                // Full-screen image from R2
-                AsyncImageView(urlString: imageURL)
-                    .ignoresSafeArea()
-            } else {
-                // Text-only on app background
-                BackgroundColors.primary
-                    .ignoresSafeArea()
-
-                VStack {
-                    Spacer()
-                    Text(message.text)
-                        .font(AppFonts.display)
-                        .foregroundColor(TextColors.primary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, Spacing.xl)
-                    Spacer()
-                }
+var body: some View {
+    ZStack {
+        if let imageURL = message.imageURL {
+            // Full-screen image from R2
+            AsyncImageView(urlString: imageURL)
+                .ignoresSafeArea()
+        } else if let bundledName = message.bundledImageName {
+            // Bundled image from Assets
+            Image(bundledName)
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+        } else {
+            // Text-only on app background
+            BackgroundColors.primary
+                .ignoresSafeArea()
+            
+            VStack {
+                Spacer()
+                Text(message.text)
+                    .font(AppFonts.display)
+                    .foregroundColor(TextColors.primary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, Spacing.xl)
+                Spacer()
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .onTapGesture {
-            onTap?()
-        }
+    }
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .onTapGesture {
+        onTap?()
     }
 }
 
