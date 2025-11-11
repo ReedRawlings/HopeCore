@@ -77,18 +77,18 @@ extension Message {
     /// AGENT NOTE: Replace with actual content from backend/CMS
     static let sampleMessages: [Message] = [
         Message(
-            text: "You have survived 100% of your worst days. That's a perfect record.",
-            imageURL: "https://r2.example.com/resilience-1.jpg",
-            categoryName: "Resilience"
+            text: "A ship in the harbor is safe, but that is not what ships are built for.",
+            imageURL: "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/A%20ship%20in%20the%20harbor%20is%20safe%2C%20but%20that%20is%20not%20what%20ships%20are%20built%20for..png",
+            categoryName: "Possibility"
         ),
         Message(
-            text: "Small choices compound. You're building something, even if you can't see it yet.",
-            imageURL: "https://r2.example.com/agency-1.jpg",
+            text: "You'll never feel ready. Do it anyway.",
+            imageURL: "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/doitanyway.png",
             categoryName: "Agency"
         ),
         Message(
-            text: "Rebuilding doesn't mean going back. It means creating something new from what you've learned.",
-            imageURL: "https://r2.example.com/rebuilding-1.jpg",
+            text: "Is this the life you really want?",
+            imageURL: "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/thelifeyouwant.png",
             categoryName: "Rebuilding"
         ),
         Message(
