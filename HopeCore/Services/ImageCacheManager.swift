@@ -309,6 +309,8 @@ struct AsyncImageView: View {
             if let image = image {
                 Image(uiImage: image)
                     .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
             } else if isLoading {
                 ProgressView()
             } else {
