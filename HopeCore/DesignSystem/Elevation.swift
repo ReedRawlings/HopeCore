@@ -7,7 +7,8 @@
 //
 //  AGENT NOTES:
 //  - Uses native iOS materials for depth (NO custom shadows)
-//  - Glass materials (.ultraThinMaterial) for most cards
+//  - Liquid Glass (.glassEffect) for iOS 26+ with dynamic blur and refraction
+//  - Legacy glass materials (.ultraThinMaterial) for older iOS versions
 //  - Solid backgrounds for elements requiring focus (reading, playback)
 //  - Material hierarchy creates calm visual depth
 //  - NEVER use shadows in this app per design specifications
@@ -48,6 +49,23 @@ struct Elevation {
     static let navigationBackground = BackgroundColors.primary
 }
 
+// MARK: - Liquid Glass (iOS 26+)
+/// Native iOS 26 Liquid Glass effects with dynamic blur and refraction
+/// Provides superior adaptive transparency and light refraction effects
+struct LiquidGlassEffects {
+    /// Standard liquid glass for overlays and controls
+    /// Provides adaptive blur and light refraction
+    static let standard = Glass.regular
+
+    /// Interactive liquid glass for touch-responsive elements
+    /// Scales, bounces, and shimmers on interaction
+    static let interactive = Glass.regular.interactive()
+
+    /// Clear liquid glass variant for subtle effects
+    /// Maintains maximum transparency while preserving glass properties
+    static let clear = Glass.clear
+}
+
 // MARK: - Material Application Guide
 /// Reference for which material to use for each component type
 /// AGENT NOTES: Consult this when creating new components
@@ -86,6 +104,12 @@ struct MaterialApplicationGuide {
     /// Material: None (solid color)
     /// Reasoning: Direct interaction; no material needed
     static let button = AccentColors.primary
+
+    /// Bottom control overlay (iOS 26+ with Liquid Glass)
+    /// Material: .glassEffect(in: .rect(cornerRadius: 16))
+    /// Reasoning: Liquid Glass provides superior adaptive blur and refraction
+    /// Dynamic blur adapts to content behind overlay for visual harmony
+    static let bottomControlsOverlay = "Use .glassEffect(in: .rect(cornerRadius: ComponentSpacing.cardCornerRadius))"
 }
 
 // MARK: - Shadow Rules
@@ -144,5 +168,37 @@ extension View {
         self
             .background(Elevation.cardSolid)
             .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.cardCornerRadius))
+    }
+}
+
+// MARK: - Liquid Glass View Extensions
+extension View {
+    /// Apply liquid glass effect with custom shape (iOS 26+)
+    /// Provides dynamic blur, light refraction, and adaptive transparency
+    /// - Parameter shape: The shape to apply glass effect within (default: capsule)
+    /// - Returns: View with liquid glass effect applied
+    @available(iOS 26, *)
+    func liquidGlassEffect(in shape: some Shape = Capsule()) -> some View {
+        self.glassEffect(in: shape)
+    }
+
+    /// Apply interactive liquid glass effect (iOS 26+)
+    /// Enables scaling, bouncing, and shimmering on user interaction
+    /// Perfect for touch-responsive controls and overlays
+    /// - Parameter shape: The shape to apply glass effect within (default: capsule)
+    /// - Returns: View with interactive liquid glass effect applied
+    @available(iOS 26, *)
+    func interactiveLiquidGlassEffect(in shape: some Shape = Capsule()) -> some View {
+        self.glassEffect(LiquidGlassEffects.interactive, in: shape)
+    }
+
+    /// Apply clear liquid glass effect (iOS 26+)
+    /// Maintains maximum transparency while preserving glass properties
+    /// Ideal for subtle glass backgrounds that shouldn't obscure content
+    /// - Parameter shape: The shape to apply glass effect within (default: capsule)
+    /// - Returns: View with clear liquid glass effect applied
+    @available(iOS 26, *)
+    func clearLiquidGlassEffect(in shape: some Shape = Capsule()) -> some View {
+        self.glassEffect(LiquidGlassEffects.clear, in: shape)
     }
 }
