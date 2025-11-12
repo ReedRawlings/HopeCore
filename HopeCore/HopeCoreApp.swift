@@ -37,7 +37,26 @@ struct HopeCoreApp: App {
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
-            fatalError("Could not create ModelContainer: \(error)")
+            // CRITICAL FIX: Replace fatalError with graceful error handling
+            // Log the error for debugging
+            print("❌ CRITICAL ERROR: Could not create ModelContainer: \(error)")
+            print("Error details: \(error.localizedDescription)")
+
+            // Try to create an in-memory fallback container
+            let fallbackConfig = ModelConfiguration(
+                schema: schema,
+                isStoredInMemoryOnly: true
+            )
+
+            do {
+                print("⚠️ Attempting to create in-memory fallback ModelContainer...")
+                return try ModelContainer(for: schema, configurations: [fallbackConfig])
+            } catch {
+                // Last resort: This should rarely happen, but if it does,
+                // we need to crash gracefully with proper error reporting
+                print("❌ FATAL: Could not create fallback ModelContainer: \(error)")
+                fatalError("Unable to initialize data storage. Please reinstall the app. Error: \(error)")
+            }
         }
     }()
 
