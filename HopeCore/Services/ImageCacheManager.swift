@@ -155,7 +155,7 @@ class ImageCacheManager {
     /// - Parameters:
     ///   - image: UIImage to save
     ///   - urlString: URL string as filename
-    private func saveImageToDisk(_ image: UIImage, urlString: String) {
+    nonisolated private func saveImageToDisk(_ image: UIImage, urlString: String) {
         guard let cacheURL = cacheDirectoryURL,
               let imageData = image.jpegData(compressionQuality: 0.8) else {
             return
@@ -178,13 +178,16 @@ class ImageCacheManager {
     /// - Parameter messages: Available messages to pre-load from
     func preloadDailyImages(from messages: [Message]) async {
         // Select 3 random messages with images
-        let messagesWithImages = messages.filter { $0.imageURL != nil }
+        let messagesWithImages = messages.filter { $0.imageCardURL != nil || $0.backgroundImageURL != nil }
         let randomMessages = messagesWithImages.shuffled().prefix(3)
 
         // Pre-load their images
         for message in randomMessages {
-            if let imageURL = message.imageURL {
-                _ = await getImage(from: imageURL)
+            if let imageCardURL = message.imageCardURL {
+                _ = await getImage(from: imageCardURL)
+                print("Pre-loaded image for message: \(message.id)")
+            } else if let backgroundImageURL = message.backgroundImageURL {
+                _ = await getImage(from: backgroundImageURL)
                 print("Pre-loaded image for message: \(message.id)")
             }
         }
@@ -194,8 +197,10 @@ class ImageCacheManager {
     /// - Parameter messages: Messages to pre-load
     func preloadImages(for messages: [Message]) async {
         for message in messages {
-            if let imageURL = message.imageURL {
-                _ = await getImage(from: imageURL)
+            if let imageCardURL = message.imageCardURL {
+                _ = await getImage(from: imageCardURL)
+            } else if let backgroundImageURL = message.backgroundImageURL {
+                _ = await getImage(from: backgroundImageURL)
             }
         }
     }
