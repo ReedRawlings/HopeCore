@@ -2,14 +2,13 @@
 //  MessageCard.swift
 //  HopeCore
 //
-//  Component - Message Card Display (Simplified)
+//  Component - Message Card Display (Dual Mode)
 //  Created for LLM-first development
 //
 //  AGENT NOTES:
-//  - Simplified architecture with two presentation modes:
-//    1. If imageURL exists: Show full-screen image from R2 (image contains all content)
-//    2. If imageURL is nil: Show text centered on dark background
-//  - No complex presentation modes or conditionals
+//  - Dual presentation modes:
+//    1. Image Card Mode: Full-screen image with baked-in text (R2 or bundled)
+//    2. Text Overlay Mode: User-selected background with text overlaid on top
 //  - Full-screen cards fill entire screen
 //  - Glass morphism controls overlay at bottom (handled by HomeView)
 //
@@ -17,8 +16,8 @@
 import SwiftUI
 import SwiftData
 
-/// Main message card component - simplified version
-/// Displays either full-screen image OR centered text on dark background
+/// Main message card component - dual presentation mode version
+/// Displays either image card OR text overlay based on message presentation mode
 struct MessageCard: View {
     // MARK: - Properties
 
@@ -36,23 +35,68 @@ struct MessageCard: View {
 
     // MARK: - Body
 
-var body: some View {
-    ZStack {
-        if let imageURL = message.imageURL {
-            // Full-screen image from R2
-            AsyncImageView(urlString: imageURL)
-                .ignoresSafeArea()
-        } else if let bundledName = message.bundledImageName {
-            // Bundled image from Assets
-            Image(bundledName)
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
-        } else {
-            // Text-only on app background
-            BackgroundColors.primary
-                .ignoresSafeArea()
-            
+    var body: some View {
+        ZStack {
+            switch message.presentationMode {
+            case .imageCard:
+                imageCardPresentation
+
+            case .textOverlayBackground:
+                textOverlayPresentation
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onTapGesture {
+            onTap?()
+        }
+    }
+
+    // MARK: - Image Card Mode (Full-screen image with baked-in text)
+
+    private var imageCardPresentation: some View {
+        ZStack {
+            if let imageURL = message.imageCardURL {
+                AsyncImageView(urlString: imageURL)
+                    .ignoresSafeArea()
+            } else if let bundledName = message.bundledImageCardName {
+                Image(bundledName)
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+            } else {
+                BackgroundColors.primary
+                    .ignoresSafeArea()
+            }
+        }
+    }
+
+    // MARK: - Text Overlay Mode (Background with text overlay)
+
+    private var textOverlayPresentation: some View {
+        ZStack {
+            // Background image
+            if let backgroundURL = message.backgroundImageURL {
+                AsyncImageView(urlString: backgroundURL)
+                    .ignoresSafeArea()
+            } else if let bundledBg = message.bundledBackgroundName {
+                Image(bundledBg)
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+            } else {
+                BackgroundColors.primary
+                    .ignoresSafeArea()
+            }
+
+            // Dark gradient overlay for text readability
+            LinearGradient(
+                colors: [.black.opacity(0.3), .clear],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+
+            // Text content centered
             VStack {
                 Spacer()
                 Text(message.text)
@@ -64,11 +108,6 @@ var body: some View {
             }
         }
     }
-    .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .onTapGesture {
-        onTap?()
-    }
-}
 }
 // MARK: - Preview
 

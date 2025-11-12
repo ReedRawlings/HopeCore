@@ -31,11 +31,30 @@ struct QuoteData: Codable, Identifiable {
     /// Sort order for organizing quotes
     let sortOrder: Int
 
-    /// Optional bundled image name from Assets.xcassets
-    let bundledImageName: String?
+    // MARK: - Presentation Mode
+    /// Explicitly specify "imageCard" or "textOverlay"
+    let presentationMode: String
 
-    /// Optional image URL from R2 Cloudflare storage
-    let imageURL: String?
+    // MARK: - Image Card Assets
+    /// Optional image URL from R2 Cloudflare storage (image card mode)
+    let imageCardURL: String?
+
+    /// Optional bundled image name from Assets.xcassets (image card mode)
+    let bundledImageCardName: String?
+
+    // MARK: - Text Overlay Assets
+    /// Optional background image URL from R2 (text overlay mode)
+    let backgroundImageURL: String?
+
+    /// Optional bundled background name from Assets.xcassets (text overlay mode)
+    let bundledBackgroundName: String?
+
+    // MARK: - Text Styling
+    /// Text alignment for overlay mode
+    let textAlignment: String?
+
+    /// Text color override for overlay mode
+    let textColorOverride: String?
 
     // MARK: - Conversion to Message
 
@@ -48,12 +67,18 @@ struct QuoteData: Codable, Identifiable {
         // Determine if this is a demotivation message
         let isDemotivation = trackType.lowercased() == "demotivation"
 
-        // Create Message instance with optional bundled and R2 images
+        // Convert presentation mode string to enum
+        let mode = MessagePresentationMode(rawValue: presentationMode) ?? .imageCard
+
+        // Create Message instance with presentation mode and appropriate assets
         let message = Message(
             id: uuid,
             text: text,
-            imageURL: imageURL,  // Optional R2 image URL
-            bundledImageName: bundledImageName,  // Optional bundled image from Assets
+            presentationMode: mode,
+            imageCardURL: imageCardURL,  // Optional R2 image URL (image card mode)
+            bundledImageCardName: bundledImageCardName,  // Optional bundled image (image card mode)
+            backgroundImageURL: backgroundImageURL,  // Optional R2 background (text overlay mode)
+            bundledBackgroundName: bundledBackgroundName,  // Optional bundled background (text overlay mode)
             categoryName: category,
             isSaved: false,
             createdAt: Date(),
