@@ -126,9 +126,11 @@ class ImageCacheManager {
         // Store in memory cache
         memoryCache.setObject(image, forKey: cacheKey)
 
-        // Store in disk cache
+        // Store in disk cache - fix threading issue by capturing cacheURL before detached task
+        guard let cacheURL = cacheDirectoryURL else { return }
+
         await Task.detached {
-            self.saveImageToDisk(image, urlString: urlString)
+            Self.saveImageToDisk(image, urlString: urlString, cacheURL: cacheURL)
         }.value
     }
 
@@ -152,12 +154,13 @@ class ImageCacheManager {
     }
 
     /// Save image to disk cache
+    /// THREAD SAFETY FIX: Made static and pass cacheURL directly to avoid data race
     /// - Parameters:
     ///   - image: UIImage to save
     ///   - urlString: URL string as filename
-    nonisolated private func saveImageToDisk(_ image: UIImage, urlString: String) {
-        guard let cacheURL = cacheDirectoryURL,
-              let imageData = image.jpegData(compressionQuality: 0.8) else {
+    ///   - cacheURL: Cache directory URL
+    nonisolated private static func saveImageToDisk(_ image: UIImage, urlString: String, cacheURL: URL) {
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             return
         }
 
