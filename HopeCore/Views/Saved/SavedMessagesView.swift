@@ -240,7 +240,16 @@ struct SavedMessageCard: View {
         Button(action: onTap) {
             VStack(alignment: .leading, spacing: 0) {
                 // Image or placeholder
-                if let imageURL = message.imageURL {
+                // Determine which URL to use based on presentation mode
+                let imageURL: String?
+                switch message.presentationMode {
+                case .imageCard:
+                    imageURL = message.imageCardURL
+                case .textOverlayBackground:
+                    imageURL = message.backgroundImageURL
+                }
+
+                if let imageURL = imageURL {
                     AsyncImage(url: URL(string: imageURL)) { phase in
                         switch phase {
                         case .success(let image):
