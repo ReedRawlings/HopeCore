@@ -220,7 +220,16 @@ struct HomeView: View {
                 let message = messages[i]
 
                 // Use ImageCacheManager to prefetch images for smooth scrolling
-                if let imageURL = message.imageURL {
+                // Determine which URL to use based on presentation mode
+                let imageURL: String?
+                switch message.presentationMode {
+                case .imageCard:
+                    imageURL = message.imageCardURL
+                case .textOverlayBackground:
+                    imageURL = message.backgroundImageURL
+                }
+
+                if let imageURL = imageURL {
                     _ = await ImageCacheManager.shared.getImage(from: imageURL)
                 }
             }
