@@ -2,13 +2,13 @@
 //  BottomControlsOverlay.swift
 //  HopeCore
 //
-//  Component - Bottom Glass Morphism Controls Overlay
+//  Component - Bottom Liquid Glass Controls Overlay
 //  Created for LLM-first development
 //
 //  AGENT NOTES:
-//  - Glass morphism overlay positioned at bottom of screen
+//  - Liquid Glass overlay positioned at bottom of screen (iOS 26+)
 //  - Contains 4 control buttons: Saved Messages, Share, Music, Settings
-//  - Uses .ultraThinMaterial for native Apple glass effect
+//  - Uses .glassEffect() for native Apple Liquid Glass with dynamic blur
 //  - Respects safe area insets for proper positioning
 //  - Button styling follows design system with 44pt tap targets
 //
@@ -95,8 +95,7 @@ struct BottomControlsOverlay: View {
             }
             .padding(.horizontal, Spacing.xl)
             .padding(.vertical, Spacing.sm)
-            .background(.ultraThinMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.cardCornerRadius))
+            .glassEffect(in: .rect(cornerRadius: ComponentSpacing.cardCornerRadius))
             .padding(.horizontal, ScreenLayout.horizontalMargin)
             .padding(.bottom, Spacing.md)
         }
