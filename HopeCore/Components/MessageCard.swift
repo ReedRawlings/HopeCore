@@ -7,10 +7,11 @@
 //
 //  AGENT NOTES:
 //  - Dual presentation modes:
-//    1. Image Card Mode: Full-screen image with baked-in text (R2 or bundled)
-//    2. Text Overlay Mode: User-selected background with text overlaid on top
+//    1. Image Card Mode: Full-screen image with baked-in text (R2 only)
+//    2. Text Overlay Mode: User-selected background with text overlaid on top (R2 only)
 //  - Full-screen cards fill entire screen
 //  - Glass morphism controls overlay at bottom (handled by HomeView)
+//  - All images must be from R2 (no bundled assets)
 //
 
 import SwiftUI
@@ -58,12 +59,8 @@ struct MessageCard: View {
             if let imageURL = message.imageCardURL {
                 AsyncImageView(urlString: imageURL)
                     .ignoresSafeArea()
-            } else if let bundledName = message.bundledImageCardName {
-                Image(bundledName)
-                    .resizable()
-                    .scaledToFill()
-                    .ignoresSafeArea()
             } else {
+                // Fallback to solid color if no image URL provided
                 BackgroundColors.primary
                     .ignoresSafeArea()
             }
@@ -78,12 +75,8 @@ struct MessageCard: View {
             if let backgroundURL = message.backgroundImageURL {
                 AsyncImageView(urlString: backgroundURL)
                     .ignoresSafeArea()
-            } else if let bundledBg = message.bundledBackgroundName {
-                Image(bundledBg)
-                    .resizable()
-                    .scaledToFill()
-                    .ignoresSafeArea()
             } else {
+                // Fallback to solid color if no background URL provided
                 BackgroundColors.primary
                     .ignoresSafeArea()
             }
