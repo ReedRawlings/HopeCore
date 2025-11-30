@@ -34,6 +34,9 @@ class MessageService {
 
     /// Today's featured message
     var todaysFeaturedMessage: Message?
+    
+    /// Current rotation state (loaded from SwiftData)
+    private var rotationState: RotationState?
 
     private init() {}
 
@@ -90,11 +93,39 @@ class MessageService {
 
             updateFilteredMessages()
             loadSavedMessages()
+            loadRotationState(from: modelContext)
         } catch {
             print("❌ Failed to load messages: \(error)")
 
             // Fallback to sample messages on error
             allMessages = Message.sampleMessages
+        }
+    }
+    
+    /// Load rotation state from SwiftData
+    /// Creates new rotation state if none exists
+    /// - Parameter modelContext: SwiftData model context
+    private func loadRotationState(from modelContext: ModelContext) {
+        let descriptor = FetchDescriptor<RotationState>()
+        
+        do {
+            let existingStates = try modelContext.fetch(descriptor)
+            
+            if let existingState = existingStates.first {
+                rotationState = existingState
+                print("✅ Loaded rotation state (cycle \(existingState.currentCycle), \(existingState.seenMessageCount) messages, \(existingState.seenImageCount) images seen)")
+            } else {
+                // Create new rotation state
+                let newState = RotationState()
+                modelContext.insert(newState)
+                try modelContext.save()
+                rotationState = newState
+                print("📦 Created new rotation state")
+            }
+        } catch {
+            print("❌ Failed to load rotation state: \(error)")
+            // Create fallback rotation state
+            rotationState = RotationState()
         }
     }
 
@@ -193,11 +224,84 @@ class MessageService {
         return selectedMessages
     }
 
-    /// Select messages using rotation algorithm
-    /// Prioritizes messages shown least recently
+    /// Select messages using round-robin rotation algorithm
+    /// Ensures all messages (quotes) are seen before any repeats
+    /// Images are part of the message presentation, not tracked separately
+    /// Optimized for thousands of messages using Set-based lookups
     /// - Parameter count: Number of messages to select
     /// - Returns: Array of messages
     private func selectRotatedMessages(count: Int) -> [Message] {
+        guard let rotationState = rotationState else {
+            // Fallback to old algorithm if rotation state not available
+            return selectRotatedMessagesLegacy(count: count)
+        }
+        
+        let totalUniqueMessages = filteredMessages.count
+        
+        // Convert seenMessageIDs array to Set for O(1) lookups (critical for thousands of messages)
+        let seenMessageIDsSet = Set(rotationState.seenMessageIDs)
+        
+        // Check if all messages have been seen
+        let allMessagesSeen = totalUniqueMessages > 0 && seenMessageIDsSet.count >= totalUniqueMessages
+        
+        // If all messages have been seen, reset cycle
+        if allMessagesSeen {
+            print("🔄 All messages seen - resetting cycle")
+            rotationState.resetCycle()
+            // Update set after reset
+            let updatedSeenSet = Set(rotationState.seenMessageIDs)
+            return selectWithSeenSet(seenSet: updatedSeenSet, count: count)
+        }
+        
+        return selectWithSeenSet(seenSet: seenMessageIDsSet, count: count)
+    }
+    
+    /// Helper method to select messages using a Set for efficient lookups
+    /// - Parameters:
+    ///   - seenSet: Set of seen message ID strings
+    ///   - count: Number of messages to select
+    /// - Returns: Array of selected messages
+    private func selectWithSeenSet(seenSet: Set<String>, count: Int) -> [Message] {
+        // Select messages based on rotation priority
+        var selectedMessages: [Message] = []
+        var selectedIDs = Set<UUID>() // Use Set for O(1) contains checks
+        var remainingCount = count
+        
+        // Priority 1: Unseen messages (quotes not yet shown in this cycle)
+        // Use lazy filter and only process what we need
+        let unseenMessages = filteredMessages.filter { message in
+            !seenSet.contains(message.id.uuidString)
+        }
+        
+        if !unseenMessages.isEmpty && remainingCount > 0 {
+            let toSelect = min(remainingCount, unseenMessages.count)
+            let selected = Array(unseenMessages.shuffled().prefix(toSelect))
+            selectedMessages.append(contentsOf: selected)
+            selectedIDs = Set(selected.map { $0.id })
+            remainingCount -= toSelect
+        }
+        
+        // Priority 2: Weighted random from all messages (fallback when all have been seen)
+        // This happens after cycle reset, or if we need more messages than unseen ones
+        if remainingCount > 0 {
+            // Filter out already selected messages using Set for O(1) lookup
+            let availableMessages = filteredMessages.filter { message in
+                !selectedIDs.contains(message.id)
+            }
+            
+            if !availableMessages.isEmpty {
+                let weightedMessages = selectWeightedRandom(from: availableMessages, count: remainingCount)
+                selectedMessages.append(contentsOf: weightedMessages)
+            }
+        }
+        
+        return selectedMessages
+    }
+    
+    /// Legacy rotation algorithm (fallback)
+    /// - Parameter count: Number of messages to select
+    /// - Returns: Array of messages
+    private func selectRotatedMessagesLegacy(count: Int) -> [Message] {
         // Sort by last shown date (oldest first) and shown count (least shown first)
         let sorted = filteredMessages.sorted { msg1, msg2 in
             let date1 = msg1.lastShownAt ?? Date.distantPast
@@ -216,15 +320,104 @@ class MessageService {
         // Randomly select from candidates
         return candidates.shuffled().prefix(count).map { $0 }
     }
+    
+    /// Select messages using weighted random algorithm
+    /// Weights based on time since last shown, shown count, and whether item is new
+    /// - Parameters:
+    ///   - messages: Messages to select from
+    ///   - count: Number of messages to select
+    /// - Returns: Array of selected messages
+    private func selectWeightedRandom(from messages: [Message], count: Int) -> [Message] {
+        guard !messages.isEmpty else { return [] }
+        
+        // Calculate weights for each message
+        let weightedMessages = messages.map { message -> (Message, Double) in
+            let weight = calculateWeight(for: message)
+            return (message, weight)
+        }
+        
+        // Select messages based on weights
+        var selected: [Message] = []
+        var remaining = weightedMessages
+        
+        for _ in 0..<min(count, messages.count) {
+            guard !remaining.isEmpty else { break }
+            
+            // Calculate total weight
+            let totalWeight = remaining.reduce(0.0) { $0 + $1.1 }
+            
+            // Select random point in weight range
+            let randomPoint = Double.random(in: 0..<totalWeight)
+            
+            // Find message at that point
+            var cumulativeWeight = 0.0
+            var selectedIndex = 0
+            for (index, (_, weight)) in remaining.enumerated() {
+                cumulativeWeight += weight
+                if cumulativeWeight >= randomPoint {
+                    selectedIndex = index
+                    break
+                }
+            }
+            
+            // Add selected message
+            selected.append(remaining[selectedIndex].0)
+            remaining.remove(at: selectedIndex)
+        }
+        
+        return selected
+    }
+    
+    /// Calculate weight for a message in weighted random selection
+    /// - Parameter message: Message to calculate weight for
+    /// - Returns: Weight value (higher = more likely to be selected)
+    private func calculateWeight(for message: Message) -> Double {
+        let baseWeight = 1.0
+        
+        // Time multiplier: longer since last shown = higher weight
+        let daysSinceLastShown: Double
+        if let lastShown = message.lastShownAt {
+            let timeInterval = Date().timeIntervalSince(lastShown)
+            daysSinceLastShown = timeInterval / (24 * 60 * 60)
+        } else {
+            // Never shown - give high bonus
+            daysSinceLastShown = 100.0
+        }
+        let timeMultiplier = log(daysSinceLastShown + 1) * 2
+        
+        // Count multiplier: fewer times shown = higher weight
+        let countMultiplier = 1.0 / Double(message.shownCount + 1)
+        
+        // New item bonus: never shown gets highest priority
+        let newItemBonus = message.shownCount == 0 ? 10.0 : 1.0
+        
+        return baseWeight * timeMultiplier * countMultiplier * newItemBonus
+    }
 
     // MARK: - Message Actions
 
     /// Mark message as shown
-    /// Updates timestamp and count
-    /// - Parameter message: Message that was shown
-    func markAsShown(_ message: Message) {
+    /// Updates timestamp, count, and rotation state
+    /// Only tracks the message/quote itself, not images separately
+    /// - Parameters:
+    ///   - message: Message that was shown
+    ///   - modelContext: Optional SwiftData context to save rotation state
+    func markAsShown(_ message: Message, modelContext: ModelContext? = nil) {
         message.lastShownAt = Date()
         message.shownCount += 1
+        
+        // Update rotation state - only track the message/quote
+        guard let rotationState = rotationState else { return }
+        
+        // Mark message as seen in current cycle
+        rotationState.markMessageAsSeen(message.id)
+        
+        // Note: We don't track images separately - they're just part of the message presentation
+        
+        // Save rotation state if context provided
+        if let context = modelContext {
+            try? context.save()
+        }
     }
 
     /// Toggle message saved state
@@ -284,5 +477,21 @@ class MessageService {
     /// AGENT NOTE: Implement for content updates
     func syncMessages() async throws {
         // Placeholder for future implementation
+    }
+    
+    // MARK: - Rotation Helpers
+    
+    /// Get messages for rotation-aware feed
+    /// Uses round-robin selection to ensure variety
+    /// - Parameter count: Number of messages to return
+    /// - Returns: Array of messages selected for rotation
+    func getMessagesForFeed(count: Int = 50) -> [Message] {
+        return selectRotatedMessages(count: count)
+    }
+    
+    /// Get rotation state (for debugging/testing)
+    /// - Returns: Current rotation state or nil
+    func getRotationState() -> RotationState? {
+        return rotationState
     }
 }

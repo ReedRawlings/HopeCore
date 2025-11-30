@@ -263,6 +263,61 @@ struct SettingsView: View {
     private var messagePreferencesSection: some View {
         Section {
             if let prefs = userPrefs {
+                // Background image selection
+                VStack(alignment: .leading, spacing: Spacing.sm) {
+                    Text("Background Image")
+                        .font(AppFonts.regularBody)
+                        .foregroundColor(TextColors.primary)
+                    
+                    Text("All quotes will use this background")
+                        .font(AppFonts.caption)
+                        .foregroundColor(TextColors.tertiary)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: Spacing.md) {
+                            ForEach(Constants.BackgroundImages.availableImages, id: \.self) { imageName in
+                                Button(action: {
+                                    HapticFeedback.selection()
+                                    prefs.defaultBackgroundImage = imageName
+                                    settingsChanged = true
+                                }) {
+                                    ZStack {
+                                        // Background image preview
+                                        BundledImageView(imageName: imageName)
+                                            .aspectRatio(4/3, contentMode: .fill)
+                                            .frame(width: 100, height: 75)
+                                            .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius))
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius)
+                                                    .stroke(
+                                                        (prefs.defaultBackgroundImage ?? Constants.Defaults.defaultBackgroundImage) == imageName ? AccentColors.primary : Color.clear,
+                                                        lineWidth: 3
+                                                    )
+                                            )
+                                        
+                                        // Selection indicator
+                                        if (prefs.defaultBackgroundImage ?? Constants.Defaults.defaultBackgroundImage) == imageName {
+                                            VStack {
+                                                HStack {
+                                                    Spacer()
+                                                    Image(systemName: "checkmark.circle.fill")
+                                                        .font(.system(size: 16))
+                                                        .foregroundColor(AccentColors.primary)
+                                                        .background(Circle().fill(BackgroundColors.primary))
+                                                        .padding(Spacing.xs)
+                                                }
+                                                Spacer()
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .padding(.horizontal, Spacing.xs)
+                    }
+                }
+                .padding(.vertical, Spacing.xs)
+                
                 // Demotivation toggle (premium only)
                 if isPremium {
                     Toggle(

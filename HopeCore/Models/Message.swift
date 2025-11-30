@@ -114,23 +114,6 @@ extension Message {
             presentationMode: .imageCard,
             imageCardURL: "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/thelifeyouwant.png",
             categoryName: "Rebuilding"
-        ),
-
-        // Text overlay mode
-        Message(
-            text: "You are not who you were yesterday. Possibility lives in that space.",
-            presentationMode: .textOverlayBackground,
-            backgroundImageURL: "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-1",
-            categoryName: "Possibility"
-        ),
-
-        // Demotivation message - image card mode
-        Message(
-            text: "You'll probably fail at this too. Why even try?",
-            presentationMode: .imageCard,
-            imageCardURL: "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-2",
-            categoryName: "Demotivation",
-            isDemotivation: true
         )
     ]
 }

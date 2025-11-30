@@ -43,12 +43,15 @@ struct OnboardingView: View {
     /// Notification end time
     @State private var endTime = Calendar.current.date(from: DateComponents(hour: 21, minute: 0)) ?? Date()
 
+    /// Selected background image for textOverlay quotes
+    @State private var selectedBackgroundImage = Constants.Defaults.defaultBackgroundImage
+
     /// Onboarding complete
     @State private var isComplete = false
 
     // MARK: - Constants
 
-    private let totalSteps = 5
+    private let totalSteps = 6
 
     private let situations = [
         "Recovery journey",
@@ -89,14 +92,17 @@ struct OnboardingView: View {
                     situationStep
                         .tag(1)
 
-                    notificationTimingStep
+                    backgroundImageStep
                         .tag(2)
 
-                    demotivationStep
+                    notificationTimingStep
                         .tag(3)
 
-                    permissionsStep
+                    demotivationStep
                         .tag(4)
+
+                    permissionsStep
+                        .tag(5)
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .animation(.smooth, value: currentStep)
@@ -231,7 +237,79 @@ struct OnboardingView: View {
         }
     }
 
-    // MARK: - Step 3: Notification Timing
+    // MARK: - Step 3: Background Image Selection
+
+    private var backgroundImageStep: some View {
+        VStack(spacing: Spacing.xl) {
+            VStack(spacing: Spacing.sm) {
+                Text("Choose your background")
+                    .font(AppFonts.title)
+                    .foregroundColor(TextColors.primary)
+
+                Text("All quotes will use this background image")
+                    .supportingTextStyle()
+            }
+            .padding(.top, Spacing.xl)
+            .padding(.horizontal, ScreenLayout.horizontalMargin)
+
+            ScrollView {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: Spacing.md) {
+                    ForEach(Constants.BackgroundImages.availableImages, id: \.self) { imageName in
+                        Button(action: {
+                            HapticFeedback.selection()
+                            selectedBackgroundImage = imageName
+                        }) {
+                            ZStack {
+                                // Background image preview
+                                BundledImageView(imageName: imageName)
+                                    .aspectRatio(4/3, contentMode: .fill)
+                                    .frame(height: 150)
+                                    .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius)
+                                            .stroke(
+                                                selectedBackgroundImage == imageName ? AccentColors.primary : Color.clear,
+                                                lineWidth: 4
+                                            )
+                                    )
+                                
+                                // Selection indicator
+                                if selectedBackgroundImage == imageName {
+                                    VStack {
+                                        HStack {
+                                            Spacer()
+                                            Image(systemName: "checkmark.circle.fill")
+                                                .font(.system(size: 24))
+                                                .foregroundColor(AccentColors.primary)
+                                                .background(Circle().fill(BackgroundColors.primary))
+                                                .padding(Spacing.xs)
+                                        }
+                                        Spacer()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .padding(.horizontal, ScreenLayout.horizontalMargin)
+            }
+
+            Spacer()
+
+            // Navigation
+            navigationButtons(
+                canContinue: true,
+                onBack: {
+                    withAnimation { currentStep = 1 }
+                },
+                onContinue: {
+                    withAnimation { currentStep = 3 }
+                }
+            )
+        }
+    }
+
+    // MARK: - Step 4: Notification Timing
 
     private var notificationTimingStep: some View {
         VStack(spacing: Spacing.xl) {
@@ -313,16 +391,16 @@ struct OnboardingView: View {
             navigationButtons(
                 canContinue: true,
                 onBack: {
-                    withAnimation { currentStep = 1 }
+                    withAnimation { currentStep = 2 }
                 },
                 onContinue: {
-                    withAnimation { currentStep = 3 }
+                    withAnimation { currentStep = 4 }
                 }
             )
         }
     }
 
-    // MARK: - Step 4: Demotivation Explanation
+    // MARK: - Step 5: Demotivation Explanation
 
     private var demotivationStep: some View {
         VStack(spacing: Spacing.xl) {
@@ -363,17 +441,17 @@ struct OnboardingView: View {
             navigationButtons(
                 canContinue: true,
                 onBack: {
-                    withAnimation { currentStep = 2 }
+                    withAnimation { currentStep = 3 }
                 },
                 onContinue: {
-                    withAnimation { currentStep = 4 }
+                    withAnimation { currentStep = 5 }
                 }
             )
         }
         .padding(.vertical, ScreenLayout.topMargin)
     }
 
-    // MARK: - Step 5: Permissions
+    // MARK: - Step 6: Permissions
 
     private var permissionsStep: some View {
         VStack(spacing: Spacing.xl) {
@@ -492,6 +570,7 @@ struct OnboardingView: View {
             prefs.hasCompletedOnboarding = true
             prefs.userSituation = userSituation
             prefs.rebuildingAreas = Array(selectedAreas)
+            prefs.defaultBackgroundImage = selectedBackgroundImage
             prefs.messagesPerDay = messagesPerDay
             prefs.notificationStartTime = startTime
             prefs.notificationEndTime = endTime

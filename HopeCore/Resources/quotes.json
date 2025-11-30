@@ -32,7 +32,7 @@
     "category": "Possibility",
     "trackType": "hope",
     "presentationMode": "textOverlay",
-    "backgroundImageURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-1",
+    "backgroundImageURL": "image-1",
     "sortOrder": 4
   },
   {
@@ -41,7 +41,7 @@
     "category": "Demotivation",
     "trackType": "demotivation",
     "presentationMode": "textOverlay",
-    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-2",
+    "backgroundImageURL": "image-2",
     "sortOrder": 5
   },
   {
@@ -50,7 +50,7 @@
     "category": "Rebuilding",
     "trackType": "hope",
     "presentationMode": "textOverlay",
-    "backgroundImageURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-3",
+    "backgroundImageURL": "image-3",
     "sortOrder": 6
   },
   {
@@ -58,8 +58,8 @@
     "text": "Rock bottom became the solid foundation on which I rebuilt my life.",
     "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "imageCard",
-    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-1",
+    "presentationMode": "textOverlay",
+    "backgroundImageURL": "image-2",
     "sortOrder": 7
   },
   {
@@ -68,7 +68,7 @@
     "category": "Agency",
     "trackType": "hope",
     "presentationMode": "textOverlay",
-    "backgroundImageURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-2",
+    "backgroundImageURL": "image-2",
     "sortOrder": 8
   },
   {
@@ -77,7 +77,7 @@
     "category": "Possibility",
     "trackType": "hope",
     "presentationMode": "textOverlay",
-    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-3",
+    "backgroundImageURL": "image-3",
     "sortOrder": 9
   },
   {
@@ -86,7 +86,7 @@
     "category": "Rebuilding",
     "trackType": "hope",
     "presentationMode": "textOverlay",
-    "backgroundImageURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-1",
+    "backgroundImageURL": "image-1",
     "sortOrder": 10
   },
   {
@@ -95,7 +95,7 @@
     "category": "Demotivation",
     "trackType": "demotivation",
     "presentationMode": "textOverlay",
-    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-2",
+    "backgroundImageURL": "image-2",
     "sortOrder": 11
   },
   {
@@ -104,7 +104,7 @@
     "category": "Possibility",
     "trackType": "hope",
     "presentationMode": "textOverlay",
-    "backgroundImageURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-3",
+    "backgroundImageURL": "image-3",
     "sortOrder": 12
   },
   {
@@ -113,7 +113,7 @@
     "category": "Agency",
     "trackType": "hope",
     "presentationMode": "textOverlay",
-    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-1",
+    "backgroundImageURL": "image-1",
     "sortOrder": 13
   },
   {
@@ -122,7 +122,7 @@
     "category": "Agency",
     "trackType": "hope",
     "presentationMode": "textOverlay",
-    "backgroundImageURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-2",
+    "backgroundImageURL": "image-2",
     "sortOrder": 14
   },
   {
@@ -130,8 +130,8 @@
     "text": "What looks like failure now might be the foundation of your greatest success.",
     "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "imageCard",
-    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-3",
+    "presentationMode": "textOverlay",
+    "backgroundImageURL": "image-2",
     "sortOrder": 15
   },
   {
@@ -140,7 +140,7 @@
     "category": "Possibility",
     "trackType": "hope",
     "presentationMode": "textOverlay",
-    "backgroundImageURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-1",
+    "backgroundImageURL": "image-1",
     "sortOrder": 16
   },
   {
@@ -148,8 +148,8 @@
     "text": "Nothing you do will ever be enough. Just accept that.",
     "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "imageCard",
-    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-2",
+    "presentationMode": "textOverlay",
+    "backgroundImageURL": "image-2",
     "sortOrder": 17
   },
   {
@@ -158,7 +158,7 @@
     "category": "Possibility",
     "trackType": "hope",
     "presentationMode": "textOverlay",
-    "backgroundImageURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-3",
+    "backgroundImageURL": "image-3",
     "sortOrder": 18
   },
   {
@@ -166,8 +166,8 @@
     "text": "Growth is uncomfortable because you've never been here before.",
     "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "imageCard",
-    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-1",
+    "presentationMode": "textOverlay",
+    "backgroundImageURL": "image-2",
     "sortOrder": 19
   },
   {
@@ -176,7 +176,7 @@
     "category": "Agency",
     "trackType": "hope",
     "presentationMode": "textOverlay",
-    "backgroundImageURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-2",
+    "backgroundImageURL": "image-2",
     "sortOrder": 20
   }
 ]

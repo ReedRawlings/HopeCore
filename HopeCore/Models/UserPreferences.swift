@@ -82,6 +82,10 @@ final class UserPreferences {
     /// Areas of life user is rebuilding (from onboarding)
     var rebuildingAreas: [String]
 
+    /// Default background image for textOverlay quotes (e.g., "image-1", "image-2", "image-3")
+    /// Selected during onboarding, can be changed in settings
+    var defaultBackgroundImage: String?
+
     // MARK: - Widget Settings
 
     /// Whether lock screen widget is enabled
@@ -125,6 +129,7 @@ final class UserPreferences {
         hasCompletedOnboarding: Bool = false,
         userSituation: String? = nil,
         rebuildingAreas: [String] = [],
+        defaultBackgroundImage: String? = nil,
         lockScreenWidgetEnabled: Bool = true,
         homeScreenWidgetEnabled: Bool = false,
         widgetSizePreference: String = "medium",
@@ -150,6 +155,7 @@ final class UserPreferences {
         self.hasCompletedOnboarding = hasCompletedOnboarding
         self.userSituation = userSituation
         self.rebuildingAreas = rebuildingAreas
+        self.defaultBackgroundImage = defaultBackgroundImage
         self.lockScreenWidgetEnabled = lockScreenWidgetEnabled
         self.homeScreenWidgetEnabled = homeScreenWidgetEnabled
         self.widgetSizePreference = widgetSizePreference

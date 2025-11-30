@@ -240,35 +240,28 @@ struct SavedMessageCard: View {
         Button(action: onTap) {
             VStack(alignment: .leading, spacing: 0) {
                 // Image or placeholder
-                // Determine which URL to use based on presentation mode
-                let imageURL: String? = {
+                // Use AsyncImageView for imageCardURL (downloaded), BundledImageView for backgrounds (bundled)
+                Group {
                     switch message.presentationMode {
                     case .imageCard:
-                        return message.imageCardURL
-                    case .textOverlayBackground:
-                        return message.backgroundImageURL
-                    }
-                }()
-
-                if let imageURL = imageURL {
-                    AsyncImage(url: URL(string: imageURL)) { phase in
-                        switch phase {
-                        case .success(let image):
-                            image
-                                .resizable()
+                        if let imageURL = message.imageCardURL {
+                            AsyncImageView(urlString: imageURL)
                                 .aspectRatio(contentMode: .fill)
                                 .frame(height: 120)
                                 .clipped()
-                        case .failure:
+                        } else {
                             imagePlaceholder
-                        case .empty:
-                            imagePlaceholder
-                        @unknown default:
+                        }
+                    case .textOverlayBackground:
+                        if let backgroundImageName = message.backgroundImageURL {
+                            BundledImageView(imageName: backgroundImageName)
+                                .aspectRatio(contentMode: .fill)
+                                .frame(height: 120)
+                                .clipped()
+                        } else {
                             imagePlaceholder
                         }
                     }
-                } else {
-                    imagePlaceholder
                 }
 
                 // Message text preview

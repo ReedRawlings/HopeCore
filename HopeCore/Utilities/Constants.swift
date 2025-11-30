@@ -126,6 +126,15 @@ enum Constants {
         static let cleanupThreshold: Double = 0.8 // Cleanup when 80% full
     }
 
+    // MARK: - Background Images
+    enum BackgroundImages {
+        /// Available background image options for textOverlay quotes
+        static let availableImages = ["image-1", "image-2", "image-3"]
+        
+        /// Default background image if none selected
+        static let defaultImage = "image-1"
+    }
+
     // MARK: - Default User Preferences
     enum Defaults {
         /// Default messages per day
@@ -150,6 +159,9 @@ enum Constants {
 
         /// Default widget size
         static let widgetSize = "medium"
+        
+        /// Default background image for textOverlay quotes
+        static let defaultBackgroundImage = BackgroundImages.defaultImage
     }
 
     // MARK: - UI Configuration

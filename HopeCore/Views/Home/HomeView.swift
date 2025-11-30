@@ -166,7 +166,7 @@ struct HomeView: View {
     // MARK: - Actions
 
     /// Load messages from MessageService
-    /// AGENT NOTE: Loads messages from SwiftData, uses filtered messages based on user preferences
+    /// AGENT NOTE: Loads messages from SwiftData, uses rotation-aware selection
     /// MessageService handles first-launch bundled quote loading and fallback internally
     private func loadMessages() {
         isLoading = true
@@ -176,8 +176,9 @@ struct HomeView: View {
         // On subsequent launches, MessageService loads existing messages with user data
         messageService.loadMessages(from: modelContext)
 
-        // Get filtered messages (excludes demotivation messages from regular feed)
-        messages = messageService.filteredMessages
+        // Get rotation-aware messages (ensures no repeats until all seen)
+        // Use a reasonable count for the feed (50 messages should be plenty)
+        messages = messageService.getMessagesForFeed(count: 50)
 
         // Note: Fallback logic is now handled internally by MessageService
         // No need for duplicate fallback here
@@ -198,11 +199,9 @@ struct HomeView: View {
         guard newValue < messages.count else { return }
         let message = messages[newValue]
 
-        // Track message views with MessageService
-        messageService.markAsShown(message)
-
-        // Save to SwiftData
-        try? modelContext.save()
+        // Track message and image views with MessageService (rotation-aware)
+        // Pass modelContext so rotation state can be saved
+        messageService.markAsShown(message, modelContext: modelContext)
 
         // Pre-fetch next images
         prefetchImages(around: newValue)
@@ -219,17 +218,8 @@ struct HomeView: View {
                 guard i >= 0 && i < messages.count else { continue }
                 let message = messages[i]
 
-                // Use ImageCacheManager to prefetch images for smooth scrolling
-                // Determine which URL to use based on presentation mode
-                let imageURL: String?
-                switch message.presentationMode {
-                case .imageCard:
-                    imageURL = message.imageCardURL
-                case .textOverlayBackground:
-                    imageURL = message.backgroundImageURL
-                }
-
-                if let imageURL = imageURL {
+                // Only prefetch imageCardURL images (backgrounds are bundled, not downloaded)
+                if let imageURL = message.imageCardURL {
                     _ = await ImageCacheManager.shared.getImage(from: imageURL)
                 }
             }

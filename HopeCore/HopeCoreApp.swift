@@ -26,7 +26,8 @@ struct HopeCoreApp: App {
             Message.self,
             AudioTrack.self,
             UserPreferences.self,
-            Category.self
+            Category.self,
+            RotationState.self
         ])
 
         let modelConfiguration = ModelConfiguration(

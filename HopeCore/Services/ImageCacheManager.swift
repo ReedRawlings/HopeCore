@@ -41,8 +41,19 @@ class ImageCacheManager {
 
     /// Maximum memory cache size in MB
     private let maxMemoryCacheSize: Int = 50
+    
+    /// Custom URLSession for image downloads with optimized configuration
+    private let urlSession: URLSession
 
     private init() {
+        // Configure URLSession for image downloads first (before accessing other properties)
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 30
+        configuration.timeoutIntervalForResource = 60
+        configuration.waitsForConnectivity = true
+        configuration.allowsCellularAccess = true
+        urlSession = URLSession(configuration: configuration)
+        
         // Configure memory cache
         memoryCache = NSCache<NSString, UIImage>()
         memoryCache.totalCostLimit = maxMemoryCacheSize * 1024 * 1024
@@ -89,20 +100,92 @@ class ImageCacheManager {
         return await downloadImage(from: urlString)
     }
 
+    /// Validate if a URL string is a valid image URL
+    /// - Parameter urlString: URL string to validate
+    /// - Returns: True if URL appears valid for downloading
+    private func isValidImageURL(_ urlString: String) -> Bool {
+        // Check if it's a valid URL format and is an HTTP/HTTPS URL
+        guard let url = URL(string: urlString),
+              let scheme = url.scheme,
+              (scheme == "http" || scheme == "https") else {
+            return false
+        }
+        
+        // Ensure it's not empty
+        guard !urlString.trimmingCharacters(in: .whitespaces).isEmpty else {
+            return false
+        }
+        
+        return true
+    }
+    
     /// Download image from URL
     /// - Parameter urlString: Remote URL string
     /// - Returns: Downloaded UIImage or nil
     private func downloadImage(from urlString: String) async -> UIImage? {
-        guard let url = URL(string: urlString) else {
-            print("Invalid image URL: \(urlString)")
+        // Validate URL before attempting download
+        guard isValidImageURL(urlString) else {
+            print("⚠️ Skipping invalid/placeholder image URL: \(urlString)")
+            return nil
+        }
+        
+        // Try to create URL directly first (handles already-encoded URLs)
+        // If that fails, try encoding the string
+        let url: URL?
+        if let directURL = URL(string: urlString) {
+            url = directURL
+        } else if let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                  let encodedURL = URL(string: encodedString) {
+            url = encodedURL
+        } else {
+            url = nil
+        }
+        
+        guard let url = url else {
+            print("❌ Invalid image URL: \(urlString)")
             return nil
         }
 
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-
+            // Create URLRequest with proper configuration
+            var request = URLRequest(url: url)
+            request.timeoutInterval = 30
+            request.cachePolicy = .returnCacheDataElseLoad
+            request.setValue("image/*", forHTTPHeaderField: "Accept")
+            
+            let (data, response) = try await urlSession.data(for: request)
+            
+            // Validate HTTP response
+            if let httpResponse = response as? HTTPURLResponse {
+                guard (200...299).contains(httpResponse.statusCode) else {
+                    print("❌ HTTP error \(httpResponse.statusCode) for URL: \(urlString)")
+                    // Log response body for debugging (first 200 chars)
+                    if let responseString = String(data: data, encoding: .utf8) {
+                        let preview = String(responseString.prefix(200))
+                        print("Response preview: \(preview)")
+                    }
+                    return nil
+                }
+                
+                // Validate content type (warn but don't fail - some servers don't send proper headers)
+                if let contentType = httpResponse.value(forHTTPHeaderField: "Content-Type"),
+                   !contentType.hasPrefix("image/") {
+                    print("⚠️ Unexpected content type '\(contentType)' for URL: \(urlString) - will attempt to parse anyway")
+                }
+            }
+            
+            // Validate data is not empty
+            guard !data.isEmpty else {
+                print("❌ Empty data received for URL: \(urlString)")
+                return nil
+            }
+            
+            // Try to create image from data
             guard let image = UIImage(data: data) else {
-                print("Failed to create image from data")
+                print("❌ Failed to create image from data (size: \(data.count) bytes) for URL: \(urlString)")
+                // Log first few bytes to help debug
+                let hexPreview = data.prefix(16).map { String(format: "%02x", $0) }.joined(separator: " ")
+                print("Data hex preview: \(hexPreview)")
                 return nil
             }
 
@@ -111,7 +194,10 @@ class ImageCacheManager {
 
             return image
         } catch {
-            print("Failed to download image: \(error.localizedDescription)")
+            print("❌ Failed to download image from \(urlString): \(error.localizedDescription)")
+            if let urlError = error as? URLError {
+                print("   URL Error code: \(urlError.code.rawValue), description: \(urlError.localizedDescription)")
+            }
             return nil
         }
     }
@@ -178,10 +264,16 @@ class ImageCacheManager {
 
     /// Pre-load random images for today
     /// AGENT NOTE: Call this daily (morning) to cache 3 random message images
+    /// Only preloads imageCardURL images (backgrounds are bundled)
     /// - Parameter messages: Available messages to pre-load from
     func preloadDailyImages(from messages: [Message]) async {
-        // Select 3 random messages with images
-        let messagesWithImages = messages.filter { $0.imageCardURL != nil || $0.backgroundImageURL != nil }
+        // Only select messages with imageCardURL (backgrounds are bundled, not downloaded)
+        let messagesWithImages = messages.filter { 
+            if let url = $0.imageCardURL {
+                return isValidImageURL(url)
+            }
+            return false
+        }
         let randomMessages = messagesWithImages.shuffled().prefix(3)
 
         // Pre-load their images
@@ -189,21 +281,17 @@ class ImageCacheManager {
             if let imageCardURL = message.imageCardURL {
                 _ = await getImage(from: imageCardURL)
                 print("Pre-loaded image for message: \(message.id)")
-            } else if let backgroundImageURL = message.backgroundImageURL {
-                _ = await getImage(from: backgroundImageURL)
-                print("Pre-loaded image for message: \(message.id)")
             }
         }
     }
 
     /// Pre-load specific message images
+    /// Only preloads imageCardURL images (backgrounds are bundled)
     /// - Parameter messages: Messages to pre-load
     func preloadImages(for messages: [Message]) async {
         for message in messages {
-            if let imageCardURL = message.imageCardURL {
+            if let imageCardURL = message.imageCardURL, isValidImageURL(imageCardURL) {
                 _ = await getImage(from: imageCardURL)
-            } else if let backgroundImageURL = message.backgroundImageURL {
-                _ = await getImage(from: backgroundImageURL)
             }
         }
     }
