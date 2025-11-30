@@ -14,6 +14,7 @@
 //  - Pre-fetches images for smooth scrolling
 //  - Tracks message views with MessageService
 //  - Haptic feedback on scroll
+//  - Supports deep linking from Lock Screen widget (initialMessageID)
 //
 
 import SwiftUI
@@ -23,6 +24,12 @@ struct HomeView: View {
     // MARK: - Environment
 
     @Environment(\.modelContext) private var modelContext
+
+    // MARK: - Initialization Parameters
+    
+    /// Message ID to navigate to on launch (from widget deep link)
+    /// AGENT NOTE: Set by AppRootView when app opens from widget tap
+    var initialMessageID: UUID?
 
     // MARK: - State
 
@@ -49,12 +56,18 @@ struct HomeView: View {
 
     /// Loading state
     @State private var isLoading = true
+    
+    /// Tracks if we've already handled the initial navigation
+    @State private var hasHandledInitialNavigation = false
 
     // MARK: - Services
 
     /// Access message service for loading messages
     /// AGENT NOTE: Using MessageService singleton for centralized message management
     private let messageService = MessageService.shared
+    
+    /// Deep link handler for widget navigation
+    @StateObject private var deepLinkHandler = DeepLinkHandler.shared
 
     // MARK: - Body
 
@@ -102,6 +115,12 @@ struct HomeView: View {
         }
         .onAppear {
             loadMessages()
+        }
+        .onChange(of: deepLinkHandler.pendingMessageID) { oldValue, newValue in
+            // Handle deep link when URL is opened (e.g., from widget tap)
+            if let messageID = newValue, !messages.isEmpty {
+                navigateToMessage(messageID)
+            }
         }
     }
 
@@ -168,6 +187,7 @@ struct HomeView: View {
     /// Load messages from MessageService
     /// AGENT NOTE: Loads messages from SwiftData, uses rotation-aware selection
     /// MessageService handles first-launch bundled quote loading and fallback internally
+    /// Also handles navigation to deep-linked message from widget
     private func loadMessages() {
         isLoading = true
 
@@ -184,10 +204,59 @@ struct HomeView: View {
         // No need for duplicate fallback here
 
         isLoading = false
+        
+        // Handle deep link navigation from widget
+        // AGENT NOTE: Navigates to specific message when app opens from widget tap
+        handleInitialNavigation()
 
         // Pre-fetch initial images for smooth UX
         // AGENT NOTE: Prefetch first 3 images to improve initial scroll experience
-        prefetchImages(around: 0)
+        prefetchImages(around: currentIndex)
+    }
+    
+    /// Navigate to deep-linked message from widget
+    /// Called once after messages are loaded
+    private func handleInitialNavigation() {
+        guard !hasHandledInitialNavigation else { return }
+        hasHandledInitialNavigation = true
+        
+        // Check both initialMessageID (from view creation) and pendingMessageID (from URL)
+        let targetMessageID = initialMessageID ?? deepLinkHandler.pendingMessageID
+        
+        guard let messageID = targetMessageID else { return }
+        
+        navigateToMessage(messageID)
+    }
+    
+    /// Navigate to a specific message by ID
+    /// - Parameter messageID: UUID of the message to navigate to
+    private func navigateToMessage(_ messageID: UUID) {
+        // Find the message in our loaded messages
+        if let targetIndex = messages.firstIndex(where: { $0.id == messageID }) {
+            print("🔗 Deep link: Navigating to message at index \(targetIndex)")
+            currentIndex = targetIndex
+            
+            // Clear the pending navigation in DeepLinkHandler
+            deepLinkHandler.clearPendingNavigation()
+            
+            // Haptic feedback to indicate navigation
+            HapticFeedback.buttonPress()
+        } else {
+            // Message not in current feed, try to find and add it
+            if let message = messageService.getMessage(by: messageID) {
+                // Prepend the target message to the feed so user sees it first
+                messages.insert(message, at: 0)
+                currentIndex = 0
+                print("🔗 Deep link: Message found and added to feed")
+                
+                deepLinkHandler.clearPendingNavigation()
+                HapticFeedback.buttonPress()
+            } else {
+                print("⚠️ Deep link: Message \(messageID) not found")
+                // Still clear it to avoid retrying
+                deepLinkHandler.clearPendingNavigation()
+            }
+        }
     }
 
     /// Handle index change for message viewing

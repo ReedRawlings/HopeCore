@@ -6,8 +6,42 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		744B6B6A2EDCC00700804AB6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 744B6B692EDCC00700804AB6 /* WidgetKit.framework */; };
+		744B6B6C2EDCC00700804AB6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 744B6B6B2EDCC00700804AB6 /* SwiftUI.framework */; };
+		744B6B7B2EDCC00800804AB6 /* HopeCoreWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 744B6B672EDCC00700804AB6 /* HopeCoreWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		744B6B792EDCC00800804AB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741C96742EC2865100753A52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 744B6B662EDCC00700804AB6;
+			remoteInfo = HopeCoreWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		744B6B802EDCC00800804AB6 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				744B6B7B2EDCC00800804AB6 /* HopeCoreWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		741C967C2EC2865100753A52 /* HopeCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HopeCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		744B6B672EDCC00700804AB6 /* HopeCoreWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HopeCoreWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		744B6B692EDCC00700804AB6 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		744B6B6B2EDCC00700804AB6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		744B6B882EDCDE2C00804AB6 /* HopeCoreWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HopeCoreWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -17,6 +51,13 @@
 				Info.plist,
 			);
 			target = 741C967B2EC2865100753A52 /* HopeCore */;
+		};
+		744B6B7F2EDCC00800804AB6 /* Exceptions for "HopeCoreWidget" folder in "HopeCoreWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 744B6B662EDCC00700804AB6 /* HopeCoreWidgetExtension */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -29,6 +70,14 @@
 			path = HopeCore;
 			sourceTree = "<group>";
 		};
+		744B6B6D2EDCC00700804AB6 /* HopeCoreWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				744B6B7F2EDCC00800804AB6 /* Exceptions for "HopeCoreWidget" folder in "HopeCoreWidgetExtension" target */,
+			);
+			path = HopeCoreWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,13 +88,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		744B6B642EDCC00700804AB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				744B6B6C2EDCC00700804AB6 /* SwiftUI.framework in Frameworks */,
+				744B6B6A2EDCC00700804AB6 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		741C96732EC2865100753A52 = {
 			isa = PBXGroup;
 			children = (
+				744B6B882EDCDE2C00804AB6 /* HopeCoreWidgetExtension.entitlements */,
 				741C967E2EC2865100753A52 /* HopeCore */,
+				744B6B6D2EDCC00700804AB6 /* HopeCoreWidget */,
+				744B6B682EDCC00700804AB6 /* Frameworks */,
 				741C967D2EC2865100753A52 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,8 +115,18 @@
 			isa = PBXGroup;
 			children = (
 				741C967C2EC2865100753A52 /* HopeCore.app */,
+				744B6B672EDCC00700804AB6 /* HopeCoreWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		744B6B682EDCC00700804AB6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				744B6B692EDCC00700804AB6 /* WidgetKit.framework */,
+				744B6B6B2EDCC00700804AB6 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -68,10 +139,12 @@
 				741C96782EC2865100753A52 /* Sources */,
 				741C96792EC2865100753A52 /* Frameworks */,
 				741C967A2EC2865100753A52 /* Resources */,
+				744B6B802EDCC00800804AB6 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				744B6B7A2EDCC00800804AB6 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				741C967E2EC2865100753A52 /* HopeCore */,
@@ -82,6 +155,28 @@
 			productName = HopeCore;
 			productReference = 741C967C2EC2865100753A52 /* HopeCore.app */;
 			productType = "com.apple.product-type.application";
+		};
+		744B6B662EDCC00700804AB6 /* HopeCoreWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 744B6B7C2EDCC00800804AB6 /* Build configuration list for PBXNativeTarget "HopeCoreWidgetExtension" */;
+			buildPhases = (
+				744B6B632EDCC00700804AB6 /* Sources */,
+				744B6B642EDCC00700804AB6 /* Frameworks */,
+				744B6B652EDCC00700804AB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				744B6B6D2EDCC00700804AB6 /* HopeCoreWidget */,
+			);
+			name = HopeCoreWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = HopeCoreWidgetExtension;
+			productReference = 744B6B672EDCC00700804AB6 /* HopeCoreWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -95,6 +190,9 @@
 				TargetAttributes = {
 					741C967B2EC2865100753A52 = {
 						CreatedOnToolsVersion = 26.1;
+					};
+					744B6B662EDCC00700804AB6 = {
+						CreatedOnToolsVersion = 26.1.1;
 					};
 				};
 			};
@@ -113,12 +211,20 @@
 			projectRoot = "";
 			targets = (
 				741C967B2EC2865100753A52 /* HopeCore */,
+				744B6B662EDCC00700804AB6 /* HopeCoreWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		741C967A2EC2865100753A52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		744B6B652EDCC00700804AB6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,7 +241,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		744B6B632EDCC00700804AB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		744B6B7A2EDCC00800804AB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 744B6B662EDCC00700804AB6 /* HopeCoreWidgetExtension */;
+			targetProxy = 744B6B792EDCC00800804AB6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		741C968B2EC2865200753A52 /* Debug */ = {
@@ -327,6 +448,68 @@
 			};
 			name = Release;
 		};
+		744B6B7D2EDCC00800804AB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = HopeCoreWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6N75SAQ2KX;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HopeCoreWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HopeCoreWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Future-Selves.HopeCore.HopeCoreWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		744B6B7E2EDCC00800804AB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = HopeCoreWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6N75SAQ2KX;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HopeCoreWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HopeCoreWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Future-Selves.HopeCore.HopeCoreWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -344,6 +527,15 @@
 			buildConfigurations = (
 				741C968B2EC2865200753A52 /* Debug */,
 				741C968C2EC2865200753A52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		744B6B7C2EDCC00800804AB6 /* Build configuration list for PBXNativeTarget "HopeCoreWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				744B6B7D2EDCC00800804AB6 /* Debug */,
+				744B6B7E2EDCC00800804AB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

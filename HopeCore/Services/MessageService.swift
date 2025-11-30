@@ -11,11 +11,13 @@
 //  - Handles saved/favorited messages
 //  - Tracks message view counts and timestamps
 //  - Supports category filtering for premium users
+//  - Saves featured message to WidgetDataStore for Lock Screen widget
 //  - Future: Will sync with backend/CMS for content updates
 //
 
 import Foundation
 import SwiftData
+import WidgetKit
 
 /// Manages hopecore message library and delivery
 /// Centralized service for all message operations
@@ -268,13 +270,15 @@ class MessageService {
         var remainingCount = count
         
         // Priority 1: Unseen messages (quotes not yet shown in this cycle)
-        // Use lazy filter and only process what we need
+        // Shuffled randomly so each user sees a different order
+        // This ensures variety across all users worldwide, not a single global order
         let unseenMessages = filteredMessages.filter { message in
             !seenSet.contains(message.id.uuidString)
         }
         
         if !unseenMessages.isEmpty && remainingCount > 0 {
             let toSelect = min(remainingCount, unseenMessages.count)
+            // shuffled() uses system random - each user gets unique random order
             let selected = Array(unseenMessages.shuffled().prefix(toSelect))
             selectedMessages.append(contentsOf: selected)
             selectedIDs = Set(selected.map { $0.id })
@@ -452,14 +456,71 @@ class MessageService {
 
     // MARK: - Featured Message
 
-    /// Set today's featured message
-    /// AGENT NOTE: Call this daily to update home screen
-    /// - Parameter preferences: User preferences
-    func selectTodaysFeaturedMessage(preferences: UserPreferences) {
+    /// Set today's featured message and update widget
+    /// AGENT NOTE: Call this daily to update home screen and Lock Screen widget
+    /// Also saves to WidgetDataStore for widget display
+    /// - Parameters:
+    ///   - preferences: User preferences
+    ///   - modelContext: Optional model context for saving rotation state
+    func selectTodaysFeaturedMessage(preferences: UserPreferences, modelContext: ModelContext? = nil) {
         if let message = getRandomMessage(excludeRecent: 5) {
             todaysFeaturedMessage = message
-            markAsShown(message)
+            markAsShown(message, modelContext: modelContext)
+            
+            // Save to widget shared storage for Lock Screen widget
+            // AGENT NOTE: WidgetDataStore uses App Group UserDefaults
+            WidgetDataStore.saveTodaysMessage(
+                id: message.id,
+                text: message.text,
+                categoryName: message.categoryName
+            )
+            
+            // Update premium status for widget update frequency
+            WidgetDataStore.updatePremiumStatus(preferences.isPremium)
+            
+            // Reload widget timeline to display new message
+            WidgetCenter.shared.reloadTimelines(ofKind: "HopeCoreWidget")
+            
+            print("🎯 Featured message selected and widget updated: \(message.text.prefix(40))...")
         }
+    }
+    
+    /// Update widget with current featured message
+    /// AGENT NOTE: Call this when app launches to ensure widget has data
+    func refreshWidgetData() {
+        guard let message = todaysFeaturedMessage else {
+            // If no featured message, try to get one from filtered messages
+            if let firstMessage = filteredMessages.first {
+                WidgetDataStore.saveTodaysMessage(
+                    id: firstMessage.id,
+                    text: firstMessage.text,
+                    categoryName: firstMessage.categoryName
+                )
+                WidgetCenter.shared.reloadTimelines(ofKind: "HopeCoreWidget")
+            }
+            return
+        }
+        
+        WidgetDataStore.saveTodaysMessage(
+            id: message.id,
+            text: message.text,
+            categoryName: message.categoryName
+        )
+        WidgetCenter.shared.reloadTimelines(ofKind: "HopeCoreWidget")
+    }
+    
+    /// Get message by ID (for deep linking from widget)
+    /// - Parameter id: Message UUID
+    /// - Returns: Message if found, nil otherwise
+    func getMessage(by id: UUID) -> Message? {
+        return allMessages.first { $0.id == id }
+    }
+    
+    /// Get index of message in filtered messages (for navigation)
+    /// - Parameter id: Message UUID
+    /// - Returns: Index in filteredMessages array, or nil if not found
+    func getMessageIndex(for id: UUID) -> Int? {
+        return filteredMessages.firstIndex { $0.id == id }
     }
 
     // MARK: - Content Management (Future)

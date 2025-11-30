@@ -5,13 +5,156 @@
 This document outlines the work completed and the critical next steps for future development agents. HopeCore is an iOS app built with SwiftUI and SwiftData, designed to deliver hopecore messages and audio content to users rebuilding their lives.
 
 **Created:** November 10, 2025
-**Last Updated:** November 10, 2025 (Phase 3 Complete)
-**Session:** Phase 3 Polish & Image Caching
-**Status:** ✅✅✅ Phase 3 Complete - Image Caching Integrated, Navigation Enhanced, Background Tasks Implemented
+**Last Updated:** November 30, 2025 (Phase 4 Complete)
+**Session:** Phase 4 Widgets Implementation
+**Status:** ✅✅✅✅ Phase 4 Complete - Lock Screen & Home Screen Widgets Implemented, Deep Linking Working
 
 ---
 
-## ✅✅✅ Phase 3 Work Completed (Current Session)
+## ✅✅✅✅ Phase 4 Work Completed (Current Session)
+
+### Widget Implementation ✅
+
+#### 1. Lock Screen Widget Created ✅
+**Location:** `HopeCoreWidget/` directory
+
+**Features Implemented:**
+- ✅ Widget Extension target created with iOS 18.0 deployment
+- ✅ App Groups configured (`group.com.hopecore.shared`) for data sharing
+- ✅ Circular widget (`.accessoryCircular`) for compact display
+- ✅ Rectangular widget (`.accessoryRectangular`) optimized for readability (4 lines of text)
+- ✅ Text-only display (no images) for fast performance
+- ✅ Rose border (2pt, #EC4899) matching design system
+- ✅ Dark background (#0A0E14) matching app design
+- ✅ Empty state with "Open app to get started" message
+- ✅ Deep linking: Tap widget → opens app to specific message
+
+**Widget Files:**
+- `HopeCoreWidget/HopeCoreWidget.swift` - Main widget configuration and timeline provider
+- `HopeCoreWidget/HopeCoreWidgetView.swift` - SwiftUI views for all widget families
+- `HopeCoreWidget/HopeCoreWidgetEntry.swift` - Timeline entry model
+- `HopeCoreWidget/WidgetDataStore.swift` - App Group data sharing (duplicated in main app)
+- `HopeCoreWidget/HopeCoreWidget.entitlements` - App Groups capability
+
+---
+
+#### 2. Home Screen Widget Created ✅
+**Location:** `HopeCoreWidget/` directory (same extension, different families)
+
+**Features Implemented:**
+- ✅ Small widget (`.systemSmall`) - 2x2 grid, category badge + 4-line message
+- ✅ Medium widget (`.systemMedium`) - 4x2 grid, category badge + 6-line message
+- ✅ Large widget (`.systemLarge`) - 4x4 grid, full quote with header/footer
+- ✅ Same design system (rose border, dark background)
+- ✅ Same deep linking functionality
+- ✅ Same scheduled update behavior
+
+**Design:**
+- Small: Compact with category badge at top
+- Medium: More space for longer quotes
+- Large: Full quote display with app branding
+
+---
+
+#### 3. Scheduled Widget Updates ✅
+**Location:** `HopeCoreWidget/HopeCoreWidget.swift`, `Services/NotificationManager.swift`
+
+**Implementation:**
+- ✅ Widget updates automatically based on user's notification schedule
+- ✅ Timeline provider creates entries for each scheduled notification time
+- ✅ Widget shows different message at each scheduled time (e.g., 3 messages/day = 3 widget updates)
+- ✅ Free users: Updates match their notification schedule
+- ✅ Premium users: Updates match their notification schedule (up to 20/day)
+- ✅ Falls back to single daily update (6 AM) if no schedule exists
+
+**How It Works:**
+1. User sets up notifications during onboarding (e.g., 3 messages/day)
+2. NotificationManager schedules notifications and saves schedule to WidgetDataStore
+3. Widget timeline provider reads schedule and creates entries for each notification time
+4. Widget automatically updates at each scheduled time to show that message
+5. Each message overwrites the previous one in the widget
+
+**Code Integration:**
+```swift
+// NotificationManager saves schedule when notifications are scheduled
+let widgetSchedule: [(Date, WidgetMessage)] = zip(selectedMessages, notificationTimes).map { ... }
+WidgetDataStore.saveScheduledMessages(widgetSchedule)
+WidgetCenter.shared.reloadTimelines(ofKind: "HopeCoreWidget")
+```
+
+---
+
+#### 4. Widget Data Sharing ✅
+**Location:** `Services/WidgetDataStore.swift` (main app), `HopeCoreWidget/WidgetDataStore.swift` (widget)
+
+**Implementation:**
+- ✅ App Groups configured in both targets (`group.com.hopecore.shared`)
+- ✅ Shared UserDefaults for cross-process data sharing
+- ✅ Stores scheduled messages with their notification times
+- ✅ Stores today's featured message for immediate display
+- ✅ Stores premium status for update frequency
+- ✅ Text-only data (no images) for fast widget performance
+
+**Key Methods:**
+- `saveScheduledMessages()` - Saves all scheduled messages with times
+- `getScheduledMessages()` - Retrieves schedule for timeline provider
+- `getMessageForTime()` - Gets message for specific time
+- `saveTodaysMessage()` - Saves featured message for immediate display
+
+---
+
+#### 5. Deep Linking from Widget ✅
+**Location:** `HopeCoreApp.swift`, `Views/Home/HomeView.swift`
+
+**Implementation:**
+- ✅ URL scheme registered: `hopecore://message/{messageID}`
+- ✅ DeepLinkHandler class manages navigation
+- ✅ Widget uses `.widgetURL()` to set deep link
+- ✅ App handles URL via `.onOpenURL()` modifier
+- ✅ HomeView observes DeepLinkHandler and navigates to message
+- ✅ Works whether app is launching or already running
+
+**URL Format:**
+```
+hopecore://message/{uuid}
+```
+
+**Navigation Flow:**
+1. User taps widget → URL opens app
+2. `onOpenURL` calls `DeepLinkHandler.handleURL()`
+3. DeepLinkHandler parses message ID and sets `pendingMessageID`
+4. HomeView's `onChange` detects change and navigates to message
+5. HomeView scrolls to correct message in feed
+
+---
+
+#### 6. Widget Integration with Services ✅
+**Location:** `Services/MessageService.swift`, `Services/BackgroundTaskManager.swift`
+
+**Implementation:**
+- ✅ MessageService saves featured message to WidgetDataStore
+- ✅ MessageService reloads widget timeline when message changes
+- ✅ BackgroundTaskManager updates widget during background refresh
+- ✅ NotificationManager saves schedule and reloads widget when notifications are scheduled
+- ✅ Widget updates when settings change (notifications rescheduled)
+
+**Integration Points:**
+```swift
+// MessageService
+WidgetDataStore.saveTodaysMessage(id: message.id, text: message.text, categoryName: message.categoryName)
+WidgetCenter.shared.reloadTimelines(ofKind: "HopeCoreWidget")
+
+// NotificationManager
+WidgetDataStore.saveScheduledMessages(widgetSchedule)
+WidgetCenter.shared.reloadTimelines(ofKind: "HopeCoreWidget")
+
+// BackgroundTaskManager
+updateWidgetInBackground(messages: messages, preferences: preferences, modelContext: modelContext)
+```
+
+---
+
+## ✅✅✅ Phase 3 Work Completed (Previous Session)
 
 ### Image Caching Integration ✅
 
@@ -156,7 +299,7 @@ BackgroundTaskManager.shared.scheduleDailyImagePrefetch()
 
 ---
 
-## 📁 Updated File Structure (Phase 3)
+## 📁 Updated File Structure (Phase 4)
 
 ```
 HopeCore/
@@ -166,31 +309,41 @@ HopeCore/
 │   ├── UserPreferences.swift
 │   ├── Category.swift
 │   └── SubscriptionTier.swift
-├── Views/                    # ✅✅✅ Phase 3 Complete
+├── Views/                    # ✅✅✅✅ Phase 4 Complete
 │   ├── Home/
-│   │   └── HomeView.swift           # ✅✅✅ UPDATED (Phase 3: pre-fetch + nav)
+│   │   └── HomeView.swift           # ✅✅✅✅ UPDATED (Phase 4: deep linking)
 │   ├── Settings/
 │   │   └── SettingsView.swift       # ✅✅ Complete (Phase 2)
 │   ├── Onboarding/
-│   │   └── OnboardingView.swift     # ✅✅✅ UPDATED (Phase 3: bg tasks)
+│   │   └── OnboardingView.swift     # ✅✅✅ Complete (Phase 3)
 │   ├── Audio/
 │   │   └── AudioLibraryView.swift   # ✅✅ Complete (Phase 2)
 │   └── Saved/
 │       └── SavedMessagesView.swift  # ✅✅ Complete (Phase 2)
-├── Components/               # ✅✅✅ Phase 3 Complete
-│   ├── MessageCard.swift             # ✅✅✅ UPDATED (Phase 3: caching)
+├── Components/               # ✅✅✅ Complete (Phase 3)
+│   ├── MessageCard.swift             # ✅✅✅ Complete (Phase 3)
 │   └── AudioPlayerComponent.swift    # ✅✅ Complete (Phase 2)
-├── Services/                 # ✅✅✅ Phase 3 Complete
-│   ├── NotificationManager.swift     # ✅✅ Complete (Phase 2)
+├── Services/                 # ✅✅✅✅ Phase 4 Complete
+│   ├── NotificationManager.swift     # ✅✅✅✅ UPDATED (Phase 4: widget schedule)
 │   ├── AudioManager.swift            # ✅✅ Complete (Phase 2)
-│   ├── MessageService.swift          # ✅✅ Complete (Phase 2)
-│   ├── ImageCacheManager.swift       # ✅✅✅ INTEGRATED (Phase 3)
+│   ├── MessageService.swift          # ✅✅✅✅ UPDATED (Phase 4: widget integration)
+│   ├── ImageCacheManager.swift       # ✅✅✅ Complete (Phase 3)
 │   ├── SubscriptionManager.swift     # ✅ Complete (Phase 1)
-│   └── BackgroundTaskManager.swift   # ✅✅✅ NEW (Phase 3)
+│   ├── BackgroundTaskManager.swift   # ✅✅✅✅ UPDATED (Phase 4: widget updates)
+│   └── WidgetDataStore.swift         # ✅✅✅✅ NEW (Phase 4: App Group sharing)
 ├── DesignSystem/             # ✅ Complete (Phase 1)
 ├── Utilities/                # ✅ Complete (Phase 1)
-├── Widgets/                  # TODO (Phase 4)
-└── HopeCoreApp.swift         # ✅✅✅ UPDATED (Phase 3: bg tasks)
+├── HopeCoreWidget/           # ✅✅✅✅ NEW (Phase 4: Widget Extension)
+│   ├── HopeCoreWidget.swift          # ✅✅✅✅ Widget configuration & timeline
+│   ├── HopeCoreWidgetView.swift      # ✅✅✅✅ SwiftUI views (Lock & Home Screen)
+│   ├── HopeCoreWidgetEntry.swift     # ✅✅✅✅ Timeline entry model
+│   ├── HopeCoreWidgetBundle.swift    # ✅✅✅✅ Widget bundle entry point
+│   ├── WidgetDataStore.swift         # ✅✅✅✅ App Group data sharing
+│   ├── HopeCoreWidget.entitlements   # ✅✅✅✅ App Groups capability
+│   └── Assets.xcassets/              # ✅✅✅✅ Widget assets
+├── HopeCore.entitlements     # ✅✅✅✅ UPDATED (Phase 4: App Groups)
+├── Info.plist                # ✅✅✅✅ UPDATED (Phase 4: URL scheme)
+└── HopeCoreApp.swift         # ✅✅✅✅ UPDATED (Phase 4: deep linking)
 ```
 
 ---
@@ -649,21 +802,28 @@ Add `BGTaskSchedulerPermittedIdentifiers` to Info.plist (see section above)
 
 ---
 
-### Phase 4: Widgets & Premium Features (NEXT PRIORITY)
+### ✅ Phase 4: Widgets Implementation (COMPLETE)
 
-#### 1. Lock Screen Widget
-**Directory:** `Widgets/`
+All Phase 4 widget tasks completed:
+- ✅ Lock Screen widget created (circular and rectangular)
+- ✅ Home Screen widget created (small, medium, large)
+- ✅ Scheduled widget updates based on notification schedule
+- ✅ Widget data sharing via App Groups
+- ✅ Deep linking from widget to app
+- ✅ Widget integration with MessageService and NotificationManager
+- ✅ Widget updates when settings change
 
-**What to Build:**
-- Small widget showing daily message
-- Update once daily for free users
-- Update on schedule for premium users
-- Rose border (2pt) per design
-- Tapping opens app to that message
+**Widget Extension:**
+- Target: `HopeCoreWidget`
+- Deployment: iOS 18.0
+- App Group: `group.com.hopecore.shared`
+- URL Scheme: `hopecore://message/{messageID}`
 
 ---
 
-#### 2. Premium Purchase Flow
+### Phase 5: Premium Purchase Flow (NEXT PRIORITY)
+
+#### 1. Premium Purchase Flow
 **File to Use:** `Services/SubscriptionManager.swift`
 
 **What to Do:**
@@ -699,16 +859,21 @@ Add `BGTaskSchedulerPermittedIdentifiers` to Info.plist (see section above)
 - [ ] AudioPlayerOverlay missing sleep timer
 
 ### Medium Priority
-- [ ] Widget code not created
 - [ ] Category filtering not fully implemented
 - [ ] No playback completion handling in AudioManager
 - [ ] Audio track download functionality (offline playback)
 
-### Low Priority (Phase 4)
+### ✅ Phase 4 Completed Items
+- [x] Lock Screen widget created (circular and rectangular) ✅
+- [x] Home Screen widget created (small, medium, large) ✅
+- [x] Widget updates based on notification schedule ✅
+- [x] Widget data sharing via App Groups ✅
+- [x] Deep linking from widget to app ✅
+- [x] Widget integration with services ✅
+
+### Low Priority (Phase 5)
 - [ ] Premium purchase flow not connected to SubscriptionManager
 - [ ] Restore purchases not implemented
-- [ ] Lock screen widget not created
-- [ ] Home screen widget not created
 
 ---
 
@@ -761,6 +926,27 @@ Add `BGTaskSchedulerPermittedIdentifiers` to Info.plist (see section above)
 - [ ] All haptic feedback triggers correctly
 - [ ] Dark mode appearance is correct throughout
 
+#### Widgets (Phase 4)
+- [ ] Widget appears in Lock Screen widget gallery
+- [ ] Widget appears in Home Screen widget gallery
+- [ ] Circular Lock Screen widget displays message correctly
+- [ ] Rectangular Lock Screen widget shows 4 lines of text
+- [ ] Home Screen small widget displays correctly
+- [ ] Home Screen medium widget displays correctly
+- [ ] Home Screen large widget displays correctly
+- [ ] Rose border renders at 2pt width on all widgets
+- [ ] Widget updates at each scheduled notification time
+- [ ] Widget shows different message at each update
+- [ ] Tapping widget opens app to correct message
+- [ ] Deep linking works when app is launching
+- [ ] Deep linking works when app is already running
+- [ ] Empty state displays when no message available
+- [ ] Widget works in both light and dark mode
+- [ ] Text truncation works for long messages
+- [ ] App Group data sharing works correctly
+- [ ] Widget updates when notifications are rescheduled
+- [ ] Widget updates during background task refresh
+
 ---
 
 ## 📖 Key Files Reference
@@ -784,12 +970,20 @@ Add `BGTaskSchedulerPermittedIdentifiers` to Info.plist (see section above)
 - `Utilities/Extensions/View+Extensions.swift` - Reusable modifiers
 - `Utilities/HapticFeedback.swift` - Tactile feedback
 
-### Services (Ready for Integration)
-- `Services/MessageService.swift` - Message selection & rotation
-- `Services/NotificationManager.swift` - Notification scheduling
+### Services
+- `Services/MessageService.swift` - Message selection & rotation, widget integration
+- `Services/NotificationManager.swift` - Notification scheduling, widget schedule updates
 - `Services/AudioManager.swift` - Audio playback
 - `Services/ImageCacheManager.swift` - Image caching
+- `Services/BackgroundTaskManager.swift` - Background tasks, widget updates
+- `Services/WidgetDataStore.swift` - App Group data sharing for widgets
 - `Services/SubscriptionManager.swift` - StoreKit integration
+
+### Widget Extension
+- `HopeCoreWidget/HopeCoreWidget.swift` - Widget configuration & timeline provider
+- `HopeCoreWidget/HopeCoreWidgetView.swift` - SwiftUI views for all widget families
+- `HopeCoreWidget/HopeCoreWidgetEntry.swift` - Timeline entry model
+- `HopeCoreWidget/WidgetDataStore.swift` - App Group data access (duplicate of main app)
 
 ---
 

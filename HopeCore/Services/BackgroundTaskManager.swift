@@ -8,6 +8,7 @@
 //  AGENT NOTES:
 //  - Manages background tasks for daily image pre-loading
 //  - Pre-loads 3 random message images each morning per spec
+//  - Updates Lock Screen widget with new featured message
 //  - Uses BGTaskScheduler for reliable background execution
 //  - Respects system resource constraints
 //  - Cleans up old cache automatically
@@ -23,6 +24,7 @@
 import Foundation
 import BackgroundTasks
 import SwiftData
+import WidgetKit
 
 /// Manages background tasks for the app
 /// Primarily handles daily image pre-loading for smooth UX
@@ -84,9 +86,12 @@ class BackgroundTaskManager {
     // MARK: - Task Handlers
 
     /// Handle image prefetch background task
-    /// AGENT NOTE: This runs in the background to pre-load 3 random images
+    /// AGENT NOTE: This runs in the background to:
+    /// 1. Pre-load 3 random images for smooth UX
+    /// 2. Update today's featured message
+    /// 3. Refresh the Lock Screen widget with new message
     private func handleImagePrefetchTask(task: BGAppRefreshTask) {
-        print("🔄 Background image prefetch task started")
+        print("🔄 Background task started: image prefetch + widget update")
 
         // Schedule next occurrence
         scheduleDailyImagePrefetch()
@@ -97,16 +102,21 @@ class BackgroundTaskManager {
             task.setTaskCompleted(success: false)
         }
 
-        // Perform image prefetch
+        // Perform image prefetch and widget update
         Task {
             do {
                 // Create model context for background operation
-                let modelContainer = try ModelContainer(for: Message.self, UserPreferences.self)
+                let modelContainer = try ModelContainer(for: Message.self, UserPreferences.self, RotationState.self)
                 let modelContext = ModelContext(modelContainer)
 
                 // Fetch all messages
-                let descriptor = FetchDescriptor<Message>()
-                let messages = try modelContext.fetch(descriptor)
+                let messageDescriptor = FetchDescriptor<Message>()
+                let messages = try modelContext.fetch(messageDescriptor)
+
+                // Fetch user preferences
+                let prefsDescriptor = FetchDescriptor<UserPreferences>()
+                let preferences = try modelContext.fetch(prefsDescriptor)
+                let userPrefs = preferences.first ?? UserPreferences()
 
                 // Pre-load 3 random images via ImageCacheManager
                 await ImageCacheManager.shared.preloadDailyImages(from: messages)
@@ -114,13 +124,65 @@ class BackgroundTaskManager {
                 // Clean up old cache if needed
                 ImageCacheManager.shared.cleanupOldCacheIfNeeded()
 
-                print("✅ Background image prefetch completed successfully")
+                // Update featured message and widget
+                // AGENT NOTE: This ensures widget has fresh content each morning
+                updateWidgetInBackground(messages: messages, preferences: userPrefs, modelContext: modelContext)
+
+                print("✅ Background task completed: images prefetched, widget updated")
                 task.setTaskCompleted(success: true)
             } catch {
                 print("❌ Background task failed: \(error.localizedDescription)")
                 task.setTaskCompleted(success: false)
             }
         }
+    }
+    
+    /// Update widget with a fresh message in background
+    /// Selects a new featured message and saves to WidgetDataStore
+    private func updateWidgetInBackground(messages: [Message], preferences: UserPreferences, modelContext: ModelContext) {
+        // Filter out demotivation messages
+        let eligibleMessages = messages.filter { !$0.isDemotivation }
+        
+        guard !eligibleMessages.isEmpty else {
+            print("⚠️ No eligible messages for widget")
+            return
+        }
+        
+        // Get messages sorted by last shown (oldest first) to avoid repetition
+        let sorted = eligibleMessages.sorted { msg1, msg2 in
+            let date1 = msg1.lastShownAt ?? Date.distantPast
+            let date2 = msg2.lastShownAt ?? Date.distantPast
+            return date1 < date2
+        }
+        
+        // Pick from the least recently shown messages
+        let excludeRecent = min(5, sorted.count - 1)
+        let available = Array(sorted.prefix(sorted.count - max(0, excludeRecent)))
+        
+        guard let selectedMessage = available.randomElement() else {
+            print("⚠️ Could not select message for widget")
+            return
+        }
+        
+        // Update message tracking
+        selectedMessage.lastShownAt = Date()
+        selectedMessage.shownCount += 1
+        try? modelContext.save()
+        
+        // Save to widget data store
+        WidgetDataStore.saveTodaysMessage(
+            id: selectedMessage.id,
+            text: selectedMessage.text,
+            categoryName: selectedMessage.categoryName
+        )
+        
+        // Update premium status
+        WidgetDataStore.updatePremiumStatus(preferences.isPremium)
+        
+        // Reload widget timeline
+        WidgetCenter.shared.reloadTimelines(ofKind: "HopeCoreWidget")
+        
+        print("🔮 Widget updated with message: \(selectedMessage.text.prefix(40))...")
     }
 
     // MARK: - Manual Execution (for testing)

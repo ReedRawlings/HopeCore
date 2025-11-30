@@ -6,5 +6,18 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.hopecore.deeplink</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>hopecore</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

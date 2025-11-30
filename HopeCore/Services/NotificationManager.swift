@@ -17,6 +17,7 @@
 import Foundation
 import UserNotifications
 import SwiftData
+import WidgetKit
 
 /// Manages local notifications for hopecore messages
 /// Singleton service accessed throughout the app
@@ -123,7 +124,34 @@ class NotificationManager {
             )
         }
 
-        print("Scheduled \(messagesToSchedule) notifications")
+        // Save schedule to WidgetDataStore for widget updates
+        // Widget will update at each notification time to show the corresponding message
+        let widgetSchedule: [(Date, WidgetMessage)] = zip(selectedMessages, notificationTimes).map { message, time in
+            let widgetMessage = WidgetMessage(
+                id: message.id,
+                text: message.text,
+                categoryName: message.categoryName
+            )
+            return (time, widgetMessage)
+        }
+        WidgetDataStore.saveScheduledMessages(widgetSchedule)
+        
+        // Also save the first message as today's featured (for immediate display)
+        if let firstMessage = selectedMessages.first {
+            WidgetDataStore.saveTodaysMessage(
+                id: firstMessage.id,
+                text: firstMessage.text,
+                categoryName: firstMessage.categoryName
+            )
+        }
+        
+        // Update premium status
+        WidgetDataStore.updatePremiumStatus(preferences.isPremium)
+        
+        // Reload widget timeline to show scheduled updates
+        WidgetCenter.shared.reloadTimelines(ofKind: "HopeCoreWidget")
+
+        print("✅ Scheduled \(messagesToSchedule) notifications and updated widget")
     }
 
     /// Schedule a single notification for a message
