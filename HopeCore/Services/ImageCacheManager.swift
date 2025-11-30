@@ -99,10 +99,19 @@ class ImageCacheManager {
         }
 
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
+            let (data, response) = try await URLSession.shared.data(from: url)
+
+            // Debug logging
+            if let httpResponse = response as? HTTPURLResponse {
+                print("Image download response: URL=\(urlString), Status=\(httpResponse.statusCode), DataSize=\(data.count) bytes")
+            }
 
             guard let image = UIImage(data: data) else {
-                print("Failed to create image from data")
+                print("Failed to create image from data for URL: \(urlString), received \(data.count) bytes")
+                // Log first 100 chars of data if it's text
+                if let textData = String(data: data.prefix(100), encoding: .utf8) {
+                    print("Response data preview: \(textData)")
+                }
                 return nil
             }
 
@@ -111,7 +120,7 @@ class ImageCacheManager {
 
             return image
         } catch {
-            print("Failed to download image: \(error.localizedDescription)")
+            print("Failed to download image from \(urlString): \(error.localizedDescription)")
             return nil
         }
     }
