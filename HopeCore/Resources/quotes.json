@@ -5,7 +5,7 @@
     "category": "Possibility",
     "trackType": "hope",
     "presentationMode": "imageCard",
-    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-1",
+    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/A%20ship%20in%20the%20harbor%20is%20safe%2C%20but%20that%20is%20not%20what%20ships%20are%20built%20for..png",
     "sortOrder": 1
   },
   {
@@ -13,8 +13,8 @@
     "text": "You'll never feel ready. Do it anyway.",
     "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay",
-    "backgroundImageURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-2",
+    "presentationMode": "imageCard",
+    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/doitanyway.png",
     "sortOrder": 2
   },
   {
@@ -23,7 +23,7 @@
     "category": "Rebuilding",
     "trackType": "hope",
     "presentationMode": "imageCard",
-    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-3",
+    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/thelifeyouwant.png",
     "sortOrder": 3
   },
   {
@@ -40,7 +40,7 @@
     "text": "You'll probably fail at this too. Why even try?",
     "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "imageCard",
+    "presentationMode": "textOverlay",
     "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-2",
     "sortOrder": 5
   },
@@ -76,7 +76,7 @@
     "text": "What if everything you're going through is preparing you for what you asked for?",
     "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "imageCard",
+    "presentationMode": "textOverlay",
     "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-3",
     "sortOrder": 9
   },
@@ -94,7 +94,7 @@
     "text": "Your life isn't yours. It belongs to everyone who's disappointed in you.",
     "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "imageCard",
+    "presentationMode": "textOverlay",
     "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-2",
     "sortOrder": 11
   },
@@ -112,7 +112,7 @@
     "text": "You're allowed to scream. You're allowed to cry. But do not give up.",
     "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "imageCard",
+    "presentationMode": "textOverlay",
     "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/image-1",
     "sortOrder": 13
   },
