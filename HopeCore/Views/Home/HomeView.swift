@@ -41,6 +41,9 @@ struct HomeView: View {
     /// Show saved messages view
     @State private var showSavedMessages = false
 
+    /// Show routines view
+    @State private var showRoutines = false
+
     /// Show share sheet
     @State private var showShareSheet = false
 
@@ -77,6 +80,7 @@ struct HomeView: View {
                 showSavedMessages: $showSavedMessages,
                 showAudioPlayer: $showAudioPlayer,
                 showSettings: $showSettings,
+                showRoutines: $showRoutines,
                 onShare: {
                     // Share current message
                     guard currentIndex < messages.count else { return }
@@ -95,6 +99,10 @@ struct HomeView: View {
         .sheet(isPresented: $showSavedMessages) {
             // Saved Messages View
             SavedMessagesView()
+        }
+        .sheet(isPresented: $showRoutines) {
+            // Routines View
+            RoutineListView()
         }
         .sheet(item: $messageToShare) { message in
             // Share sheet

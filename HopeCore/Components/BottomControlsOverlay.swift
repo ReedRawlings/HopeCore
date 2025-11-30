@@ -28,6 +28,9 @@ struct BottomControlsOverlay: View {
     /// Show settings
     @Binding var showSettings: Bool
 
+    /// Show routines view
+    @Binding var showRoutines: Bool
+
     /// Callback when share button is tapped
     var onShare: () -> Void
 
@@ -59,6 +62,19 @@ struct BottomControlsOverlay: View {
                 }) {
                     VStack(spacing: Spacing.xs) {
                         Image(systemName: "square.and.arrow.up")
+                            .font(.system(size: 28))
+                            .foregroundColor(TextColors.primary)
+                            .frame(width: ComponentSpacing.minTapTarget, height: ComponentSpacing.minTapTarget)
+                    }
+                }
+
+                // Routines Button
+                Button(action: {
+                    showRoutines = true
+                    HapticFeedback.buttonPress()
+                }) {
+                    VStack(spacing: Spacing.xs) {
+                        Image(systemName: "clock.badge.checkmark")
                             .font(.system(size: 28))
                             .foregroundColor(TextColors.primary)
                             .frame(width: ComponentSpacing.minTapTarget, height: ComponentSpacing.minTapTarget)
@@ -121,6 +137,7 @@ struct BottomControlsOverlay: View {
             showSavedMessages: .constant(false),
             showAudioPlayer: .constant(false),
             showSettings: .constant(false),
+            showRoutines: .constant(false),
             onShare: {}
         )
     }
