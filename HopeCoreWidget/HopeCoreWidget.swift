@@ -18,7 +18,8 @@ import SwiftUI
 // MARK: - Widget Configuration
 /// HopeCore widget showing daily inspirational messages
 /// Available for both Lock Screen and Home Screen
-/// Text-only display with rose border, updates according to notification schedule
+/// Text-only display showing only the quote, maximized for visual space
+/// Updates according to notification schedule
 /// Tapping opens the app to the specific message
 struct HopeCoreWidget: Widget {
     /// Unique identifier for this widget
@@ -31,7 +32,7 @@ struct HopeCoreWidget: Widget {
             provider: HopeCoreWidgetProvider()
         ) { entry in
             HopeCoreWidgetView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
+                .containerBackground(Color.black, for: .widget)
         }
         .configurationDisplayName("Daily Message")
         .description("Shows your daily HopeCore inspirational message. Updates automatically based on your notification schedule.")

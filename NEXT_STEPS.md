@@ -5,9 +5,9 @@
 This document outlines the work completed and the critical next steps for future development agents. HopeCore is an iOS app built with SwiftUI and SwiftData, designed to deliver hopecore messages and audio content to users rebuilding their lives.
 
 **Created:** November 10, 2025
-**Last Updated:** November 30, 2025 (Phase 4 Complete)
-**Session:** Phase 4 Widgets Implementation
-**Status:** ✅✅✅✅ Phase 4 Complete - Lock Screen & Home Screen Widgets Implemented, Deep Linking Working
+**Last Updated:** December 2025 (Phase 6 Planning)
+**Session:** Phase 6 Content Expansion & Enhanced Sharing
+**Status:** ✅✅✅✅ Phase 4 Complete - Lock Screen & Home Screen Widgets Implemented, Deep Linking Working | Phase 6 Planning - Content Expansion & Enhanced Sharing
 
 ---
 
@@ -835,6 +835,193 @@ All Phase 4 widget tasks completed:
 
 ---
 
+### Phase 6: Content Expansion & Enhanced Sharing (CURRENT PRIORITY)
+
+#### 1. Custom Font System for Text Overlay Messages
+**Location:** `DesignSystem/Fonts.swift`, `Models/Message.swift`, `Components/MessageCard.swift`
+
+**What to Do:**
+- [ ] Add 10-20 custom font files (.ttf/.otf) to project
+- [ ] Register fonts in `Info.plist` under `UIAppFonts` key
+- [ ] Create `FontManager` service to manage available fonts
+- [ ] Add `fontName` property to `Message` model (optional, for per-message fonts)
+- [ ] Add `defaultFontName` property to `UserPreferences` (for global font selection)
+- [ ] Update `MessageCard` to use custom fonts for `textOverlayBackground` mode
+- [ ] Add font picker UI in `SettingsView` (grid of font previews)
+- [ ] Update `Fonts.swift` to support custom font loading
+- [ ] Test font rendering with various message lengths
+
+**Files to Modify:**
+- `HopeCore/DesignSystem/Fonts.swift` - Add custom font support
+- `HopeCore/Models/Message.swift` - Add optional `fontName` property
+- `HopeCore/Models/UserPreferences.swift` - Add `defaultFontName` property
+- `HopeCore/Components/MessageCard.swift` - Use custom fonts in text overlay mode
+- `HopeCore/Views/Settings/SettingsView.swift` - Add font picker section
+- `HopeCore/Info.plist` - Register font files
+- Create `HopeCore/Services/FontManager.swift` - Font management service
+
+**Implementation Notes:**
+- Fonts should be readable at large sizes (28pt+ for display)
+- Support both serif and sans-serif options
+- Include bold/weight variants if available
+- Fallback to system font if custom font fails to load
+
+---
+
+#### 2. Background Image Expansion
+**Location:** `HopeCore/Assets.xcassets/`, `Models/UserPreferences.swift`, `Views/Settings/SettingsView.swift`
+
+**What to Do:**
+- [ ] Add ~50 background images to `Assets.xcassets/` (as image sets)
+- [ ] Create `BackgroundImageManager` service to manage available backgrounds
+- [ ] Build image gallery picker UI in `SettingsView`
+- [ ] Update `UserPreferences.defaultBackgroundImage` to support new images
+- [ ] Optimize image loading for large asset catalog
+- [ ] Add image preview in settings with grid layout
+- [ ] Ensure all backgrounds work well with text overlay (good contrast)
+
+**Files to Modify:**
+- `HopeCore/Assets.xcassets/` - Add new image sets (image-4 through image-50+)
+- `HopeCore/Models/UserPreferences.swift` - Update background image handling
+- `HopeCore/Views/Settings/SettingsView.swift` - Add background picker UI
+- `HopeCore/Components/MessageCard.swift` - Ensure all backgrounds load correctly
+- Create `HopeCore/Services/BackgroundImageManager.swift` - Background management
+
+**Implementation Notes:**
+- Images should be high resolution (at least 2x for Retina displays)
+- All backgrounds should be optimized for text readability
+- Consider adding image categories (nature, abstract, minimal, etc.)
+- Use consistent naming: `image-1`, `image-2`, etc.
+
+---
+
+#### 3. Image Card Variations for R2 Bucket
+**Location:** `HopeCore/Resources/quotes.json`, R2 bucket
+
+**What to Do:**
+- [ ] Generate more `imageCard` variations for existing quotes
+- [ ] Upload new image card images to R2 bucket
+- [ ] Update `quotes.json` with new `imageCardURL` entries
+- [ ] Ensure image cards are properly formatted (full-screen, text baked in)
+- [ ] Test image loading and caching for new cards
+- [ ] Verify image cards display correctly in `MessageCard`
+
+**Files to Modify:**
+- `HopeCore/Resources/quotes.json` - Add `imageCardURL` for more messages
+- `HopeCore/Services/ImageCacheManager.swift` - Ensure caching works for new images
+- `HopeCore/Components/MessageCard.swift` - Verify image card rendering
+
+**Implementation Notes:**
+- Image cards should be full-screen (portrait orientation)
+- Text should be baked into the image (not overlaid)
+- Images should match the message's emotional tone
+- Use consistent naming convention in R2 bucket
+
+---
+
+#### 4. Enhanced Social Media Sharing
+**Location:** `Components/ShareSheet.swift`, `Views/Home/HomeView.swift`, `Components/MessageCard.swift`
+
+**What to Do:**
+- [ ] Create `ImageExportService` for rendering message cards as images
+- [ ] Implement SwiftUI view-to-image conversion using `ImageRenderer`
+- [ ] Support multiple export formats:
+  - [ ] Square (1080x1080) for Instagram posts
+  - [ ] Vertical (9:16, 1080x1920) for TikTok/Instagram Stories
+  - [ ] Original aspect ratio (for general sharing)
+- [ ] Add watermark/branding option (optional "HopeCore" watermark)
+- [ ] Update `ShareSheet` to include image data alongside text
+- [ ] Add "Save to Photos" functionality
+- [ ] Update share button to show format options (square/vertical/original)
+- [ ] Test sharing to Instagram, TikTok, Twitter, Messages, etc.
+
+**Files to Modify:**
+- `HopeCore/Components/ShareSheet.swift` - Add image sharing support
+- `HopeCore/Views/Home/HomeView.swift` - Generate shareable images, add format picker
+- `HopeCore/Components/MessageCard.swift` - Add image rendering capability
+- Create `HopeCore/Services/ImageExportService.swift` - Handle image generation
+- `HopeCore/Info.plist` - Add `NSPhotoLibraryAddUsageDescription` for saving to Photos
+
+**Implementation Approach:**
+```swift
+// ImageExportService.swift
+func renderMessageCardAsImage(
+    message: Message, 
+    format: ShareFormat
+) -> UIImage? {
+    // Use ImageRenderer to capture MessageCard view
+    // Apply appropriate sizing for format
+    // Add watermark if enabled
+    // Return UIImage
+}
+
+enum ShareFormat {
+    case square      // 1080x1080
+    case vertical    // 1080x1920 (9:16)
+    case original    // Original aspect ratio
+}
+```
+
+**Key Features:**
+- Render both `imageCard` and `textOverlayBackground` modes
+- Preserve image quality (high resolution)
+- Fast rendering (should complete in <1 second)
+- Support for both light and dark mode exports
+
+---
+
+#### 5. Notification Scheduler Verification & Testing
+**Location:** `Services/NotificationManager.swift`, new debug view
+
+**What to Do:**
+- [ ] Add comprehensive debug logging to `NotificationManager`
+- [ ] Create `NotificationDebugView` for testing and verification
+- [ ] Add method to list all pending notifications with details
+- [ ] Verify notification times are calculated correctly
+- [ ] Test quiet hours logic (notifications skip quiet period)
+- [ ] Verify widget updates match notification schedule
+- [ ] Add unit tests for `calculateNotificationTimes()` method
+- [ ] Test edge cases:
+  - [ ] Midnight rollover
+  - [ ] Timezone changes
+  - [ ] Notification window spanning midnight
+  - [ ] Quiet hours spanning midnight
+- [ ] Add ability to test-fire notifications immediately (for debugging)
+
+**Files to Modify:**
+- `HopeCore/Services/NotificationManager.swift` - Add debug methods and logging
+- Create `HopeCore/Views/Debug/NotificationDebugView.swift` - Debug UI (can be hidden behind feature flag)
+- Add unit tests for scheduling logic
+
+**Debug Methods Needed:**
+```swift
+// In NotificationManager
+func getScheduledNotifications() async -> [UNNotificationRequest]
+func printScheduledNotifications() async
+func getScheduledNotificationDetails() async -> [(Date, String, String)] // time, message text, identifier
+func testNotification(at time: Date) async throws // Fire notification immediately for testing
+```
+
+**Debug View Features:**
+- List all pending notifications
+- Show scheduled times and message previews
+- Display notification count
+- Show next notification time
+- Button to test-fire a notification
+- Button to clear all notifications
+- Display quiet hours status
+
+**Testing Checklist:**
+- [ ] Notifications schedule correctly after onboarding
+- [ ] Notifications reschedule when settings change
+- [ ] Quiet hours properly exclude notification times
+- [ ] Widget updates match notification schedule
+- [ ] Notifications fire at correct times
+- [ ] Daily repeat works correctly
+- [ ] Edge cases handled (midnight, timezone, etc.)
+
+---
+
 ## 🐛 Known Issues & TODOs
 
 ### ✅ Phase 2 Completed Items
@@ -852,9 +1039,15 @@ All Phase 4 widget tasks completed:
 - [x] MessageCard uses cached images in all presentation modes ✅
 - [x] Automatic cache cleanup (50MB memory, 100MB disk) ✅
 
-### High Priority (Phase 4)
+### High Priority (Phase 6 - Current)
+- [ ] Custom font system for text overlay messages (10-20 fonts)
+- [ ] Background image expansion (~50 images)
+- [ ] More imageCard variations for R2 bucket
+- [ ] Enhanced social media sharing (Instagram/TikTok formats)
+- [ ] Notification scheduler verification & testing
+
+### Medium Priority (Phase 4/5)
 - [ ] ⚠️ Info.plist: Add BGTaskSchedulerPermittedIdentifiers
-- [ ] Share sheet should include message image
 - [ ] Error handling for failed image loads
 - [ ] AudioPlayerOverlay missing sleep timer
 

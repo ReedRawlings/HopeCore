@@ -28,9 +28,6 @@ struct QuoteData: Codable, Identifiable {
     /// Track type: "hope" or "demotivation"
     let trackType: String
 
-    /// Sort order for organizing quotes
-    let sortOrder: Int
-
     // MARK: - Presentation Mode
     /// Explicitly specify "imageCard" or "textOverlay"
     let presentationMode: String
@@ -38,10 +35,6 @@ struct QuoteData: Codable, Identifiable {
     // MARK: - Image Card Assets
     /// Optional image URL from R2 Cloudflare storage (image card mode)
     let imageCardURL: String?
-
-    // MARK: - Text Overlay Assets
-    /// Optional background image URL from R2 (text overlay mode)
-    let backgroundImageURL: String?
 
     // MARK: - Text Styling
     /// Text alignment for overlay mode
@@ -65,12 +58,13 @@ struct QuoteData: Codable, Identifiable {
         let mode = MessagePresentationMode(rawValue: presentationMode) ?? .imageCard
 
         // Create Message instance with presentation mode and appropriate assets
+        // Note: backgroundImageURL is not set from JSON - textOverlay messages use user's default background from preferences
         let message = Message(
             id: uuid,
             text: text,
             presentationMode: mode,
             imageCardURL: imageCardURL,  // Optional R2 image URL (image card mode)
-            backgroundImageURL: backgroundImageURL,  // Optional R2 background (text overlay mode)
+            backgroundImageURL: nil,  // Text overlay mode uses user's default background from preferences
             categoryName: category,
             isSaved: false,
             createdAt: Date(),
