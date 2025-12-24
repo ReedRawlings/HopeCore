@@ -46,12 +46,15 @@ struct OnboardingView: View {
     /// Selected background image for textOverlay quotes
     @State private var selectedBackgroundImage = Constants.Defaults.defaultBackgroundImage
 
+    /// Selected font ID for message display
+    @State private var selectedFontID = FontManager.defaultFontID
+
     /// Onboarding complete
     @State private var isComplete = false
 
     // MARK: - Constants
 
-    private let totalSteps = 6
+    private let totalSteps = 7
 
     private let situations = [
         "Recovery journey",
@@ -95,14 +98,17 @@ struct OnboardingView: View {
                     backgroundImageStep
                         .tag(2)
 
-                    notificationTimingStep
+                    fontSelectionStep
                         .tag(3)
 
-                    demotivationStep
+                    notificationTimingStep
                         .tag(4)
 
-                    permissionsStep
+                    demotivationStep
                         .tag(5)
+
+                    permissionsStep
+                        .tag(6)
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .animation(.smooth, value: currentStep)
@@ -309,7 +315,104 @@ struct OnboardingView: View {
         }
     }
 
-    // MARK: - Step 4: Notification Timing
+    // MARK: - Step 4: Font Selection
+
+    private var fontSelectionStep: some View {
+        VStack(spacing: Spacing.xl) {
+            VStack(spacing: Spacing.sm) {
+                Text("Choose your font")
+                    .font(AppFonts.title)
+                    .foregroundColor(TextColors.primary)
+
+                Text("This font will be used for all quotes")
+                    .supportingTextStyle()
+            }
+            .padding(.top, Spacing.xl)
+            .padding(.horizontal, ScreenLayout.horizontalMargin)
+
+            ScrollView {
+                VStack(spacing: Spacing.lg) {
+                    ForEach(FontCategory.allCases, id: \.self) { category in
+                        VStack(alignment: .leading, spacing: Spacing.sm) {
+                            Text(category.rawValue)
+                                .font(AppFonts.smallBody)
+                                .foregroundColor(TextColors.tertiary)
+                                .padding(.horizontal, ScreenLayout.horizontalMargin)
+
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: Spacing.md) {
+                                    ForEach(FontManager.shared.fonts(in: category)) { font in
+                                        Button(action: {
+                                            HapticFeedback.selection()
+                                            selectedFontID = font.id
+                                        }) {
+                                            VStack(spacing: Spacing.xs) {
+                                                // Font preview
+                                                Text(font.previewText)
+                                                    .font(font.font(size: 16))
+                                                    .foregroundColor(TextColors.primary)
+                                                    .lineLimit(1)
+                                                    .frame(width: 140, height: 50)
+                                                    .background(
+                                                        RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius)
+                                                            .fill(BackgroundColors.elevated)
+                                                    )
+                                                    .overlay(
+                                                        RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius)
+                                                            .stroke(
+                                                                selectedFontID == font.id ? AccentColors.primary : Color.clear,
+                                                                lineWidth: 3
+                                                            )
+                                                    )
+
+                                                // Font name
+                                                Text(font.displayName)
+                                                    .font(AppFonts.caption)
+                                                    .foregroundColor(selectedFontID == font.id ? AccentColors.primary : TextColors.secondary)
+                                            }
+                                        }
+                                    }
+                                }
+                                .padding(.horizontal, ScreenLayout.horizontalMargin)
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Preview of selected font
+            VStack(spacing: Spacing.sm) {
+                Text("Preview")
+                    .font(AppFonts.caption)
+                    .foregroundColor(TextColors.tertiary)
+
+                Text("You weren't put here to be average")
+                    .font(FontManager.shared.font(for: selectedFontID).font(size: 20, weight: .medium))
+                    .foregroundColor(TextColors.primary)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(BackgroundColors.elevated)
+                    .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius))
+            }
+            .padding(.horizontal, ScreenLayout.horizontalMargin)
+
+            Spacer()
+
+            // Navigation
+            navigationButtons(
+                canContinue: true,
+                onBack: {
+                    withAnimation { currentStep = 2 }
+                },
+                onContinue: {
+                    withAnimation { currentStep = 4 }
+                }
+            )
+        }
+    }
+
+    // MARK: - Step 5: Notification Timing
 
     private var notificationTimingStep: some View {
         VStack(spacing: Spacing.xl) {
@@ -391,16 +494,16 @@ struct OnboardingView: View {
             navigationButtons(
                 canContinue: true,
                 onBack: {
-                    withAnimation { currentStep = 2 }
+                    withAnimation { currentStep = 3 }
                 },
                 onContinue: {
-                    withAnimation { currentStep = 4 }
+                    withAnimation { currentStep = 5 }
                 }
             )
         }
     }
 
-    // MARK: - Step 5: Demotivation Explanation
+    // MARK: - Step 6: Demotivation Explanation
 
     private var demotivationStep: some View {
         VStack(spacing: Spacing.xl) {
@@ -441,17 +544,17 @@ struct OnboardingView: View {
             navigationButtons(
                 canContinue: true,
                 onBack: {
-                    withAnimation { currentStep = 3 }
+                    withAnimation { currentStep = 4 }
                 },
                 onContinue: {
-                    withAnimation { currentStep = 5 }
+                    withAnimation { currentStep = 6 }
                 }
             )
         }
         .padding(.vertical, ScreenLayout.topMargin)
     }
 
-    // MARK: - Step 6: Permissions
+    // MARK: - Step 7: Permissions
 
     private var permissionsStep: some View {
         VStack(spacing: Spacing.xl) {
@@ -571,6 +674,7 @@ struct OnboardingView: View {
             prefs.userSituation = userSituation
             prefs.rebuildingAreas = Array(selectedAreas)
             prefs.defaultBackgroundImage = selectedBackgroundImage
+            prefs.selectedFontID = selectedFontID
             prefs.messagesPerDay = messagesPerDay
             prefs.notificationStartTime = startTime
             prefs.notificationEndTime = endTime

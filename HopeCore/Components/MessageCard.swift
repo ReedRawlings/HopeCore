@@ -51,6 +51,14 @@ struct MessageCard: View {
         return userPrefs?.defaultBackgroundImage ?? Constants.Defaults.defaultBackgroundImage
     }
 
+    /// Get the font to use for message text
+    /// Uses user's selected font from preferences, or falls back to default
+    private var messageFont: Font {
+        let userPrefs = preferences.first
+        let fontID = userPrefs?.selectedFontID ?? FontManager.defaultFontID
+        return FontManager.shared.font(for: fontID).font(size: 28, weight: .semibold)
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -105,7 +113,7 @@ struct MessageCard: View {
             VStack {
                 Spacer()
                 Text(message.text)
-                    .font(AppFonts.display)
+                    .font(messageFont)
                     .foregroundColor(TextColors.primary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, Spacing.xl)

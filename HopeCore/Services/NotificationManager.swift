@@ -196,7 +196,7 @@ class NotificationManager {
     }
 
     /// Calculate evenly distributed notification times
-    /// AGENT NOTE: Respects quiet hours by skipping those time periods
+    /// Handles midnight-spanning windows (e.g., 10 PM to 6 AM) and respects quiet hours
     private func calculateNotificationTimes(
         count: Int,
         startTime: Date,
@@ -205,34 +205,67 @@ class NotificationManager {
         quietStart: Date?,
         quietEnd: Date?
     ) -> [Date] {
-        var times: [Date] = []
+        guard count > 0 else { return [] }
 
         let calendar = Calendar.current
-        let start = calendar.dateComponents([.hour, .minute], from: startTime)
-        let end = calendar.dateComponents([.hour, .minute], from: endTime)
 
-        guard let startHour = start.hour,
-              let startMinute = start.minute,
-              let endHour = end.hour,
-              let endMinute = end.minute else {
-            return times
+        // Convert Date to minutes since midnight (0-1439)
+        func minuteOfDay(_ date: Date) -> Int {
+            let components = calendar.dateComponents([.hour, .minute], from: date)
+            return (components.hour ?? 0) * 60 + (components.minute ?? 0)
         }
 
-        // Calculate total minutes in window
-        let startTotalMinutes = startHour * 60 + startMinute
-        let endTotalMinutes = endHour * 60 + endMinute
-        let totalMinutes = endTotalMinutes - startTotalMinutes
+        let windowStart = minuteOfDay(startTime)
+        let windowEnd = minuteOfDay(endTime)
+        let windowSpansMidnight = windowEnd <= windowStart
 
-        // Divide window into equal intervals
-        let interval = totalMinutes / count
+        // Get quiet hours if enabled
+        let quietStartMinute = quietHoursEnabled ? (quietStart.map { minuteOfDay($0) } ?? 0) : -1
+        let quietEndMinute = quietHoursEnabled ? (quietEnd.map { minuteOfDay($0) } ?? 0) : -1
+        let quietSpansMidnight = quietHoursEnabled && quietEndMinute <= quietStartMinute
+
+        // Check if a given minute falls within quiet hours
+        func isInQuietHours(_ minute: Int) -> Bool {
+            guard quietHoursEnabled, quietStartMinute >= 0 else { return false }
+            if quietSpansMidnight {
+                // Quiet hours like 11 PM to 7 AM
+                return minute >= quietStartMinute || minute < quietEndMinute
+            }
+            // Normal quiet hours like 10 PM to 11 PM
+            return minute >= quietStartMinute && minute < quietEndMinute
+        }
+
+        // Build list of available minutes (in window, not in quiet hours)
+        var availableMinutes: [Int] = []
+
+        if windowSpansMidnight {
+            // Window spans midnight (e.g., 10 PM to 6 AM)
+            // Collect from windowStart to midnight
+            for m in windowStart..<1440 {
+                if !isInQuietHours(m) { availableMinutes.append(m) }
+            }
+            // Then from midnight to windowEnd
+            for m in 0..<windowEnd {
+                if !isInQuietHours(m) { availableMinutes.append(m) }
+            }
+        } else {
+            // Normal window (e.g., 9 AM to 9 PM)
+            for m in windowStart..<windowEnd {
+                if !isInQuietHours(m) { availableMinutes.append(m) }
+            }
+        }
+
+        guard !availableMinutes.isEmpty else { return [] }
+
+        // Distribute notifications evenly across available minutes
+        let step = availableMinutes.count / count
+        var times: [Date] = []
 
         for i in 0..<count {
-            let minuteOffset = startTotalMinutes + (interval * i)
-            let hour = minuteOffset / 60
-            let minute = minuteOffset % 60
-
-            if let time = calendar.date(from: DateComponents(hour: hour, minute: minute)) {
-                // AGENT NOTE: Add quiet hours check here
+            // Place notification in center of each slot
+            let index = min(i * step + step / 2, availableMinutes.count - 1)
+            let minute = availableMinutes[index]
+            if let time = calendar.date(from: DateComponents(hour: minute / 60, minute: minute % 60)) {
                 times.append(time)
             }
         }

@@ -317,7 +317,65 @@ struct SettingsView: View {
                     }
                 }
                 .padding(.vertical, Spacing.xs)
-                
+
+                // Font selection
+                VStack(alignment: .leading, spacing: Spacing.sm) {
+                    Text("Quote Font")
+                        .font(AppFonts.regularBody)
+                        .foregroundColor(TextColors.primary)
+
+                    Text("Font used for displaying quotes")
+                        .font(AppFonts.caption)
+                        .foregroundColor(TextColors.tertiary)
+
+                    // Current font preview
+                    let currentFont = FontManager.shared.font(for: prefs.selectedFontID ?? FontManager.defaultFontID)
+                    Text(currentFont.displayName)
+                        .font(currentFont.font(size: 15))
+                        .foregroundColor(TextColors.secondary)
+                        .padding(.vertical, Spacing.xs)
+
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: Spacing.md) {
+                            ForEach(FontManager.shared.availableFonts) { font in
+                                Button(action: {
+                                    HapticFeedback.selection()
+                                    prefs.selectedFontID = font.id
+                                    settingsChanged = true
+                                }) {
+                                    VStack(spacing: Spacing.xs) {
+                                        // Font preview
+                                        Text(font.previewText)
+                                            .font(font.font(size: 14))
+                                            .foregroundColor(TextColors.primary)
+                                            .lineLimit(1)
+                                            .frame(width: 100, height: 40)
+                                            .background(
+                                                RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius)
+                                                    .fill(BackgroundColors.tertiary)
+                                            )
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius)
+                                                    .stroke(
+                                                        (prefs.selectedFontID ?? FontManager.defaultFontID) == font.id ? AccentColors.primary : Color.clear,
+                                                        lineWidth: 2
+                                                    )
+                                            )
+
+                                        // Font name
+                                        Text(font.displayName)
+                                            .font(AppFonts.caption)
+                                            .foregroundColor((prefs.selectedFontID ?? FontManager.defaultFontID) == font.id ? AccentColors.primary : TextColors.tertiary)
+                                            .lineLimit(1)
+                                    }
+                                }
+                            }
+                        }
+                        .padding(.horizontal, Spacing.xs)
+                    }
+                }
+                .padding(.vertical, Spacing.xs)
+
                 // Demotivation toggle (premium only)
                 if isPremium {
                     Toggle(

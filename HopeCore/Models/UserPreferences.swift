@@ -86,6 +86,10 @@ final class UserPreferences {
     /// Selected during onboarding, can be changed in settings
     var defaultBackgroundImage: String?
 
+    /// Selected font ID for message display (e.g., "avenir", "georgia", "palatino")
+    /// Selected during onboarding, can be changed in settings
+    var selectedFontID: String?
+
     // MARK: - Widget Settings
 
     /// Whether lock screen widget is enabled
@@ -130,6 +134,7 @@ final class UserPreferences {
         userSituation: String? = nil,
         rebuildingAreas: [String] = [],
         defaultBackgroundImage: String? = nil,
+        selectedFontID: String? = nil,
         lockScreenWidgetEnabled: Bool = true,
         homeScreenWidgetEnabled: Bool = false,
         widgetSizePreference: String = "medium",
@@ -156,6 +161,7 @@ final class UserPreferences {
         self.userSituation = userSituation
         self.rebuildingAreas = rebuildingAreas
         self.defaultBackgroundImage = defaultBackgroundImage
+        self.selectedFontID = selectedFontID
         self.lockScreenWidgetEnabled = lockScreenWidgetEnabled
         self.homeScreenWidgetEnabled = homeScreenWidgetEnabled
         self.widgetSizePreference = widgetSizePreference

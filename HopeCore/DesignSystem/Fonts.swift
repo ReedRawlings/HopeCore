@@ -10,8 +10,10 @@
 //  - SF Pro Text for body content and UI elements
 //  - SF Pro Rounded for buttons (friendly feel)
 //  - SF Mono for numeric data (timestamps, durations)
+//  - Custom fonts available via FontManager for text overlay messages
 //  - Type scale follows designdoc.md specifications
 //  - Message text uses 1.5x line height for readability
+//  - Widget fonts: use WidgetFonts struct for consistent sizing
 //
 
 import SwiftUI
@@ -30,6 +32,37 @@ struct FontFamilies {
 
     /// Numeric data (timestamps, durations)
     static let mono = "SF Mono"
+}
+
+// MARK: - Widget Font Sizes
+/// Consistent font sizes for widget display
+/// These are optimized for readability at each widget size
+struct WidgetFonts {
+    // MARK: Lock Screen Widgets
+    /// Circular widget - very limited space (11pt base, scales down to 8pt)
+    static let circularSize: CGFloat = 11
+    static let circularMinScale: CGFloat = 0.7
+
+    /// Rectangular widget - 4 lines of text (13pt base)
+    static let rectangularSize: CGFloat = 13
+    static let rectangularMinScale: CGFloat = 0.8
+
+    // MARK: Home Screen Widgets
+    /// Small widget - compact, 3-4 lines (15pt base)
+    static let smallSize: CGFloat = 15
+    static let smallMinScale: CGFloat = 0.7
+
+    /// Medium widget - more space, 4-5 lines (17pt base)
+    static let mediumSize: CGFloat = 17
+    static let mediumMinScale: CGFloat = 0.75
+
+    /// Large widget - full quote display (20pt base)
+    static let largeSize: CGFloat = 20
+    static let largeMinScale: CGFloat = 0.8
+
+    // MARK: Font Weight
+    /// Standard weight for widget text
+    static let weight: Font.Weight = .medium
 }
 
 // MARK: - Typography System

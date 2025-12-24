@@ -25,8 +25,12 @@ struct HomeView: View {
 
     @Environment(\.modelContext) private var modelContext
 
+    // MARK: - Query
+
+    @Query private var preferences: [UserPreferences]
+
     // MARK: - Initialization Parameters
-    
+
     /// Message ID to navigate to on launch (from widget deep link)
     /// AGENT NOTE: Set by AppRootView when app opens from widget tap
     var initialMessageID: UUID?
@@ -48,17 +52,29 @@ struct HomeView: View {
     /// Show saved messages view
     @State private var showSavedMessages = false
 
-    /// Show share sheet
-    @State private var showShareSheet = false
+    /// Show share format picker
+    @State private var showSharePicker = false
 
     /// Message to share
     @State private var messageToShare: Message?
 
     /// Loading state
     @State private var isLoading = true
-    
+
     /// Tracks if we've already handled the initial navigation
     @State private var hasHandledInitialNavigation = false
+
+    // MARK: - Computed
+
+    /// User's selected background image
+    private var userBackgroundImage: String {
+        preferences.first?.defaultBackgroundImage ?? Constants.Defaults.defaultBackgroundImage
+    }
+
+    /// User's selected font ID
+    private var userFontID: String {
+        preferences.first?.selectedFontID ?? FontManager.defaultFontID
+    }
 
     // MARK: - Services
 
@@ -110,8 +126,12 @@ struct HomeView: View {
             SavedMessagesView()
         }
         .sheet(item: $messageToShare) { message in
-            // Share sheet
-            ShareSheet(items: [generateShareText(for: message)])
+            // Share format picker with image export
+            ShareFormatPicker(
+                message: message,
+                backgroundImage: userBackgroundImage,
+                fontID: userFontID
+            )
         }
         .onAppear {
             loadMessages()
@@ -307,16 +327,10 @@ struct HomeView: View {
         HapticFeedback.messageSaved()
     }
 
-    /// Share message
+    /// Share message - opens format picker for image sharing
     private func shareMessage(_ message: Message) {
+        HapticFeedback.buttonPress()
         messageToShare = message
-    }
-
-    /// Generate share text for message
-    private func generateShareText(for message: Message) -> String {
-        var text = message.text
-        text += "\n\nShared from HopeCore"
-        return text
     }
 }
 

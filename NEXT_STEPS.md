@@ -838,33 +838,37 @@ All Phase 4 widget tasks completed:
 ### Phase 6: Content Expansion & Enhanced Sharing (CURRENT PRIORITY)
 
 #### 1. Custom Font System for Text Overlay Messages
-**Location:** `DesignSystem/Fonts.swift`, `Models/Message.swift`, `Components/MessageCard.swift`
+**Location:** `DesignSystem/Fonts.swift`, `Services/FontManager.swift`, `Components/MessageCard.swift`
 
-**What to Do:**
-- [ ] Add 10-20 custom font files (.ttf/.otf) to project
-- [ ] Register fonts in `Info.plist` under `UIAppFonts` key
-- [ ] Create `FontManager` service to manage available fonts
-- [ ] Add `fontName` property to `Message` model (optional, for per-message fonts)
+**Completed:**
+- [x] Create `FontManager` service to manage available fonts ✅
+- [x] Update `Fonts.swift` with WidgetFonts sizing constants ✅
+- [x] 20 iOS built-in fonts available (no custom font files needed) ✅
+- [x] Font categories: Serif, Sans Serif, Display, Handwritten ✅
+- [x] Widget font sizes optimized and standardized ✅
+
+**Remaining:**
 - [ ] Add `defaultFontName` property to `UserPreferences` (for global font selection)
 - [ ] Update `MessageCard` to use custom fonts for `textOverlayBackground` mode
 - [ ] Add font picker UI in `SettingsView` (grid of font previews)
-- [ ] Update `Fonts.swift` to support custom font loading
 - [ ] Test font rendering with various message lengths
 
 **Files to Modify:**
-- `HopeCore/DesignSystem/Fonts.swift` - Add custom font support
-- `HopeCore/Models/Message.swift` - Add optional `fontName` property
 - `HopeCore/Models/UserPreferences.swift` - Add `defaultFontName` property
 - `HopeCore/Components/MessageCard.swift` - Use custom fonts in text overlay mode
 - `HopeCore/Views/Settings/SettingsView.swift` - Add font picker section
-- `HopeCore/Info.plist` - Register font files
-- Create `HopeCore/Services/FontManager.swift` - Font management service
+
+**Available Fonts (via FontManager):**
+- **Serif:** Georgia, Palatino, Baskerville, Times New Roman
+- **Sans Serif:** Avenir (Light/Medium/Heavy), Futura, Gill Sans, Helvetica Neue, Optima
+- **Display:** Copperplate, Didot, Rockwell, American Typewriter
+- **Handwritten:** Bradley Hand, Marker Felt, Noteworthy, Snell Roundhand
 
 **Implementation Notes:**
-- Fonts should be readable at large sizes (28pt+ for display)
-- Support both serif and sans-serif options
-- Include bold/weight variants if available
-- Fallback to system font if custom font fails to load
+- Uses iOS built-in fonts (no font files to bundle)
+- All fonts work in both app and widget extension
+- FontManager.shared.font(for: id) returns CustomFont
+- Fallback to system font if font not available
 
 ---
 
@@ -896,9 +900,11 @@ All Phase 4 widget tasks completed:
 ---
 
 #### 3. Image Card Variations for R2 Bucket
+**Status:** ⏸️ PAUSED - Focusing on text overlay presentation first
+
 **Location:** `HopeCore/Resources/quotes.json`, R2 bucket
 
-**What to Do:**
+**What to Do (When Resumed):**
 - [ ] Generate more `imageCard` variations for existing quotes
 - [ ] Upload new image card images to R2 bucket
 - [ ] Update `quotes.json` with new `imageCardURL` entries
