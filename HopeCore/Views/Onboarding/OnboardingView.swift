@@ -17,6 +17,7 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct OnboardingView: View {
     // MARK: - Environment
@@ -686,6 +687,10 @@ struct OnboardingView: View {
 
             // Save
             try modelContext.save()
+
+            // Save background image for widget
+            WidgetDataStore.saveBackgroundImage(selectedBackgroundImage)
+            WidgetCenter.shared.reloadTimelines(ofKind: "HopeCoreWidget")
 
             // Schedule initial notifications if permission granted
             Task {

@@ -32,7 +32,7 @@ struct HopeCoreWidget: Widget {
             provider: HopeCoreWidgetProvider()
         ) { entry in
             HopeCoreWidgetView(entry: entry)
-                .containerBackground(Color.black, for: .widget)
+                .containerBackground(.clear, for: .widget)
         }
         .configurationDisplayName("Daily Message")
         .description("Shows your daily HopeCore inspirational message. Updates automatically based on your notification schedule.")

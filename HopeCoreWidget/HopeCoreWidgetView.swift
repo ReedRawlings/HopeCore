@@ -113,26 +113,38 @@ struct RectangularWidgetView: View {
 
 struct HomeScreenSmallWidgetView: View {
     let message: WidgetMessage?
+    private let backgroundImage = WidgetDataStore.getBackgroundImage()
 
     var body: some View {
-        if let message = message {
-            Text(message.text)
-                .font(.system(size: WidgetFontSize.small, weight: .medium))
-                .foregroundColor(.white)
-                .multilineTextAlignment(.center)
-                .lineSpacing(2)
-                .lineLimit(WidgetFontSize.smallLineLimit)
-                .minimumScaleFactor(WidgetFontSize.smallMinScale)
-                .padding(12)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        } else {
-            VStack(spacing: 8) {
-                Image(systemName: "heart.fill")
-                    .font(.system(size: 28))
-                    .foregroundColor(.pink)
-                Text("HopeCore")
-                    .font(.system(size: 14, weight: .semibold))
+        ZStack {
+            // Background image
+            Image(backgroundImage)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+
+            // Dark overlay for text readability
+            Color.black.opacity(0.4)
+
+            // Content
+            if let message = message {
+                Text(message.text)
+                    .font(.system(size: WidgetFontSize.small, weight: .semibold))
                     .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .lineSpacing(2)
+                    .lineLimit(WidgetFontSize.smallLineLimit)
+                    .minimumScaleFactor(WidgetFontSize.smallMinScale)
+                    .shadow(color: .black.opacity(0.5), radius: 2, x: 0, y: 1)
+                    .padding(12)
+            } else {
+                VStack(spacing: 8) {
+                    Image(systemName: "heart.fill")
+                        .font(.system(size: 28))
+                        .foregroundColor(.pink)
+                    Text("HopeCore")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(.white)
+                }
             }
         }
     }
@@ -140,26 +152,38 @@ struct HomeScreenSmallWidgetView: View {
 
 struct HomeScreenMediumWidgetView: View {
     let message: WidgetMessage?
+    private let backgroundImage = WidgetDataStore.getBackgroundImage()
 
     var body: some View {
-        if let message = message {
-            Text(message.text)
-                .font(.system(size: WidgetFontSize.medium, weight: .medium))
-                .foregroundColor(.white)
-                .multilineTextAlignment(.center)
-                .lineSpacing(3)
-                .lineLimit(WidgetFontSize.mediumLineLimit)
-                .minimumScaleFactor(WidgetFontSize.mediumMinScale)
-                .padding(16)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        } else {
-            VStack(spacing: 8) {
-                Image(systemName: "heart.fill")
-                    .font(.system(size: 32))
-                    .foregroundColor(.pink)
-                Text("HopeCore")
-                    .font(.system(size: 18, weight: .semibold))
+        ZStack {
+            // Background image
+            Image(backgroundImage)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+
+            // Dark overlay for text readability
+            Color.black.opacity(0.4)
+
+            // Content
+            if let message = message {
+                Text(message.text)
+                    .font(.system(size: WidgetFontSize.medium, weight: .semibold))
                     .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .lineSpacing(3)
+                    .lineLimit(WidgetFontSize.mediumLineLimit)
+                    .minimumScaleFactor(WidgetFontSize.mediumMinScale)
+                    .shadow(color: .black.opacity(0.5), radius: 2, x: 0, y: 1)
+                    .padding(16)
+            } else {
+                VStack(spacing: 8) {
+                    Image(systemName: "heart.fill")
+                        .font(.system(size: 32))
+                        .foregroundColor(.pink)
+                    Text("HopeCore")
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundColor(.white)
+                }
             }
         }
     }
@@ -167,26 +191,38 @@ struct HomeScreenMediumWidgetView: View {
 
 struct HomeScreenLargeWidgetView: View {
     let message: WidgetMessage?
+    private let backgroundImage = WidgetDataStore.getBackgroundImage()
 
     var body: some View {
-        if let message = message {
-            Text(message.text)
-                .font(.system(size: WidgetFontSize.large, weight: .medium))
-                .foregroundColor(.white)
-                .multilineTextAlignment(.center)
-                .lineSpacing(4)
-                .lineLimit(WidgetFontSize.largeLineLimit)
-                .minimumScaleFactor(WidgetFontSize.largeMinScale)
-                .padding(20)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        } else {
-            VStack(spacing: 12) {
-                Image(systemName: "heart.fill")
-                    .font(.system(size: 44))
-                    .foregroundColor(.pink)
-                Text("HopeCore")
-                    .font(.system(size: 22, weight: .semibold))
+        ZStack {
+            // Background image
+            Image(backgroundImage)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+
+            // Dark overlay for text readability
+            Color.black.opacity(0.35)
+
+            // Content
+            if let message = message {
+                Text(message.text)
+                    .font(.system(size: WidgetFontSize.large, weight: .semibold))
                     .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .lineSpacing(4)
+                    .lineLimit(WidgetFontSize.largeLineLimit)
+                    .minimumScaleFactor(WidgetFontSize.largeMinScale)
+                    .shadow(color: .black.opacity(0.5), radius: 3, x: 0, y: 1)
+                    .padding(20)
+            } else {
+                VStack(spacing: 12) {
+                    Image(systemName: "heart.fill")
+                        .font(.system(size: 44))
+                        .foregroundColor(.pink)
+                    Text("HopeCore")
+                        .font(.system(size: 22, weight: .semibold))
+                        .foregroundColor(.white)
+                }
             }
         }
     }

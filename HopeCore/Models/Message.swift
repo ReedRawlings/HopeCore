@@ -8,8 +8,18 @@
 //  AGENT NOTES:
 //  - Messages are the core content of the app
 //  - Dual presentation modes: imageCard (full-screen with baked-in text) or textOverlayBackground
-//  - Messages belong to categories for filtering
+//  - Messages can belong to multiple categories for flexible filtering
 //  - Users can save/favorite messages locally
+//
+//  CATEGORIES (8 total):
+//  - Agency: Taking action, control, making choices
+//  - Possibility: Hope, dreams, future potential
+//  - Resilience: Bouncing back, overcoming adversity
+//  - Growth: Learning, transformation, becoming
+//  - Self-Worth: Identity, confidence, self-belief
+//  - Connection: Community, relationships, kindness
+//  - Mindfulness: Presence, peace, acceptance
+//  - Purpose: Meaning, direction, passion
 //
 
 import Foundation
@@ -41,8 +51,12 @@ final class Message {
     var textColorOverride: String?
 
     // MARK: - Standard Fields
-    /// Category this message belongs to
-    var categoryName: String
+    /// Categories this message belongs to (multi-category support)
+    /// First category is considered the "primary" category
+    var categories: [String]
+
+    /// Author/attribution for the quote (optional)
+    var author: String?
 
     /// Whether the user has saved/favorited this message
     var isSaved: Bool
@@ -59,13 +73,26 @@ final class Message {
     /// Whether this is a demotivation message
     var isDemotivation: Bool
 
+    // MARK: - Computed Properties
+
+    /// Primary category (first in the list) - for backwards compatibility
+    var categoryName: String {
+        categories.first ?? "Possibility"
+    }
+
+    /// Check if message belongs to a specific category
+    func hasCategory(_ category: String) -> Bool {
+        categories.contains(category)
+    }
+
     init(
         id: UUID = UUID(),
         text: String,
         presentationMode: MessagePresentationMode,
         imageCardURL: String? = nil,
         backgroundImageURL: String? = nil,
-        categoryName: String,
+        categories: [String] = ["Possibility"],
+        author: String? = nil,
         isSaved: Bool = false,
         createdAt: Date = Date(),
         lastShownAt: Date? = nil,
@@ -77,12 +104,44 @@ final class Message {
         self.presentationMode = presentationMode
         self.imageCardURL = imageCardURL
         self.backgroundImageURL = backgroundImageURL
-        self.categoryName = categoryName
+        self.categories = categories
+        self.author = author
         self.isSaved = isSaved
         self.createdAt = createdAt
         self.lastShownAt = lastShownAt
         self.shownCount = shownCount
         self.isDemotivation = isDemotivation
+    }
+
+    /// Convenience init for single category (backwards compatibility)
+    convenience init(
+        id: UUID = UUID(),
+        text: String,
+        presentationMode: MessagePresentationMode,
+        imageCardURL: String? = nil,
+        backgroundImageURL: String? = nil,
+        categoryName: String,
+        author: String? = nil,
+        isSaved: Bool = false,
+        createdAt: Date = Date(),
+        lastShownAt: Date? = nil,
+        shownCount: Int = 0,
+        isDemotivation: Bool = false
+    ) {
+        self.init(
+            id: id,
+            text: text,
+            presentationMode: presentationMode,
+            imageCardURL: imageCardURL,
+            backgroundImageURL: backgroundImageURL,
+            categories: [categoryName],
+            author: author,
+            isSaved: isSaved,
+            createdAt: createdAt,
+            lastShownAt: lastShownAt,
+            shownCount: shownCount,
+            isDemotivation: isDemotivation
+        )
     }
 }
 

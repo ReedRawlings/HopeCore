@@ -17,6 +17,7 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct SettingsView: View {
     // MARK: - Environment
@@ -32,6 +33,9 @@ struct SettingsView: View {
 
     @State private var showPremiumSheet = false
     @State private var settingsChanged = false
+
+    /// Notification manager for checking/requesting permissions
+    private var notificationManager = NotificationManager.shared
 
     // MARK: - Computed
 
@@ -90,6 +94,18 @@ struct SettingsView: View {
             .sheet(isPresented: $showPremiumSheet) {
                 premiumUpsellSheet
             }
+            .onAppear {
+                // Refresh notification status when view appears
+                Task {
+                    await notificationManager.checkAuthorizationStatus()
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                // Refresh when returning from iOS Settings
+                Task {
+                    await notificationManager.checkAuthorizationStatus()
+                }
+            }
         }
     }
 
@@ -131,6 +147,11 @@ struct SettingsView: View {
 
     private var notificationSection: some View {
         Section {
+            // Permission status banner
+            if notificationManager.authorizationStatus != .authorized {
+                notificationPermissionBanner
+            }
+
             if let prefs = userPrefs {
                 // Messages per day
                 VStack(alignment: .leading, spacing: Spacing.xs) {
@@ -280,6 +301,9 @@ struct SettingsView: View {
                                     HapticFeedback.selection()
                                     prefs.defaultBackgroundImage = imageName
                                     settingsChanged = true
+                                    // Update widget background immediately
+                                    WidgetDataStore.saveBackgroundImage(imageName)
+                                    WidgetCenter.shared.reloadTimelines(ofKind: "HopeCoreWidget")
                                 }) {
                                     ZStack {
                                         // Background image preview
@@ -490,6 +514,58 @@ struct SettingsView: View {
                 .foregroundColor(TextColors.secondary)
         }
         .listRowBackground(BackgroundColors.elevated)
+    }
+
+    // MARK: - Notification Permission Banner
+
+    private var notificationPermissionBanner: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            HStack(spacing: Spacing.sm) {
+                Image(systemName: "bell.slash.fill")
+                    .font(.system(size: 20))
+                    .foregroundColor(AccentColors.warmth)
+
+                VStack(alignment: .leading, spacing: Spacing.xs) {
+                    Text("Notifications Disabled")
+                        .font(AppFonts.subtitle)
+                        .foregroundColor(TextColors.primary)
+
+                    Text(notificationManager.authorizationStatus == .notDetermined
+                         ? "Enable notifications to receive your daily hopecore messages."
+                         : "Notifications are turned off in your device settings.")
+                        .font(AppFonts.caption)
+                        .foregroundColor(TextColors.secondary)
+                }
+
+                Spacer()
+            }
+
+            Button(action: {
+                HapticFeedback.buttonPress()
+                if notificationManager.authorizationStatus == .notDetermined {
+                    // Request permission
+                    Task {
+                        try? await notificationManager.requestAuthorization()
+                    }
+                } else {
+                    // Open Settings app
+                    if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(settingsURL)
+                    }
+                }
+            }) {
+                Text(notificationManager.authorizationStatus == .notDetermined
+                     ? "Enable Notifications"
+                     : "Open Settings")
+                    .font(AppFonts.buttonSecondary)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, Spacing.sm)
+                    .background(AccentColors.primary)
+                    .clipShape(RoundedRectangle(cornerRadius: ComponentSpacing.smallCornerRadius))
+            }
+        }
+        .padding(.vertical, Spacing.xs)
     }
 
     // MARK: - Premium Upsell Sheet

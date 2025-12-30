@@ -8,7 +8,8 @@
 //  AGENT NOTES:
 //  - Used to parse quotes from bundled quotes.json file
 //  - Converts to Message objects for SwiftData storage
-//  - Matches JSON structure exactly
+//  - Supports both old format (single category) and new format (multiple categories)
+//  - Supports optional author field
 //
 
 import Foundation
@@ -22,8 +23,14 @@ struct QuoteData: Codable, Identifiable {
     /// Quote text content
     let text: String
 
-    /// Category this quote belongs to
-    let category: String
+    /// Categories this quote belongs to (new multi-category format)
+    let categories: [String]?
+
+    /// Category this quote belongs to (legacy single category format)
+    let category: String?
+
+    /// Author/attribution for the quote (optional)
+    let author: String?
 
     /// Track type: "hope" or "demotivation"
     let trackType: String
@@ -43,6 +50,22 @@ struct QuoteData: Codable, Identifiable {
     /// Text color override for overlay mode
     let textColorOverride: String?
 
+    // MARK: - Computed Properties
+
+    /// Resolved categories (handles both old and new format)
+    var resolvedCategories: [String] {
+        // Prefer new format (categories array)
+        if let categories = categories, !categories.isEmpty {
+            return categories
+        }
+        // Fall back to old format (single category)
+        if let category = category, !category.isEmpty {
+            return [category]
+        }
+        // Default
+        return ["Possibility"]
+    }
+
     // MARK: - Conversion to Message
 
     /// Convert QuoteData to Message model for SwiftData storage
@@ -55,7 +78,7 @@ struct QuoteData: Codable, Identifiable {
         let isDemotivation = trackType.lowercased() == "demotivation"
 
         // Convert presentation mode string to enum
-        let mode = MessagePresentationMode(rawValue: presentationMode) ?? .imageCard
+        let mode = MessagePresentationMode(rawValue: presentationMode) ?? .textOverlayBackground
 
         // Create Message instance with presentation mode and appropriate assets
         // Note: backgroundImageURL is not set from JSON - textOverlay messages use user's default background from preferences
@@ -65,7 +88,8 @@ struct QuoteData: Codable, Identifiable {
             presentationMode: mode,
             imageCardURL: imageCardURL,  // Optional R2 image URL (image card mode)
             backgroundImageURL: nil,  // Text overlay mode uses user's default background from preferences
-            categoryName: category,
+            categories: resolvedCategories,
+            author: author,
             isSaved: false,
             createdAt: Date(),
             lastShownAt: nil,

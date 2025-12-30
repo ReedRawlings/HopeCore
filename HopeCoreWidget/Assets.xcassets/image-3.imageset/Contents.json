@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "futureselfis_a_bustling_city_street_vertical_view_down_an_all_222a9fb1-01d5-4eb1-8931-33f4fd8441b8_1.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

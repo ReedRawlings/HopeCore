@@ -58,11 +58,12 @@ class MessageService {
             // Check if SwiftData has any messages
             let existingMessages = try modelContext.fetch(descriptor)
 
-            if existingMessages.isEmpty {
-                // First launch scenario - load bundled quotes
-                print("📦 First launch detected - loading bundled quotes")
+            // Load bundled quotes from JSON
+            let bundledQuotes = QuoteLoader.loadBundledQuotes()
 
-                let bundledQuotes = QuoteLoader.loadBundledQuotes()
+            if existingMessages.isEmpty {
+                // First launch scenario - load all bundled quotes
+                print("📦 First launch detected - loading bundled quotes")
 
                 if !bundledQuotes.isEmpty {
                     // Insert bundled quotes into SwiftData
@@ -88,9 +89,28 @@ class MessageService {
                     try modelContext.save()
                 }
             } else {
-                // Subsequent launches - use existing messages with user data
+                // Subsequent launches - check for new quotes added in app updates
                 print("✅ Loaded \(existingMessages.count) messages from SwiftData")
-                allMessages = existingMessages
+
+                // Build set of existing IDs for O(1) lookup
+                let existingIDs = Set(existingMessages.map { $0.id })
+
+                // Find new quotes that aren't in SwiftData yet
+                let newQuotes = bundledQuotes.filter { !existingIDs.contains($0.id) }
+
+                if !newQuotes.isEmpty {
+                    // Insert new quotes into SwiftData
+                    for quote in newQuotes {
+                        modelContext.insert(quote)
+                    }
+                    try modelContext.save()
+                    print("📦 Added \(newQuotes.count) new quotes from app update")
+
+                    // Combine existing + new for allMessages
+                    allMessages = existingMessages + newQuotes
+                } else {
+                    allMessages = existingMessages
+                }
             }
 
             updateFilteredMessages()
@@ -157,11 +177,11 @@ class MessageService {
         }
     }
 
-    /// Get messages by category
+    /// Get messages by category (checks all categories, not just primary)
     /// - Parameter category: Category name
-    /// - Returns: Messages in that category
+    /// - Returns: Messages that have this category
     func getMessages(for category: String) -> [Message] {
-        return allMessages.filter { $0.categoryName == category && !$0.isDemotivation }
+        return allMessages.filter { $0.hasCategory(category) && !$0.isDemotivation }
     }
 
     /// Get random message excluding recently shown

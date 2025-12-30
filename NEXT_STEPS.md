@@ -5,9 +5,9 @@
 This document outlines the work completed and the critical next steps for future development agents. HopeCore is an iOS app built with SwiftUI and SwiftData, designed to deliver hopecore messages and audio content to users rebuilding their lives.
 
 **Created:** November 10, 2025
-**Last Updated:** December 2025 (Phase 6 Planning)
-**Session:** Phase 6 Content Expansion & Enhanced Sharing
-**Status:** ✅✅✅✅ Phase 4 Complete - Lock Screen & Home Screen Widgets Implemented, Deep Linking Working | Phase 6 Planning - Content Expansion & Enhanced Sharing
+**Last Updated:** December 26, 2025
+**Session:** Phase 6 Complete + Polish
+**Status:** ✅✅✅✅✅✅ Phase 6 Mostly Complete - Fonts, Social Sharing, Widget Backgrounds Done | Remaining: More Content (backgrounds, quotes, imageCards)
 
 ---
 
@@ -835,28 +835,22 @@ All Phase 4 widget tasks completed:
 
 ---
 
-### Phase 6: Content Expansion & Enhanced Sharing (CURRENT PRIORITY)
+### ✅ Phase 6: Content Expansion & Enhanced Sharing (MOSTLY COMPLETE)
 
-#### 1. Custom Font System for Text Overlay Messages
+#### 1. ✅ Custom Font System for Text Overlay Messages - COMPLETE
 **Location:** `DesignSystem/Fonts.swift`, `Services/FontManager.swift`, `Components/MessageCard.swift`
 
-**Completed:**
+**All Items Completed:**
 - [x] Create `FontManager` service to manage available fonts ✅
 - [x] Update `Fonts.swift` with WidgetFonts sizing constants ✅
 - [x] 20 iOS built-in fonts available (no custom font files needed) ✅
 - [x] Font categories: Serif, Sans Serif, Display, Handwritten ✅
 - [x] Widget font sizes optimized and standardized ✅
-
-**Remaining:**
-- [ ] Add `defaultFontName` property to `UserPreferences` (for global font selection)
-- [ ] Update `MessageCard` to use custom fonts for `textOverlayBackground` mode
-- [ ] Add font picker UI in `SettingsView` (grid of font previews)
-- [ ] Test font rendering with various message lengths
-
-**Files to Modify:**
-- `HopeCore/Models/UserPreferences.swift` - Add `defaultFontName` property
-- `HopeCore/Components/MessageCard.swift` - Use custom fonts in text overlay mode
-- `HopeCore/Views/Settings/SettingsView.swift` - Add font picker section
+- [x] Add `selectedFontID` property to `UserPreferences` ✅
+- [x] Update `MessageCard` to use custom fonts for `textOverlayBackground` mode ✅
+- [x] Add font picker UI in `SettingsView` ✅
+- [x] Add font picker in `OnboardingView` ✅
+- [x] Font picker in `ShareFormatPicker` for export customization ✅
 
 **Available Fonts (via FontManager):**
 - **Serif:** Georgia, Palatino, Baskerville, Times New Roman
@@ -864,119 +858,61 @@ All Phase 4 widget tasks completed:
 - **Display:** Copperplate, Didot, Rockwell, American Typewriter
 - **Handwritten:** Bradley Hand, Marker Felt, Noteworthy, Snell Roundhand
 
-**Implementation Notes:**
-- Uses iOS built-in fonts (no font files to bundle)
-- All fonts work in both app and widget extension
-- FontManager.shared.font(for: id) returns CustomFont
-- Fallback to system font if font not available
+---
+
+#### 2. Background Image Expansion - PARTIALLY COMPLETE
+**Location:** `HopeCore/Assets.xcassets/`, `Constants.swift`
+
+**Completed:**
+- [x] Background picker UI in `SettingsView` ✅
+- [x] Background picker in `OnboardingView` ✅
+- [x] Background picker in `ShareFormatPicker` ✅
+- [x] `UserPreferences.defaultBackgroundImage` property ✅
+- [x] Widget backgrounds (shared with main app) ✅
+
+**Remaining:**
+- [ ] Add more background images (~50 total, currently only 3)
+- [ ] Update `Constants.BackgroundImages.availableImages` array with new images
+- [ ] Ensure new images are copied to widget Assets.xcassets too
+
+**Current State:**
+- 3 background images available: `image-1`, `image-2`, `image-3`
+- All UI for selection is complete, just need more images
 
 ---
 
-#### 2. Background Image Expansion
-**Location:** `HopeCore/Assets.xcassets/`, `Models/UserPreferences.swift`, `Views/Settings/SettingsView.swift`
-
-**What to Do:**
-- [ ] Add ~50 background images to `Assets.xcassets/` (as image sets)
-- [ ] Create `BackgroundImageManager` service to manage available backgrounds
-- [ ] Build image gallery picker UI in `SettingsView`
-- [ ] Update `UserPreferences.defaultBackgroundImage` to support new images
-- [ ] Optimize image loading for large asset catalog
-- [ ] Add image preview in settings with grid layout
-- [ ] Ensure all backgrounds work well with text overlay (good contrast)
-
-**Files to Modify:**
-- `HopeCore/Assets.xcassets/` - Add new image sets (image-4 through image-50+)
-- `HopeCore/Models/UserPreferences.swift` - Update background image handling
-- `HopeCore/Views/Settings/SettingsView.swift` - Add background picker UI
-- `HopeCore/Components/MessageCard.swift` - Ensure all backgrounds load correctly
-- Create `HopeCore/Services/BackgroundImageManager.swift` - Background management
-
-**Implementation Notes:**
-- Images should be high resolution (at least 2x for Retina displays)
-- All backgrounds should be optimized for text readability
-- Consider adding image categories (nature, abstract, minimal, etc.)
-- Use consistent naming: `image-1`, `image-2`, etc.
-
----
-
-#### 3. Image Card Variations for R2 Bucket
+#### 3. Image Card Variations for R2 Bucket - PAUSED
 **Status:** ⏸️ PAUSED - Focusing on text overlay presentation first
 
-**Location:** `HopeCore/Resources/quotes.json`, R2 bucket
+**Current State:**
+- 3 quotes have `imageCardURL` (full-screen images with baked-in text)
+- 303 quotes use `textOverlay` mode (text over user's background)
 
-**What to Do (When Resumed):**
+**When Resumed:**
 - [ ] Generate more `imageCard` variations for existing quotes
 - [ ] Upload new image card images to R2 bucket
 - [ ] Update `quotes.json` with new `imageCardURL` entries
-- [ ] Ensure image cards are properly formatted (full-screen, text baked in)
-- [ ] Test image loading and caching for new cards
-- [ ] Verify image cards display correctly in `MessageCard`
-
-**Files to Modify:**
-- `HopeCore/Resources/quotes.json` - Add `imageCardURL` for more messages
-- `HopeCore/Services/ImageCacheManager.swift` - Ensure caching works for new images
-- `HopeCore/Components/MessageCard.swift` - Verify image card rendering
-
-**Implementation Notes:**
-- Image cards should be full-screen (portrait orientation)
-- Text should be baked into the image (not overlaid)
-- Images should match the message's emotional tone
-- Use consistent naming convention in R2 bucket
 
 ---
 
-#### 4. Enhanced Social Media Sharing
-**Location:** `Components/ShareSheet.swift`, `Views/Home/HomeView.swift`, `Components/MessageCard.swift`
+#### 4. ✅ Enhanced Social Media Sharing - COMPLETE
+**Location:** `Services/ImageExportService.swift`, `Components/ShareFormatPicker.swift`
 
-**What to Do:**
-- [ ] Create `ImageExportService` for rendering message cards as images
-- [ ] Implement SwiftUI view-to-image conversion using `ImageRenderer`
-- [ ] Support multiple export formats:
-  - [ ] Square (1080x1080) for Instagram posts
-  - [ ] Vertical (9:16, 1080x1920) for TikTok/Instagram Stories
-  - [ ] Original aspect ratio (for general sharing)
-- [ ] Add watermark/branding option (optional "HopeCore" watermark)
-- [ ] Update `ShareSheet` to include image data alongside text
-- [ ] Add "Save to Photos" functionality
-- [ ] Update share button to show format options (square/vertical/original)
-- [ ] Test sharing to Instagram, TikTok, Twitter, Messages, etc.
-
-**Files to Modify:**
-- `HopeCore/Components/ShareSheet.swift` - Add image sharing support
-- `HopeCore/Views/Home/HomeView.swift` - Generate shareable images, add format picker
-- `HopeCore/Components/MessageCard.swift` - Add image rendering capability
-- Create `HopeCore/Services/ImageExportService.swift` - Handle image generation
-- `HopeCore/Info.plist` - Add `NSPhotoLibraryAddUsageDescription` for saving to Photos
-
-**Implementation Approach:**
-```swift
-// ImageExportService.swift
-func renderMessageCardAsImage(
-    message: Message, 
-    format: ShareFormat
-) -> UIImage? {
-    // Use ImageRenderer to capture MessageCard view
-    // Apply appropriate sizing for format
-    // Add watermark if enabled
-    // Return UIImage
-}
-
-enum ShareFormat {
-    case square      // 1080x1080
-    case vertical    // 1080x1920 (9:16)
-    case original    // Original aspect ratio
-}
-```
-
-**Key Features:**
-- Render both `imageCard` and `textOverlayBackground` modes
-- Preserve image quality (high resolution)
-- Fast rendering (should complete in <1 second)
-- Support for both light and dark mode exports
+**All Items Completed:**
+- [x] Create `ImageExportService` for rendering message cards as images ✅
+- [x] Implement SwiftUI view-to-image conversion using `ImageRenderer` ✅
+- [x] Square format (1080x1080) for Instagram posts ✅
+- [x] Vertical format (1080x1920, 9:16) for TikTok/Instagram Stories ✅
+- [x] Watermark branding ("yourfutureself.is") ✅
+- [x] `ShareFormatPicker` UI with format, background, font selection ✅
+- [x] Live preview before sharing ✅
+- [x] "Save to Photos" functionality ✅
+- [x] Share button opens format picker in HomeView ✅
+- [x] `NSPhotoLibraryAddUsageDescription` in Info.plist ✅
 
 ---
 
-#### 5. Notification Scheduler Verification & Testing
+#### 5. Notification Scheduler Verification & Testing - NOT STARTED
 **Location:** `Services/NotificationManager.swift`, new debug view
 
 **What to Do:**
@@ -1045,23 +981,6 @@ func testNotification(at time: Date) async throws // Fire notification immediate
 - [x] MessageCard uses cached images in all presentation modes ✅
 - [x] Automatic cache cleanup (50MB memory, 100MB disk) ✅
 
-### High Priority (Phase 6 - Current)
-- [ ] Custom font system for text overlay messages (10-20 fonts)
-- [ ] Background image expansion (~50 images)
-- [ ] More imageCard variations for R2 bucket
-- [ ] Enhanced social media sharing (Instagram/TikTok formats)
-- [ ] Notification scheduler verification & testing
-
-### Medium Priority (Phase 4/5)
-- [ ] ⚠️ Info.plist: Add BGTaskSchedulerPermittedIdentifiers
-- [ ] Error handling for failed image loads
-- [ ] AudioPlayerOverlay missing sleep timer
-
-### Medium Priority
-- [ ] Category filtering not fully implemented
-- [ ] No playback completion handling in AudioManager
-- [ ] Audio track download functionality (offline playback)
-
 ### ✅ Phase 4 Completed Items
 - [x] Lock Screen widget created (circular and rectangular) ✅
 - [x] Home Screen widget created (small, medium, large) ✅
@@ -1069,10 +988,36 @@ func testNotification(at time: Date) async throws // Fire notification immediate
 - [x] Widget data sharing via App Groups ✅
 - [x] Deep linking from widget to app ✅
 - [x] Widget integration with services ✅
+- [x] Widget backgrounds (image backgrounds for home screen widgets) ✅
 
-### Low Priority (Phase 5)
-- [ ] Premium purchase flow not connected to SubscriptionManager
-- [ ] Restore purchases not implemented
+### ✅ Phase 6 Completed Items
+- [x] Custom font system (20 fonts via FontManager) ✅
+- [x] Font picker in Settings, Onboarding, and ShareFormatPicker ✅
+- [x] MessageCard uses user's selected font ✅
+- [x] Enhanced social media sharing (ImageExportService) ✅
+- [x] ShareFormatPicker with Square/Vertical formats ✅
+- [x] Save to Photos functionality ✅
+- [x] Info.plist: BGTaskSchedulerPermittedIdentifiers ✅
+- [x] Info.plist: NSPhotoLibraryAddUsageDescription ✅
+- [x] Notification permission banner in Settings ✅
+
+### Content Expansion (Remaining)
+- [ ] Add more background images (~50 total, currently 3)
+- [ ] Generate more imageCard variations for R2 bucket (currently 3)
+- [ ] Expand quotes collection (currently 306 quotes)
+
+### Medium Priority
+- [ ] Notification debug view for testing
+- [ ] AudioPlayerOverlay missing sleep timer
+- [ ] Category filtering UI (logic exists in code)
+- [ ] Audio track download functionality (offline playback)
+- [ ] Error handling for failed image loads
+
+### Low Priority (Phase 5 - Premium)
+- [ ] Configure StoreKit products in App Store Connect
+- [ ] Test purchase flow end-to-end
+- [ ] Restore purchases functionality
+- [ ] SubscriptionManager service exists, needs real product IDs
 
 ---
 

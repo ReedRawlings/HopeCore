@@ -2,796 +2,3071 @@
   {
     "id": "a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d",
     "text": "A ship in the harbor is safe, but that is not what ships are built for.",
-    "category": "Possibility",
     "trackType": "hope",
     "presentationMode": "imageCard",
-    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/A%20ship%20in%20the%20harbor%20is%20safe%2C%20but%20that%20is%20not%20what%20ships%20are%20built%20for..png"},
+    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/A%20ship%20in%20the%20harbor%20is%20safe%2C%20but%20that%20is%20not%20what%20ships%20are%20built%20for..png",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "b2c3d4e5-f6a7-4b5c-9d0e-1f2a3b4c5d6e",
     "text": "You'll never feel ready. Do it anyway.",
-    "category": "Agency",
     "trackType": "hope",
     "presentationMode": "imageCard",
-    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/doitanyway.png"},
+    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/doitanyway.png",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "c3d4e5f6-a7b8-4c5d-0e1f-2a3b4c5d6e7f",
     "text": "Is this the life you really want?",
-    "category": "Rebuilding",
     "trackType": "hope",
     "presentationMode": "imageCard",
-    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/thelifeyouwant.png"},
+    "imageCardURL": "https://pub-0017d537075f47dba685fa2a8ebf5591.r2.dev/thelifeyouwant.png",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "d4e5f6a7-b8c9-4d5e-1f2a-3b4c5d6e7f8a",
     "text": "You are not who you were yesterday. Possibility lives in that space.",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "e5f6a7b8-c9d0-4e5f-2a3b-4c5d6e7f8a9b",
     "text": "You'll probably fail at this too. Why even try?",
-    "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Demotivation"
+    ],
+    "author": null
+  },
   {
     "id": "f6a7b8c9-d0e1-4f5a-3b4c-5d6e7f8a9b0c",
     "text": "The wound is where the light enters you.",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "a7b8c9d0-e1f2-4a5b-4c5d-6e7f8a9b0c1d",
     "text": "Rock bottom became the solid foundation on which I rebuilt my life.",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "b8c9d0e1-f2a3-4b5c-5d6e-7f8a9b0c1d2e",
     "text": "You don't have to see the whole staircase. Just take the first step.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "c9d0e1f2-a3b4-4c5d-6e7f-8a9b0c1d2e3f",
     "text": "What if everything you're going through is preparing you for what you asked for?",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "d0e1f2a3-b4c5-4d5e-7f8a-9b0c1d2e3f4a",
     "text": "The comeback is always stronger than the setback.",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "e1f2a3b4-c5d6-4e5f-8a9b-0c1d2e3f4a5b",
     "text": "Your life isn't yours. It belongs to everyone who's disappointed in you.",
-    "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Demotivation"
+    ],
+    "author": null
+  },
   {
     "id": "f2a3b4c5-d6e7-4f5a-9b0c-1d2e3f4a5b6c",
     "text": "Every master was once a disaster.",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "a3b4c5d6-e7f8-4a5b-0c1d-2e3f4a5b6c7d",
     "text": "You're allowed to scream. You're allowed to cry. But do not give up.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "b4c5d6e7-f8a9-4b5c-1d2e-3f4a5b6c7d8e",
     "text": "Sometimes the bravest thing you can do is keep going.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "c5d6e7f8-a9b0-4c5d-2e3f-4a5b6c7d8e9f",
     "text": "What looks like failure now might be the foundation of your greatest success.",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "d6e7f8a9-b0c1-4d5e-3f4a-5b6c7d8e9f0a",
     "text": "You can't start the next chapter if you keep re-reading the last one.",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "e7f8a9b0-c1d2-4e5f-4a5b-6c7d8e9f0a1b",
     "text": "Nothing you do will ever be enough. Just accept that.",
-    "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Demotivation"
+    ],
+    "author": null
+  },
   {
     "id": "f8a9b0c1-d2e3-4f5a-5b6c-7d8e9f0a1b2c",
     "text": "Your current situation is not your final destination.",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "a9b0c1d2-e3f4-4a5b-6c7d-8e9f0a1b2c3d",
     "text": "Growth is uncomfortable because you've never been here before.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "b0c1d2e3-f4a5-4b5c-7d8e-9f0a1b2c3d4e",
     "text": "The only impossible journey is the one you never begin.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
     "text": "At any given time you can start working on the little things that will end up changing your life.",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e",
     "text": "Common sense will never accomplish great things",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f",
     "text": "The life you want is going to cost you embarrassment",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
-  "id": "4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a",
-  "text": "To be cringe is to be free",
-  "category": "Agency",
+    "id": "4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a",
+    "text": "To be cringe is to be free",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b",
     "text": "A person who doesn't make mistakes usually doesn't make anything",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c",
     "text": "Before we can build something new we must have the foundation we have today",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d",
     "text": "The purpose of life is to be defeated by greater and greater things",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "8b9c0d1e-2f3a-4b5c-6d7e-8f9a0b1c2d3e",
     "text": "Your discomfort is your portal to your transformation",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a",
     "text": "Tomorrow isn't promised. Run up on that bitch today.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b",
     "text": "Getting your life together requires a level of honesty you can't imagine. There's nothing easy about realizing you're the one that's holding you back.",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c",
     "text": "Forgive your younger self. Believe in your current self. Create your future self",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d",
     "text": "That 10-minute task will remain no matter how long you delay it. It's time to work.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "4b5c6d7e-8f9a-0b1c-2d3e-4f5a6b7c8d9e",
     "text": "As you start to walk on the way, the way appears.",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "5c6d7e8f-9a0b-1c2d-3e4f-5a6b7c8d9e0f",
     "text": "If you had the courage to ask yourself what's missing, what would you say?",
-    "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Demotivation"
+    ],
+    "author": null
+  },
   {
     "id": "6d7e8f9a-0b1c-2d3e-4f5a-6b7c8d9e0f1a",
     "text": "Everyone moves at their own pace, but yours is a little pathetic",
-    "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Demotivation"
+    ],
+    "author": null
+  },
   {
     "id": "7e8f9a0b-1c2d-3e4f-5a6b-7c8d9e0f1a2b",
     "text": "Always start your day with positive thoughts. Even after you've looked in the mirror",
-    "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Demotivation"
+    ],
+    "author": null
+  },
   {
     "id": "8f9a0b1c-2d3e-4f5a-6b7c-8d9e0f1a2b3c",
     "text": "You're not going in circles. It's a downward spiral",
-    "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Demotivation"
+    ],
+    "author": null
+  },
   {
     "id": "9a0b1c2d-3e4f-5a6b-7c8d-9e0f1a2b3c4d",
     "text": "The work doesn't stop just because you're tired",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "0b1c2d3e-4f5a-6b7c-8d9e-0f1a2b3c4d5e",
     "text": "Don't be part of the problem. Be the entire problem.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "1c2d3e4f-5a6b-7c8d-9e0f-1a2b3c4d5e6f",
     "text": "The easiest way to get through times is a bit of gaslighting. Lord knows nothing else has worked for you.",
-    "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Demotivation"
+    ],
+    "author": null
+  },
   {
     "id": "2d3e4f5a-6b7c-8d9e-0f1a-2b3c4d5e6f7a",
     "text": "Time will pass anyway. You don't need permission to develop a new skill. Just start!",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "3e4f5a6b-7c8d-9e0f-1a2b-3c4d5e6f7a8b",
     "text": "I accidentally matured and realized it's better to love than hate",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "4f5a6b7c-8d9e-0f1a-2b3c-4d5e6f7a8b9c",
     "text": "I grew up and realized it's much cooler to love as much as you can",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d",
     "text": "I know you're going through a lot right now but just remember you did this to yourself",
-    "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Demotivation"
+    ],
+    "author": null
+  },
   {
     "id": "6b7c8d9e-0f1a-2b3c-4d5e-6f7a8b9c0d1e",
     "text": "The difference between having a problem and not is fully centered on how much you care about it",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "7c8d9e0f-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
     "text": "Why dream of better tomorrows when you can create them today?",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "8d9e0f1a-2b3c-4d5e-6f7a-8b9c0d1e2f3a",
     "text": "The worst thing a beginner can do is confuse theory with action",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "9e0f1a2b-3c4d-5e6f-7a8b-9c0d1e2f3a4b",
     "text": "Sometimes you've just got to lock in, dream a bigger dream, visualize new realities, and then get your act together",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "0f1a2b3c-4d5e-6f7a-8b9c-0d1e2f3a4b5c",
     "text": "Are you even good enough to have imposter syndrome?",
-    "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Demotivation"
+    ],
+    "author": null
+  },
   {
     "id": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6e",
     "text": "Oops looks like you failed to realize you're sabotaging yourself. Would you like to reset?",
-    "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Demotivation"
+    ],
+    "author": null
+  },
   {
     "id": "2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7f",
     "text": "You can start over again today and nobody has to know",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8a",
     "text": "The most expensive lie anyone has ever told themselves is I'll start tomorrow.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9b",
     "text": "If you act the same way you did today for the next 5 years will you get where you want?",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0c",
     "text": "Every moment you make a decision about how you spend your time. Do you have the courage to ask yourself if you're making the right decisions?",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1d",
     "text": "What would it sound like if you had the courage to ask yourself what's missing in your life?",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2e",
     "text": "Normalize not being ashamed of grand ideas or large goals or wanting to be something more. There should be no embarrassment about wanting to accomplish big things",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "8b9c0d1e-2f3a-4b5c-6d7e-8f9a0b1c2d3f",
     "text": "The error of youth is sitting stuck in indecision",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4a",
     "text": "Your obsession with perfecting the process makes it impossible for you to get started",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5b",
     "text": "Consistency doesn't care about failure",
-    "category": "Resilience",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": null
+  },
   {
     "id": "1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6c",
     "text": "Whatever you can do or dream you can, begin it. Boldness has genius, power and magic in it",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7d",
     "text": "You need to release yourself from caring about all the stupid shit in the world. It won't change anything for you, it simply becomes a burden you force yourself to care about",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8e",
     "text": "The greatest barrier to action is self-talk. The more room you give it to speak the more excuses it will offer you",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "4b5c6d7e-8f9a-0b1c-2d3e-4f5a6b7c8d9f",
     "text": "The weakness you feel now is the last step before self-actualization. If you quit now you'll never be free of yourself",
-    "category": "Resilience",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": null
+  },
   {
     "id": "5c6d7e8f-9a0b-1c2d-3e4f-5a6b7c8d9e0a",
     "text": "Is it valuable? Or just difficult to get?",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "6d7e8f9a-0b1c-2d3e-4f5a-6b7c8d9e0f1b",
     "text": "The most common act of cowardice is to quit before you've even begun",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "7e8f9a0b-1c2d-3e4f-5a6b-7c8d9e0f1a2c",
     "text": "The moment you take action you start to become the person you want to be.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "8f9a0b1c-2d3e-4f5a-6b7c-8d9e0f1a2b3d",
     "text": "You can't grow if your attention is on others",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "9a0b1c2d-3e4f-5a6b-7c8d-9e0f1a2b3c4e",
     "text": "Mind-numbing work, a soulless job, it makes you crave that same type of entertainment. Your brain has no space for creativity",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "0b1c2d3e-4f5a-6b7c-8d9e-0f1a2b3c4d5f",
     "text": "In 2026, we are done being flaky. We are taking a stand for the things we believe in. We're going to be passionate and intentional and confident.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "1c2d3e4f-5a6b-7c8d-9e0f-1a2b3c4d5e6a",
     "text": "Working on yourself is like molding clay and should be seen as life's greatest and most pleasurable task",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "2d3e4f5a-6b7c-8d9e-0f1a-2b3c4d5e6f7b",
     "text": "Most people accept themselves tacitly. They do not seek growth. They live their comfortable lives and complain when change doesn't occur, but refuse to seek or pursue it even when it's thrust in their face.",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "3e4f5a6b-7c8d-9e0f-1a2b-3c4d5e6f7a8c",
     "text": "You need to give yourself something to work toward and an expectation for your life. You must do these things in earnest. You can't half ass your life's work. You can't half ass your expectations. Be serious so you can provide yourself an opportunity for happiness",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "4f5a6b7c-8d9e-0f1a-2b3c-4d5e6f7a8b9d",
     "text": "You're experiencing inertia at every point in your life due to the habits you've created for yourself. Everything you do is to keep yourself in the exact spot you are now. But at any point you can make a choice not to stay stagnant",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0e",
     "text": "The you that you think you are is getting in the way of you becoming who you want to be",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "6b7c8d9e-0f1a-2b3c-4d5e-6f7a8b9c0d1f",
     "text": "Your capacity for growth is uncapped. You can continue to try new things without judgement. You just need to start",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "7c8d9e0f-1a2b-3c4d-5e6f-7a8b9c0d1e2a",
     "text": "You just have to act. If you choose to plan when, where, how, all those little questions that get in the way of action will stop you from moving forward.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "8d9e0f1a-2b3c-4d5e-6f7a-8b9c0d1e2f3b",
     "text": "How wonderful it is that no one has to wait even a minute to start gradually changing the world?",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "9e0f1a2b-3c4d-5e6f-7a8b-9c0d1e2f3a4c",
     "text": "Stop min/maxing the plans you make for your life. You must act! Until you try to succeed your plans do not matter. They can't matter. You have no idea what you're doing",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "0f1a2b3c-4d5e-6f7a-8b9c-0d1e2f3a4b5d",
     "text": "Look around you! Look at how inefficient it all is! 10,000 reasons to make a change. Your actions can shape the world.",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6f",
     "text": "Your competition is barely trying. They are letting the world distract them from their goals. You can win if you can focus.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7a",
     "text": "Oh no! I failed to reach a goal by an arbitrary timeline and instead of starting to push myself I've decided to ruminate and wallow in what could have been.",
-    "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Demotivation"
+    ],
+    "author": null
+  },
   {
     "id": "3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8b",
     "text": "The difference between a successful person and an unsuccessful one is their fixation on failures rather than looking to their failures as moments in time. You can learn from each moment, but if you embody the failure you become failure yourself.",
-    "category": "Resilience",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": null
+  },
   {
     "id": "4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9c",
     "text": "Every moment of every day creates a future you can analyze. Look at yourself ten years from now based on what you do today. Are you a failure? YOU CAN PREDICT YOUR FUTURE.",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0d",
     "text": "The best day to plant a tree was 20 years ago, the second best is now. This is the response you need to give yourself every time you start to ruminate on what could have been.",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1e",
     "text": "Stop looking back at your wasted potential and start putting the work in. The future is still ahead of you.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2f",
     "text": "Too quick to attack yourself when you make a mistake. Too slow to pat yourself on the back when you succeed.",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "8b9c0d1e-2f3a-4b5c-6d7e-8f9a0b1c2d3a",
     "text": "There is no later. You will not pursue your dreams in the future. A person who habitually puts their dreams off will not miraculously become a person who fulfills them.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4b",
     "text": "We shall cling to our habitual ways of living with all the helplessness of addicts to a destroying passion",
-    "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Demotivation"
+    ],
+    "author": null
+  },
   {
     "id": "0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5c",
     "text": "If you want to get ahead keep thinking. Spend as much time as possible stuck in your thoughts. Your thoughts are a safe place where you can be a hero without putting any work in. And tomorrow? When you wake up and realize you've wasted another day, just keep thinking about how you can get to work tomorrow.",
-    "category": "Demotivation",
     "trackType": "demotivation",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Demotivation"
+    ],
+    "author": null
+  },
   {
     "id": "1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6d",
     "text": "The only thing holding you back is your inability to do the work you need to do.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7e",
     "text": "You will never fetch the ball if you do not have the courage to drop it",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8f",
     "text": "Accept the reality that your past happened, but do not let it poison your future",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "4b5c6d7e-8f9a-0b1c-2d3e-4f5a6b7c8d9a",
     "text": "The cost of being wrong is less than the cost of doing nothing",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "5c6d7e8f-9a0b-1c2d-3e4f-5a6b7c8d9e0b",
     "text": "True freedom is knowing you're cringe and choosing to be yourself anyway",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "6d7e8f9a-0b1c-2d3e-4f5a-6b7c8d9e0f1c",
     "text": "Your direction is more important than your speed",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "7e8f9a0b-1c2d-3e4f-5a6b-7c8d9e0f1a2d",
     "text": "You are capable of creating the things you have in your mind",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "8f9a0b1c-2d3e-4f5a-6b7c-8d9e0f1a2b3e",
     "text": "Every day I wake up excited to kill a bit more of my conditioning",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "9a0b1c2d-3e4f-5a6b-7c8d-9e0f1a2b3c4f",
     "text": "You weren't put here to be average",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "0b1c2d3e-4f5a-6b7c-8d9e-0f1a2b3c4d5a",
     "text": "The day you plant the seed is not the day you eat the fruit",
-    "category": "Resilience",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": null
+  },
   {
     "id": "1c2d3e4f-5a6b-7c8d-9e0f-1a2b3c4d5e6b",
     "text": "One life, it's worth an attempt",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "2d3e4f5a-6b7c-8d9e-0f1a-2b3c4d5e6f7c",
     "text": "Ask yourself how much of your decision making is influenced by fear rather than hope",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "3e4f5a6b-7c8d-9e0f-1a2b-3c4d5e6f7a8d",
     "text": "He who jumps into the void owes no explanation to those who stand on the edge and watch",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "4f5a6b7c-8d9e-0f1a-2b3c-4d5e6f7a8b9e",
     "text": "If you quit when you suck, you'll suck forever",
-    "category": "Resilience",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": null
+  },
   {
     "id": "5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0f",
     "text": "The future does not wait for you to be ready",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "6b7c8d9e-0f1a-2b3c-4d5e-6f7a8b9c0d1a",
     "text": "The future does not wait for you to be okay",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "7c8d9e0f-1a2b-3c4d-5e6f-7a8b9c0d1e2b",
     "text": "What if it goes well, you succeed, and everything is okay?",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "8d9e0f1a-2b3c-4d5e-6f7a-8b9c0d1e2f3c",
     "text": "Every day you get another chance, but you must take it",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "9e0f1a2b-3c4d-5e6f-7a8b-9c0d1e2f3a4d",
     "text": "Take your time to heal. It's your best path to achieving your dreams",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "0f1a2b3c-4d5e-6f7a-8b9c-0d1e2f3a4b5e",
     "text": "You must learn to proceed without certainty",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6a",
     "text": "Do I deserve this? Did I earn it? Irrelevant. Do you want it?",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7b",
     "text": "Confidence doesn't come from feeling ready. It comes from knowing you've done the work.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8c",
     "text": "The itsy bitsy spider did not care about a few set backs. It locked in",
-    "category": "Resilience",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": null
+  },
   {
     "id": "4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9d",
     "text": "It is the way it is? No! Never! It is this way by the hands of others and by your hands it can be different.",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0e",
     "text": "Take it easy, dude. But take it!",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1f",
     "text": "You are doubting yourself while others are terrified of your potential.",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2a",
     "text": "Becoming the person you always wanted to be will cost you the person you once were",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "8b9c0d1e-2f3a-4b5c-6d7e-8f9a0b1c2d3b",
     "text": "You broke the cycle. Don't let boredom or loneliness send you back",
-    "category": "Resilience",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": null
+  },
   {
     "id": "9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4c",
     "text": "Self belief is self built",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5d",
     "text": "Excuses don't build empires",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6e",
     "text": "Humans were designed to create. This is why you get depressed when all you do is consume",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7f",
     "text": "There are graveyards full of people who thought they had more time",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8a",
     "text": "You need to tear muscle to grow it. Why would the mind be any different?",
-    "category": "Resilience",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": null
+  },
   {
     "id": "4b5c6d7e-8f9a-0b1c-2d3e-4f5a6b7c8d9b",
     "text": "Fear is an invitation to evolve",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "5c6d7e8f-9a0b-1c2d-3e4f-5a6b7c8d9e0c",
     "text": "Do it or don't, the time will pass anyway",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
   {
     "id": "6d7e8f9a-0b1c-2d3e-4f5a-6b7c8d9e0f1d",
     "text": "Consistency is everything",
-    "category": "Resilience",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": null
+  },
   {
     "id": "7e8f9a0b-1c2d-3e4f-5a6b-7c8d9e0f1a2e",
     "text": "We overanalyze the smallest flaws but let our greatest strengths go unnoticed",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "8f9a0b1c-2d3e-4f5a-6b7c-8d9e0f1a2b3f",
     "text": "You can't plan for every possible outcome, but you can prepare yourself to fail. Recognize your control and respond to setbacks for the inconvenience they are.",
-    "category": "Resilience",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": null
+  },
   {
     "id": "9a0b1c2d-3e4f-5a6b-7c8d-9e0f1a2b3c4a",
     "text": "Choose risk and you may earn great rewards. Choose safety and end up with those who chose risk and failed.",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "0b1c2d3e-4f5a-6b7c-8d9e-0f1a2b3c4d5b",
     "text": "Lasting change comes from incremental improvement not overnight success",
-    "category": "Resilience",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": null
+  },
   {
     "id": "1c2d3e4f-5a6b-7c8d-9e0f-1a2b3c4d5e6c",
     "text": "Once you start to feel change you must nurture and protect it to see it continue",
-    "category": "Rebuilding",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Rebuilding"
+    ],
+    "author": null
+  },
   {
     "id": "2d3e4f5a-6b7c-8d9e-0f1a-2b3c4d5e6f7d",
     "text": "You should want to see how good things can be if you don't give up",
-    "category": "Possibility",
     "trackType": "hope",
-    "presentationMode": "textOverlay"},
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": null
+  },
   {
     "id": "3e4f5a6b-7c8d-9e0f-1a2b-3c4d5e6f7a8e",
     "text": "Why worry about failure when I can just find out",
-    "category": "Agency",
     "trackType": "hope",
-    "presentationMode": "textOverlay"}
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": null
+  },
+  {
+    "id": "b3d5ec54-7813-44be-993e-3fa45158111d",
+    "text": "The beauty of life lies in being courageous enough to display your true identify in the public light.",
+    "categories": [
+      "Self-Worth",
+      "Agency"
+    ],
+    "author": null,
+    "trackType": "hope",
+    "presentationMode": "textOverlay"
+  },
+  {
+    "id": "4bde8a9b-f6f0-4acc-8b4d-2b76815c7591",
+    "text": "There is no greater fulfillment than living with a positive mind and a heart full of unconditional self-love.",
+    "categories": [
+      "Purpose",
+      "Self-Worth",
+      "Connection"
+    ],
+    "author": null,
+    "trackType": "hope",
+    "presentationMode": "textOverlay"
+  },
+  {
+    "id": "c59c187d-d2dc-41dd-8f7d-b61449a9934a",
+    "text": "The pain that every struggle brings, is the beginning stage of your future strength.",
+    "categories": [
+      "Resilience",
+      "Agency",
+      "Possibility"
+    ],
+    "author": null,
+    "trackType": "hope",
+    "presentationMode": "textOverlay"
+  },
+  {
+    "id": "e8bf6582-2126-4168-906e-d2bb72391bbf",
+    "text": "The true meaning of your life doesn't lie in your experiences, but in your frequent positive interpretations of your past and present.",
+    "categories": [
+      "Purpose",
+      "Growth",
+      "Mindfulness"
+    ],
+    "author": null,
+    "trackType": "hope",
+    "presentationMode": "textOverlay"
+  },
+  {
+    "id": "cf6ed134-b496-4e77-b51d-9a250439032a",
+    "text": "There is always hope.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Aragorn (Lord of the Rings)"
+  },
+  {
+    "id": "ba4e5d3c-a702-4906-8b66-c3d95dbc89e2",
+    "text": "Hope begins in the dark, the stubborn hope that if you just show up and try to do the right thing, the dawn will come.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Anne Lamott"
+  },
+  {
+    "id": "95b5529d-24d8-4851-a7cf-09fde7da88c9",
+    "text": "But in the end it's only a passing thing, this shadow; even darkness must pass.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Samwise Gamgee (Lord of the Rings)"
+  },
+  {
+    "id": "83eabad6-c6e1-4cf7-9f80-dadf0b0d4380",
+    "text": "Even the smallest person can change the course of the future.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Galadriel (Lord of the Rings)"
+  },
+  {
+    "id": "2ae227d2-84de-4603-9ac4-0e53fea4252c",
+    "text": "May it be a light to you in dark places, when all other lights go out.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Galadriel (Lord of the Rings)"
+  },
+  {
+    "id": "d2080431-1e68-47ae-bf88-8561ca20276f",
+    "text": "Hope is never mere, even when it is meager.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Gil-Galad (Lord of the Rings)"
+  },
+  {
+    "id": "3a9fd374-3af3-4745-9d33-41c38c9dbc92",
+    "text": "Oft hope is born when all is forlorn.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Legolas (Lord of the Rings)"
+  },
+  {
+    "id": "b126f9b9-62c0-4a41-ae1c-0758533a285d",
+    "text": "The Quest stands upon the edge of a knife. Stray but a little, and it will fail, to the ruin of all. Yet hope remains while the Company is true.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Galadriel (Lord of the Rings)"
+  },
+  {
+    "id": "b6dd522c-b24c-480f-be77-f0d017d41528",
+    "text": "Hope changes everything. It changes winter into summer, darkness into dawn, descent into ascent, barrenness into creativity, agony into joy.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Joni Eareckson Tada"
+  },
+  {
+    "id": "4dc48cbb-c912-4a3e-872c-9d0b07231c50",
+    "text": "I've learned that no matter what happens, or how bad it seems today, life does go on, and it will be better tomorrow.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Maya Angelou"
+  },
+  {
+    "id": "3f99d567-b598-4800-93d7-127dd523b75f",
+    "text": "There is light at the end of every tunnel. To get there just follow the silver lining.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Anthon St. Maarten"
+  },
+  {
+    "id": "ac478b60-3614-4275-9c1a-9c939a366041",
+    "text": "Your time will come. You will face the same evil, and you will defeat it.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Arwen (Lord of the Rings)"
+  },
+  {
+    "id": "c548be68-5f9c-4198-9cc7-6a6cd08aea79",
+    "text": "In order to succeed, we must first believe that we can.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Nikos Kazantzakis"
+  },
+  {
+    "id": "c2b0c903-880a-445c-a426-c8f835181a46",
+    "text": "Believe in yourself. You are braver than you think, more talented than you know, and capable of more than you imagine.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Roy T. Bennett"
+  },
+  {
+    "id": "41c42293-3d88-4cab-919a-237a33eb7b38",
+    "text": "Only those who will risk going too far can possibly find out how far one can go.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "T.S. Eliot"
+  },
+  {
+    "id": "2abd8b38-f2e4-495d-91ce-16d6982f47d4",
+    "text": "We don't even know how strong we are until we are forced to bring that hidden strength forward.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Isabel Allende"
+  },
+  {
+    "id": "cfc50c8b-4488-45eb-a4a2-e3100e19669d",
+    "text": "It always seems impossible until it's done.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Nelson Mandela"
+  },
+  {
+    "id": "9cb62f51-d848-4563-8543-c066f8bf6c96",
+    "text": "Sometimes one act of kindness is all it takes to give you hope again.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Randa Abdel-Fattah"
+  },
+  {
+    "id": "b093a97d-f71e-4abe-aec4-8279a899bd6f",
+    "text": "Isn't it nice to think that tomorrow is a new day with no mistakes in it yet?",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "L.M. Montgomery"
+  },
+  {
+    "id": "dfc13048-9966-450e-b5e8-8b06db2b33ce",
+    "text": "Although no one can go back and make a brand new start, anyone can start from now and make a brand new ending.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Carl Bard"
+  },
+  {
+    "id": "e36044be-437d-4e6a-8f5c-4ec361577e00",
+    "text": "There are far better things ahead than any we leave behind.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "C.S. Lewis"
+  },
+  {
+    "id": "f8fed739-f181-4792-a9a9-e8bd67d13208",
+    "text": "Always remember you are braver than you believe, stronger than you seem, and smarter than you think.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "A.A. Milne"
+  },
+  {
+    "id": "c942aba9-95ed-4ba0-929c-fd21f521a470",
+    "text": "You are not a drop in the ocean. You are the entire ocean in a drop.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Rumi"
+  },
+  {
+    "id": "38c8abef-e701-4afe-9e8c-d0b805a95f43",
+    "text": "Our deepest fear is not that we are inadequate. Our deepest fear is that we are powerful beyond measure. It is our light, not our darkness, that most frightens us.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Marianne Williamson"
+  },
+  {
+    "id": "1a8cc0b1-76df-4d32-aba3-2e6130daa84e",
+    "text": "Believe in your infinite potential. Your only limitations are those you set upon yourself.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Roy T. Bennett"
+  },
+  {
+    "id": "ecae1bdf-c379-489d-9803-4e56939c3872",
+    "text": "You may be the only person left who believes in you, but it's enough. It takes just one star to pierce a universe of darkness.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Unknown"
+  },
+  {
+    "id": "d0314b2d-b4f2-40e5-8d16-66d6180c8d7f",
+    "text": "The world is indeed full of peril, and in it there are many dark places; but still there is much that is fair, and though in all lands love is now mingled with grief, it grows perhaps the greater.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "Haldir (Lord of the Rings)"
+  },
+  {
+    "id": "c6b65bcf-e78d-4513-ba1e-1bf75373fe5e",
+    "text": "The human spirit was the strongest medicine on earth. And sometimes all it needed was a little encouragement to pull off a miracle.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Possibility"
+    ],
+    "author": "David Baldacci"
+  },
+  {
+    "id": "95eb77a5-af0c-4fef-8301-5234d4f836ed",
+    "text": "If you want to succeed you should strike out on new paths, rather than travel the worn paths of accepted success.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "John D. Rockefeller"
+  },
+  {
+    "id": "255f3139-accb-4c49-8752-94758cc56428",
+    "text": "People often say that motivation doesn't last. Well, neither does bathing - that's why we recommend it daily.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Zig Ziglar"
+  },
+  {
+    "id": "3da4de03-8914-4b01-bdad-1183e3ddcabc",
+    "text": "Storms make trees take deeper roots.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Dolly Parton"
+  },
+  {
+    "id": "19583489-e752-4e9c-8b80-345deacfc3f8",
+    "text": "Out of difficulties grow miracles.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Jean de La Bruy\u00e8re"
+  },
+  {
+    "id": "7bc17505-59c9-486b-9082-d393e96e83a7",
+    "text": "Continuous effort - not strength or intelligence - is the key to unlocking our potential.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Winston Churchill"
+  },
+  {
+    "id": "8d4274a1-7298-4ce4-a2dc-d2d499157b80",
+    "text": "On the other side of a storm is the strength that comes from having navigated through it.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Gregory S. Williams"
+  },
+  {
+    "id": "f52028d5-3de0-44e3-a523-680afb5359ca",
+    "text": "Life doesn't get easier or more forgiving; we get stronger and more resilient.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Steve Maraboli"
+  },
+  {
+    "id": "23b3de56-3484-4baf-b3a8-3680efcec8b3",
+    "text": "When we learn how to become resilient, we learn how to embrace the beautifully broad spectrum of the human experience.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Jaeda Dewalt"
+  },
+  {
+    "id": "822a6495-824d-4293-bcd6-baf67f015136",
+    "text": "There came a time when the risk to remain tight in the bud was more painful than the risk it took to blossom.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Ana\u00efs Nin"
+  },
+  {
+    "id": "1c298cbf-ba6b-4d80-9014-092ba3fd4a7b",
+    "text": "Man cannot discover new oceans unless he has the courage to lose sight of the shore.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Andr\u00e9 Gide"
+  },
+  {
+    "id": "eb3796c7-940b-4d78-9492-b67c87431f76",
+    "text": "Courage is a love affair with the unknown.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Osho"
+  },
+  {
+    "id": "0b9e5d8a-d2fd-44fd-8512-c6eb546e8934",
+    "text": "Your own soul is nourished when you are kind; it is destroyed when you are cruel.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "King Solomon"
+  },
+  {
+    "id": "741c8032-01f6-4c79-9a4f-b88bc34d967c",
+    "text": "It's never too late to become who you want to be. I hope you live a life that you're proud of, and if you find that you're not, I hope you have the strength to start over.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "F. Scott Fitzgerald"
+  },
+  {
+    "id": "b3442826-08d0-4ce1-b28c-51123e05ab78",
+    "text": "Getting over a painful experience is much like crossing monkey bars. You have to let go at some point in order to move forward.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "C.S. Lewis"
+  },
+  {
+    "id": "b8c66ea1-cd93-4b8f-bcda-d98839ad6911",
+    "text": "New beginnings are often disguised as painful endings.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Lao Tzu"
+  },
+  {
+    "id": "1e1500e3-acb2-4d44-aca1-ea0470fda036",
+    "text": "Every sunset is an opportunity to reset. Every sunrise begins with new eyes.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Richie Norton"
+  },
+  {
+    "id": "d5a90341-20aa-41ed-8ff1-f480696061f6",
+    "text": "And suddenly you know: It's time to start something new and trust the magic of beginnings.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Meister Eckhart"
+  },
+  {
+    "id": "5f861264-0885-405b-a82f-424a8a098637",
+    "text": "We must be willing to get rid of the life we've planned, so as to have the life that is waiting for us.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Joseph Campbell"
+  },
+  {
+    "id": "28829be6-c628-43da-858f-68fa5f5c81e4",
+    "text": "Rock bottom is the end of what wasn't true enough. Begin again and build something truer.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Glennon Doyle"
+  },
+  {
+    "id": "722804b4-c9ed-4892-98bc-e7d14e64b7f8",
+    "text": "To love oneself is the beginning of a lifelong romance.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Oscar Wilde"
+  },
+  {
+    "id": "35b92bc1-ccd9-4fcc-b003-656ca8fa491f",
+    "text": "Once we believe in ourselves, we can risk curiosity, wonder, spontaneous delight, or any experience that reveals the human spirit.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "E.E. Cummings"
+  },
+  {
+    "id": "ec0e6c16-041e-4b73-b9de-a33b55d3f7fe",
+    "text": "It is not the mountain we conquer, but ourselves.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Sir Edmund Hillary"
+  },
+  {
+    "id": "d7c786a5-d3cf-4a4a-adf0-790f4baefb86",
+    "text": "Gratitude is the healthiest of all human emotions. The more you express gratitude for what you have, the more likely you will have even more to express gratitude for.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Zig Ziglar"
+  },
+  {
+    "id": "c3718931-99f2-4c08-95b6-71c56a10624b",
+    "text": "When we focus on our gratitude, the tide of disappointment goes out and the tide of love rushes in.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Kristin Armstrong"
+  },
+  {
+    "id": "0851cc89-cb15-4949-9a29-70c237ea2359",
+    "text": "A single act of kindness throws out roots in all directions, and the roots spring up and make new trees.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Amelia Earhart"
+  },
+  {
+    "id": "6894d513-c612-44c6-be34-08bf7418d6fc",
+    "text": "At times our own light goes out and is rekindled by a spark from another person. Each of us has cause to think with deep gratitude of those who have lighted the flame within us.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Albert Schweitzer"
+  },
+  {
+    "id": "f22311ca-c73f-426a-8ab5-3e7319a7fdaa",
+    "text": "Difficulties are meant to rouse, not discourage. The human spirit is to grow strong by conflict.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "William Ellery Channing"
+  },
+  {
+    "id": "d8a469c3-f429-4b2a-9661-e3311a43fc8d",
+    "text": "Sometimes the darkest challenges, the most difficult lessons, hold the greatest gems of light.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Barbara Marciniak"
+  },
+  {
+    "id": "7b72983b-2bdc-4dbd-bcc2-1c6a2874e51b",
+    "text": "Only those who dare to fail greatly can ever achieve greatly.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Growth"
+    ],
+    "author": "Robert F. Kennedy"
+  },
+  {
+    "id": "19c9f2e8-dbbd-428c-a282-578f2518ec4a",
+    "text": "Rivers know this: there is no hurry. We shall get there some day.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "A.A. Milne"
+  },
+  {
+    "id": "95e93e56-43df-48d0-a1f2-84b4b5e3db06",
+    "text": "Life is beautiful not because of the things we see or the things we do. Life is beautiful because of the people we meet.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Simon Sinek"
+  },
+  {
+    "id": "176fffb9-6ba9-4c5b-861a-46a1cb0b008c",
+    "text": "Dwell on the beauty of life. Watch the stars, and see yourself running with them.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Marcus Aurelius"
+  },
+  {
+    "id": "b69e9933-d27c-4774-8bb6-2471ccb83cab",
+    "text": "Find ecstasy in life; the mere sense of living is joy enough.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Emily Dickinson"
+  },
+  {
+    "id": "ad719747-708e-441f-a510-6b6a23bab3b7",
+    "text": "Keep your head high, keep your chin up, and most importantly, keep smiling, because life's a beautiful thing and there's so much to smile about.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Marilyn Monroe"
+  },
+  {
+    "id": "88f4d3b5-9d1a-4bd1-b8bb-888f8381e5eb",
+    "text": "When I started counting my blessings, my whole life turned around.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Willie Nelson"
+  },
+  {
+    "id": "946bdb19-94d7-4a81-8ad2-aa2c8778b016",
+    "text": "The most beautiful things in the world cannot be seen or even touched - they must be felt with the heart.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Helen Keller"
+  },
+  {
+    "id": "7ac035ee-8ecc-4485-9df7-d1714ba53398",
+    "text": "Enjoy the little things, for one day you may look back and realize they were the big things.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Robert Brault"
+  },
+  {
+    "id": "dbafe838-4b25-45e2-9dbe-54d38b0799b9",
+    "text": "Life's beauty is inseparable from its fragility.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Susan David"
+  },
+  {
+    "id": "452956ba-94d0-4468-b793-a6ce350090a2",
+    "text": "Life doesn't have to be perfect to be wonderful.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Annette Funicello"
+  },
+  {
+    "id": "036bf23d-1c7a-4f19-9df7-e6664052d1ed",
+    "text": "The present moment is filled with joy and happiness. If you are attentive, you will see it.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Thich Nhat Hanh"
+  },
+  {
+    "id": "e395d165-a07a-4faa-98ce-14748d762559",
+    "text": "Life is really simple, but we insist on making it complicated.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Confucius"
+  },
+  {
+    "id": "b6bea7fe-bf15-4466-abb8-3e5e29d0469e",
+    "text": "We think too much and feel too little. More than machinery, we need humanity. More than cleverness, we need kindness and gentleness.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Charlie Chaplin"
+  },
+  {
+    "id": "eb9b4453-c513-4906-a51e-b053ad85ec57",
+    "text": "Wherever there is a human being, there is an opportunity for kindness.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Seneca"
+  },
+  {
+    "id": "a8a80b6b-2d3e-4da5-b10f-ef4c87405550",
+    "text": "Everyone you meet is fighting a battle you know nothing about. Be kind. Always.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Brad Meltzer"
+  },
+  {
+    "id": "21610c3a-6d2f-47fd-824f-ebb76370d336",
+    "text": "Every moment is a fresh beginning.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "T.S. Eliot"
+  },
+  {
+    "id": "44f18584-9ef4-4d9c-b773-7787c6bb05fd",
+    "text": "You are loved just for being who you are, just for existing. You don't have to do anything to earn it.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Ram Dass"
+  },
+  {
+    "id": "0bcf612a-ac7b-4d1e-aa21-9633df4be6e5",
+    "text": "I don't have to chase extraordinary moments to find happiness - it's right in front of me if I'm paying attention and practicing gratitude.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Bren\u00e9 Brown"
+  },
+  {
+    "id": "dbd52370-a251-49cd-be6d-3c55b274517e",
+    "text": "Joy is the simplest form of gratitude.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Karl Barth"
+  },
+  {
+    "id": "e5666faf-ae7a-482e-b4fe-455b59a01c05",
+    "text": "Gratitude turns what we have into enough.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Melody Beattie"
+  },
+  {
+    "id": "a5fb250a-728e-4425-a5e9-1e46f345dba7",
+    "text": "We can only be said to be alive in those moments when our hearts are conscious of our treasures.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Thornton Wilder"
+  },
+  {
+    "id": "664e79f4-4bec-48b3-928d-2d31d8940272",
+    "text": "Let us be grateful to the people who make us happy; they are the charming gardeners who make our souls blossom.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Marcel Proust"
+  },
+  {
+    "id": "99cf279a-d617-408c-b046-c119fea0a7bc",
+    "text": "The root of joy is gratefulness.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "David Steindl-Rast"
+  },
+  {
+    "id": "e32c5d51-1ce6-45fd-b2b4-c216a74baba2",
+    "text": "If the only prayer you said was 'thank you,' that would be enough.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Meister Eckhart"
+  },
+  {
+    "id": "da1fc864-3df0-45f9-addb-adf0cb049b84",
+    "text": "Gratitude can transform common days into thanksgivings, turn routine jobs into joy, and change ordinary opportunities into blessings.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "William Arthur Ward"
+  },
+  {
+    "id": "b49a344f-6929-4a23-abc5-dd5f985b58f4",
+    "text": "This is a wonderful day. I've never seen this one before.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Maya Angelou"
+  },
+  {
+    "id": "6122c262-ce5e-4689-99eb-6857f7cbbf11",
+    "text": "Gratitude unlocks the fullness of life. It turns what we have into enough, and more.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Melody Beattie"
+  },
+  {
+    "id": "cd699298-54f1-4cb3-9270-2158e04f2900",
+    "text": "Piglet noticed that even though he had a Very Small Heart, it could hold a rather large amount of Gratitude.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "A.A. Milne"
+  },
+  {
+    "id": "9c03259c-894b-4ad0-9bf6-aad561d56bb2",
+    "text": "Happiness cannot be traveled to, owned, earned, worn or consumed. Happiness is the spiritual experience of living every minute with love, grace, and gratitude.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Denis Waitley"
+  },
+  {
+    "id": "f9f08c7c-b726-456b-9ac2-c1f698a0c973",
+    "text": "The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Helen Keller"
+  },
+  {
+    "id": "96f67c6a-1bed-4fe7-9287-38c3c58babc0",
+    "text": "Experience life in all possible ways - good-bad, bitter-sweet, dark-light, summer-winter. Experience all the dualities. Don't be afraid of experience.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Mindfulness"
+    ],
+    "author": "Osho"
+  },
+  {
+    "id": "a5b24a13-724d-4b42-9cc8-8ec0b9960a3b",
+    "text": "It does not matter how slowly you go as long as you do not stop.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Confucius"
+  },
+  {
+    "id": "d1c266a0-690f-4c36-9a39-1a944b64c50b",
+    "text": "Never give up, for that is just the place and time that the tide will turn.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Harriet Beecher Stowe"
+  },
+  {
+    "id": "7ecf0c18-99ec-4af2-8e28-2f46e1955f7b",
+    "text": "Perseverance is failing 19 times and succeeding the 20th.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Julie Andrews"
+  },
+  {
+    "id": "82ca9de6-ec41-4fba-a43f-df5c05ba97cc",
+    "text": "You just can't beat the person who never gives up.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Babe Ruth"
+  },
+  {
+    "id": "35fec81c-697b-4bf5-9585-d65598125ada",
+    "text": "The human spirit is stronger than anything that can happen to it.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "C.C. Scott"
+  },
+  {
+    "id": "522f8c72-0d98-4c79-8d7c-ed2cdec996b8",
+    "text": "Tough times never last, but tough people do.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Robert H. Schuller"
+  },
+  {
+    "id": "d0f6eb4f-446a-4f08-815f-c8afe0d739ba",
+    "text": "A river cuts through rock not because of its power, but because of its persistence.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "James Watkins"
+  },
+  {
+    "id": "efb25bba-a495-4bb8-a891-2fe332e7cac9",
+    "text": "Sometimes carrying on, just carrying on, is the superhuman achievement.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Albert Camus"
+  },
+  {
+    "id": "4073cc53-24ab-4b2d-97ae-b23b4f197d48",
+    "text": "You may encounter many defeats, but you must not be defeated.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Maya Angelou"
+  },
+  {
+    "id": "13c36407-823b-4201-a750-afe0ac2c803c",
+    "text": "Resilience is very different than being numb. Resilience means you experience, you feel, you fail, you hurt. You fall. But, you keep going.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Yasmin Mogahed"
+  },
+  {
+    "id": "50b3c27c-7ad7-4149-bc8f-e32b0f5341f7",
+    "text": "Courage doesn't always roar. Sometimes courage is the quiet voice at the end of the day saying, 'I will try again tomorrow.'",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Mary Anne Radmacher"
+  },
+  {
+    "id": "1b92b434-7331-49aa-8436-01753aed56f9",
+    "text": "Many of life's failures are people who did not realize how close they were to success when they gave up.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Thomas Edison"
+  },
+  {
+    "id": "c03d17ac-afaf-4926-9fd1-3e5936ff0eba",
+    "text": "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Winston Churchill"
+  },
+  {
+    "id": "d43c278f-5179-4c9e-987b-ff207267fe57",
+    "text": "Perseverance is not a long race; it is many short races one after the other.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Walter Elliot"
+  },
+  {
+    "id": "961bc184-5908-4f15-9664-b06894be5f01",
+    "text": "Although the world is full of suffering, it is also full of the overcoming of it.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Helen Keller"
+  },
+  {
+    "id": "64c0eb8f-7aa1-4a93-896f-f6eed209fa9f",
+    "text": "The oak fought the wind and was broken, the willow bent when it must and survived.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Robert Jordan"
+  },
+  {
+    "id": "527f19c1-a3a9-468c-8d47-64ff7956bace",
+    "text": "A hero is an ordinary individual who finds the strength to persevere and endure in spite of overwhelming obstacles.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Christopher Reeve"
+  },
+  {
+    "id": "44447623-19fe-4213-8c50-aea9a0e58744",
+    "text": "I beg you take courage; the brave soul can mend even disaster.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Catherine the Great"
+  },
+  {
+    "id": "e5795016-203e-458e-be12-21d87833fc75",
+    "text": "When you come to the end of your rope, tie a knot and hang on.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Proverb"
+  },
+  {
+    "id": "cfb85907-e1e5-4ace-b6a4-4c7446c98ed2",
+    "text": "Faith is not simply a patience that passively suffers until the storm is past. It is a spirit that bears things with blazing, serene hope.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Corazon Aquino"
+  },
+  {
+    "id": "42532441-7623-4503-a2c6-bbdacf53978f",
+    "text": "The splendid thing about falling apart silently is that you can start over as many times as you like.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Sanober Khan"
+  },
+  {
+    "id": "bb50dbbd-da74-4511-ab27-6dd955195a09",
+    "text": "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Nelson Mandela"
+  },
+  {
+    "id": "c851cb1b-db2b-4ef3-8abd-66a1232a5b72",
+    "text": "Faithless is he that says farewell when the road darkens.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Gimli (Lord of the Rings)"
+  },
+  {
+    "id": "cc499101-ae64-40ad-9c95-7172b293f67d",
+    "text": "What you endure is who you are. And if you just quit because you got scared, you'll never find out who you really are.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Orson Scott Card"
+  },
+  {
+    "id": "74bbe660-b1e0-4f60-a5df-3971cf02557e",
+    "text": "The trauma you've experienced and survived is the most powerful part of your life experience. Honor and celebrate your resiliency.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Leonie H. Mattison"
+  },
+  {
+    "id": "20bd3d61-eb18-41e0-ba8d-5eb25d319134",
+    "text": "People assume strength is loud. In reality, strength is silent. It is resilience, the will to never surrender your dignity.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Resilience"
+    ],
+    "author": "Parker S. Huntington"
+  },
+  {
+    "id": "d754638f-ee95-4903-933e-0ef87ed75170",
+    "text": "Be miserable. Or motivate yourself. Whatever has to be done, it's always your choice.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Wayne Dyer"
+  },
+  {
+    "id": "e2151b0c-a229-47e0-b838-30c7813bb117",
+    "text": "Do not wait to strike till the iron is hot; but make it hot by striking.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "William Butler Yeats"
+  },
+  {
+    "id": "479b8882-bd9f-426d-bff3-eb772c6b4569",
+    "text": "The most effective way to do it, is to do it.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Amelia Earhart"
+  },
+  {
+    "id": "8de6c880-3695-4774-9f48-6e0f4d646c1c",
+    "text": "No bird soars too high if he soars with his own wings.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "William Blake"
+  },
+  {
+    "id": "5127903d-2394-46eb-9d65-f5f76634da30",
+    "text": "Do you want to know who you are? Don't ask. Act! Action will delineate and define you.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Thomas Jefferson"
+  },
+  {
+    "id": "3a352dd5-319d-46b6-92b3-73bfd3afc69b",
+    "text": "Ability is what you're capable of doing. Motivation determines what you do. Attitude determines how well you do it.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Lou Holtz"
+  },
+  {
+    "id": "98472e18-bd63-45c6-9da6-d4feb04ec3ac",
+    "text": "I learned that courage was not the absence of fear, but the triumph over it.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Nelson Mandela"
+  },
+  {
+    "id": "3ac2c688-1ba4-4d95-9b51-a4331651a329",
+    "text": "It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "J.K. Rowling"
+  },
+  {
+    "id": "8c1f759b-1a77-461a-ba0c-3b7d792f876b",
+    "text": "Real courage is when you know you're licked before you begin, but you begin anyway and see it through no matter what.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Harper Lee"
+  },
+  {
+    "id": "1b3fe6e0-e5af-4a2c-b9e4-0d715d562f8a",
+    "text": "Life shrinks or expands in proportion to one's courage.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Ana\u00efs Nin"
+  },
+  {
+    "id": "68e9325f-d2b5-464f-b4cb-839453411e0c",
+    "text": "What would life be if we had no courage to attempt anything?",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Vincent Van Gogh"
+  },
+  {
+    "id": "b3394a4f-14e3-4df7-9c82-ce17fba062e2",
+    "text": "Courage is the commitment to begin without any guarantee of success.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Johann Wolfgang von Goethe"
+  },
+  {
+    "id": "f3ffdd34-bed0-481a-82a3-956ee5934f27",
+    "text": "You can choose courage, or you can choose comfort, but you cannot choose both.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Bren\u00e9 Brown"
+  },
+  {
+    "id": "f7f85fa4-8d3c-423b-b0a9-ba0d6f1f7f32",
+    "text": "Scared is what you're feeling. Brave is what you're doing.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Emma Donoghue"
+  },
+  {
+    "id": "b10a989b-228a-4343-8b85-8395d2f2ec1d",
+    "text": "Above all, be the heroine of your life, not the victim.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Nora Ephron"
+  },
+  {
+    "id": "0dfa8a54-6163-4517-9b86-e200eb288405",
+    "text": "All we have to decide is what to do with the time that is given us.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Gandalf (Lord of the Rings)"
+  },
+  {
+    "id": "13ce6416-f454-4f98-addb-5dd441f597fb",
+    "text": "The world is cruel; therefore I won't be.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "headspace-hotel (Tumblr)"
+  },
+  {
+    "id": "7a63fca8-8e51-4f29-a55a-bc81334cc2db",
+    "text": "In a world where you can be anything, be kind.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Clare Pooley"
+  },
+  {
+    "id": "ae963e4f-78cc-41d3-8469-b2ebd417b09c",
+    "text": "Human kindness has never weakened the stamina or softened the fiber of a free people. A nation does not have to be cruel to be tough.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Franklin D. Roosevelt"
+  },
+  {
+    "id": "df5ad3a2-afa1-4487-b8c1-9d8813794d98",
+    "text": "Only the weak are cruel. Gentleness can only be expected from the strong.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Leo Buscaglia"
+  },
+  {
+    "id": "559120ad-ce85-4a43-8561-f025b92ffeb8",
+    "text": "Kindness is choosing love over hate, light over darkness, compassion over judgment.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "RAKtivist"
+  },
+  {
+    "id": "ab42ef4c-71a9-4ffc-984d-e9821392418e",
+    "text": "People shouldn't have to earn kindness. They should have to earn cruelty.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Maggie Stiefvater"
+  },
+  {
+    "id": "a2a7df42-d7e5-4e56-aeec-576d54076e5f",
+    "text": "Do your little bit of good where you are; it's those little bits of good put together that overwhelm the world.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Desmond Tutu"
+  },
+  {
+    "id": "f28848ef-5f82-4377-b55a-73fa946a962b",
+    "text": "It takes courage to be kind.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Maya Angelou"
+  },
+  {
+    "id": "7b597bcf-9ca3-43b1-bf9f-f9237427857c",
+    "text": "You can turn over a new leaf every hour if you choose.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Arnold Bennett"
+  },
+  {
+    "id": "991c1525-2576-4c51-998a-1aa3659a984e",
+    "text": "Nothing in the universe can stop you from letting go and starting over.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Guy Finley"
+  },
+  {
+    "id": "37e4bc77-e30e-4cd0-9834-7025d8588dbd",
+    "text": "Do not wait until the conditions are perfect to begin. Beginning makes the conditions perfect.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Alan Cohen"
+  },
+  {
+    "id": "fd381d17-2748-42ab-ba03-fd8120834f97",
+    "text": "Trust yourself. You know more than you think you do.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Dr. Benjamin Spock"
+  },
+  {
+    "id": "53a11510-37ae-4529-8f08-e509f23cb765",
+    "text": "No one can make you feel inferior without your consent.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Eleanor Roosevelt"
+  },
+  {
+    "id": "2747e957-c3fe-4639-bc08-ea5c3d617429",
+    "text": "As soon as you trust yourself, you will know how to live.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Johann Wolfgang von Goethe"
+  },
+  {
+    "id": "c11fdd80-452f-41d6-bd91-16cf183240d3",
+    "text": "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Ralph Waldo Emerson"
+  },
+  {
+    "id": "449eca87-0aaf-441a-895e-b8771abf56b5",
+    "text": "The only person who can pull me down is myself, and I'm not going to let myself pull me down anymore.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "C. JoyBell C."
+  },
+  {
+    "id": "57ed6a82-5d35-4561-ae5f-47a389dd5de4",
+    "text": "Believe in yourself! Have faith in your abilities! Without a humble but reasonable confidence in your own powers you cannot be successful or happy.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Norman Vincent Peale"
+  },
+  {
+    "id": "bb884966-2f24-4d12-b1e9-a01473acd871",
+    "text": "How lovely to think that no one need wait a moment; we can start now, start slowly changing the world!",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Anne Frank"
+  },
+  {
+    "id": "26b2fc08-738b-4fd2-b049-4c4e149067f3",
+    "text": "Each time a man stands up for an ideal, or acts to improve the lot of others, or strikes out against injustice, he sends forth a tiny ripple of hope.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Robert F. Kennedy"
+  },
+  {
+    "id": "5d9f82d3-6192-4c61-aa3d-dabd412f9ee5",
+    "text": "It is from numberless diverse acts of courage and belief that human history is shaped.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Robert F. Kennedy"
+  },
+  {
+    "id": "41ce3fe9-6b2d-472c-a525-12c1af3dfd2f",
+    "text": "You have power over your mind - not outside events. Realize this, and you will find strength.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Agency"
+    ],
+    "author": "Marcus Aurelius"
+  },
+  {
+    "id": "5cacfdbe-26b6-4103-aa6f-ca757bc7d6e4",
+    "text": "A creative man is motivated by the desire to achieve, not by the desire to beat others.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Ayn Rand"
+  },
+  {
+    "id": "62126571-4901-4edb-b4a6-a8b8de49e122",
+    "text": "Desire is the key to motivation, but it's determination and commitment to an unrelenting pursuit of your goal that will enable you to attain the success you seek.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Mario Andretti"
+  },
+  {
+    "id": "28462708-fb8c-4f62-acee-3065bf47a48e",
+    "text": "The brick walls are not there to keep us out. The brick walls are there to give us a chance to show how badly we want something.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Randy Pausch"
+  },
+  {
+    "id": "d145808d-dfee-4bdd-8f02-a289b81b6942",
+    "text": "Courage is not the absence of fear, but rather the judgment that something else is more important than fear.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Ambrose Redmoon"
+  },
+  {
+    "id": "c921c7ed-85b8-4280-8ad8-383924cfce3b",
+    "text": "The biggest adventure you can ever take is to live the life of your dreams.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Oprah Winfrey"
+  },
+  {
+    "id": "19188a7e-20d5-4001-9f0e-ad3527589466",
+    "text": "Have the courage to follow your heart and intuition. They somehow already know what you truly want to become.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Steve Jobs"
+  },
+  {
+    "id": "2a079450-91e1-4402-b485-dc42dfcd6abe",
+    "text": "There's some good in this world, Mr. Frodo. And it's worth fighting for.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Samwise Gamgee (Lord of the Rings)"
+  },
+  {
+    "id": "624f3ee1-8d6a-49ca-b0b9-2135bcad191b",
+    "text": "I can't carry it for you... but I can carry you!",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Samwise Gamgee (Lord of the Rings)"
+  },
+  {
+    "id": "eb0a075f-f51c-4538-a4e2-e04d43bd8e16",
+    "text": "Not all those who wander are lost.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Bilbo Baggins (Lord of the Rings)"
+  },
+  {
+    "id": "3fbbf8cc-afa2-4f8f-9fca-1fbb305dc76f",
+    "text": "In the end, it's not the years in your life that count. It's the life in your years.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Abraham Lincoln"
+  },
+  {
+    "id": "2ae5f3e1-293b-4bb3-9de4-8c8ede6e381b",
+    "text": "Life was meant to be lived, and curiosity must be kept alive.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Eleanor Roosevelt"
+  },
+  {
+    "id": "877c6e51-a2e9-46b8-a896-c6981e65f9dc",
+    "text": "My mission in life is not merely to survive, but to thrive; and to do so with some passion, some compassion, some humor, and some style.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Maya Angelou"
+  },
+  {
+    "id": "7c426b1c-1af0-4c77-b99a-b73cb16ced7a",
+    "text": "The purpose of our lives is to be happy.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Dalai Lama"
+  },
+  {
+    "id": "941398e9-e18f-4214-8de9-dfca1043206b",
+    "text": "Three things in human life are important: the first is to be kind; the second is to be kind; and the third is to be kind.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Henry James"
+  },
+  {
+    "id": "488602e0-2fc7-4d12-a7f7-262a73a41477",
+    "text": "Kindness is giving hope to those who think they are all alone in this world.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "RAKtivist"
+  },
+  {
+    "id": "77708ad8-4cd8-4c67-9294-81363b4c7144",
+    "text": "Wanting to be someone else is a waste of the person you are.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Marilyn Monroe"
+  },
+  {
+    "id": "e0d4182f-55b7-4884-90a3-3fa4503a4d43",
+    "text": "You'll need coffee shops and sunsets and road trips. Airplanes and passports and new songs and old songs, but people more than anything else.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Jamie Tworkowski"
+  },
+  {
+    "id": "fa71c104-d286-43ac-a6a5-a730f601fffa",
+    "text": "Where there is no human connection, there is no compassion.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Susan Vreeland"
+  },
+  {
+    "id": "652c9d99-0398-477e-bdc7-7cfa5b807412",
+    "text": "Life is a daring adventure or nothing at all.",
+    "trackType": "hope",
+    "presentationMode": "textOverlay",
+    "categories": [
+      "Purpose"
+    ],
+    "author": "Helen Keller"
+  }
 ]

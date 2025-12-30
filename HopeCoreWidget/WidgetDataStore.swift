@@ -36,6 +36,7 @@ struct WidgetDataStore {
     private static let lastUpdatedKey = "widgetLastUpdated"
     private static let isPremiumKey = "widgetIsPremium"
     private static let scheduledMessagesKey = "widgetScheduledMessages" // Array of [time: message] pairs
+    private static let backgroundImageKey = "widgetBackgroundImage" // Selected background image name
     
     // MARK: - Shared UserDefaults
     
@@ -92,7 +93,26 @@ struct WidgetDataStore {
         defaults.set(isPremium, forKey: isPremiumKey)
         defaults.synchronize()
     }
-    
+
+    /// Save selected background image for widget display
+    /// - Parameter imageName: Asset name of the background image (e.g., "image-1")
+    static func saveBackgroundImage(_ imageName: String) {
+        guard let defaults = sharedDefaults else { return }
+        defaults.set(imageName, forKey: backgroundImageKey)
+        defaults.synchronize()
+        print("✅ WidgetDataStore: Saved background image: \(imageName)")
+    }
+
+    /// Get selected background image for widget display
+    /// - Returns: Asset name of background image, or default if not set
+    static func getBackgroundImage() -> String {
+        guard let defaults = sharedDefaults,
+              let imageName = defaults.string(forKey: backgroundImageKey) else {
+            return "image-1" // Default background
+        }
+        return imageName
+    }
+
     // MARK: - Read Methods (Called from Widget)
     
     /// Get today's featured message for widget display
@@ -220,6 +240,7 @@ struct WidgetDataStore {
         defaults.removeObject(forKey: lastUpdatedKey)
         defaults.removeObject(forKey: isPremiumKey)
         defaults.removeObject(forKey: scheduledMessagesKey)
+        defaults.removeObject(forKey: backgroundImageKey)
         defaults.synchronize()
         print("🧹 WidgetDataStore: Cleared all widget data")
     }
